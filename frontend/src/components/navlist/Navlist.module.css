@@ -1,0 +1,21 @@
+.list{
+    display: flex;
+    gap: 20px;
+}
+
+.list li{
+    font-size: 17px;
+}
+
+.burger{
+    display: none;
+}
+
+@media(max-width:768px){
+    .list li{
+        display: none;
+    }
+    .burger{
+        display: block;
+    }
+}
