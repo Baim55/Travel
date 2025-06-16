@@ -1,27 +1,43 @@
 import React from "react";
-import styles from "./Wrapper.module.css"
+import styles from "./Wrapper.module.css";
 import { Link } from "react-router-dom";
 import { IoPersonOutline } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { setUser } from "../../redux/features/userSlice";
 
 const Wrapper = () => {
+  const baseUrl = "http://localhost:5000/auth";
+  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+    dispatch(setUser(null));
+    const res = await axios.get(`${baseUrl}/logout`, { withCredentials: true });
+
+
+    if (res.status === 200) {
+      alert("Logout successful");
+    } else {
+      alert("Logout failed");
+    }
+  };
   return (
     <div className={styles.wrapper}>
       <div className="dropdown">
-        <button
-          className="btn"
-          type="button"
-          data-bs-toggle="dropdown"
-        >
+        <button className="btn" type="button" data-bs-toggle="dropdown">
           <i className="fa-solid fa-user"></i>
-          <IoPersonOutline  size={21}/>
+          <IoPersonOutline size={21} />
         </button>
         <ul className="dropdown-menu">
-            <li>
+          {user ? (
+            <li onClick={handleLogout}>
               <Link className="dropdown-item logout " to="/">
                 Logout
               </Link>
             </li>
+          ) : (
             <>
               <li>
                 <Link className="dropdown-item register" to="/register">
@@ -34,9 +50,12 @@ const Wrapper = () => {
                 </Link>
               </li>
             </>
+          )}
         </ul>
       </div>
-      <Link to="/wishlist"><FaRegHeart size={21}/></Link>
+      <Link to="/wishlist">
+        <FaRegHeart size={21} />
+      </Link>
     </div>
   );
 };

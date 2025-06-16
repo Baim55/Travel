@@ -26,3 +26,11 @@ img{
   width: 100%;
   height: auto;
 }
+
+:root {
+  --primary: #dc834e;
+  --primary-hover: #c36b36;
+  --accent: #000000;
+  --text: #666666;
+  --border: #e5e5e5;
+}

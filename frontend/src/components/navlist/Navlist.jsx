@@ -1,34 +1,35 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./Navlist.module.css";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navlist = () => {
   return (
-    <div>
+    <div className={styles.navContainer}>
       <ul className={styles.list}>
         <li>
-          <Link to="/">Home</Link>
+          <NavLink to="/" className={({ isActive }) => isActive ? styles.activeLink : ""}>Home</NavLink>
         </li>
         <li>
-          <Link to="/destinations">Destinations</Link>
+          <NavLink to="/destinations" className={({ isActive }) => isActive ? styles.activeLink : ""}>Destinations</NavLink>
         </li>
         <li>
-          <Link to="/stay">Stay</Link>
+          <NavLink to="/stay" className={({ isActive }) => isActive ? styles.activeLink : ""}>Stay</NavLink>
         </li>
         <li>
-          <Link to="/activities">Activities</Link>
+          <NavLink to="/activities" className={({ isActive }) => isActive ? styles.activeLink : ""}>Activities</NavLink>
         </li>
         <li>
-          <Link to="/ar">AR</Link>
+          <NavLink to="/ar" className={({ isActive }) => isActive ? styles.activeLink : ""}>AR</NavLink>
         </li>
         <li>
-          <Link to="/plan">Trip Planner</Link>
+          <NavLink to="/plan" className={({ isActive }) => isActive ? styles.activeLink : ""}>Trip Planner</NavLink>
         </li>
         <li>
-          <Link to="/contact">Contact</Link>
+          <NavLink to="/contact" className={({ isActive }) => isActive ? styles.activeLink : ""}>Contact</NavLink>
         </li>
       </ul>
+
       <div className={styles.burger}>
         <RxHamburgerMenu />
       </div>

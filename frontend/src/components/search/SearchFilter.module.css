@@ -1,0 +1,141 @@
+.searchFilter {
+  display: flex;
+  background: #fff;
+  border-radius: 30px;
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  position: relative;
+  gap: 16px;
+}
+
+.field {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 12px 16px;
+  cursor: pointer;
+  border-right: 1px solid #eee;
+}
+
+.field:last-child {
+  border-right: none;
+}
+
+.icon {
+  font-size: 20px;
+  color: #dc834e;
+  margin-right: 12px;
+}
+
+.label span {
+  display: block;
+  font-size: 12px;
+  color: #999;
+}
+
+.label p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* kiçik aşağı ox */
+.chevron {
+  position: absolute;
+  right: 12px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #999;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  margin-top: 8px;
+  list-style: none;
+  padding: 8px 0;
+  z-index: 10;
+}
+
+.dropdown li {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #333;
+}
+.dropdown li:hover {
+  background: #f5f5f5;
+}
+
+/* tarix seçimi */
+.dateRange {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: flex;
+  gap: 8px;
+  background: #fff;
+  padding: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  margin-top: 8px;
+  z-index: 10;
+}
+.dateRange input {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+/* qonaq seçimi */
+.guestPicker {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  margin-top: 8px;
+  z-index: 10;
+}
+.guestPicker button {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: #dc834e;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Search düyməsi */
+.searchBtn {
+  background: #dc834e;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.searchBtn:hover {
+  background: #b55f32;
+}

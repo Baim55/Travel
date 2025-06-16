@@ -1,21 +1,42 @@
-.list{
-    display: flex;
-    gap: 20px;
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.list li{
-    font-size: 17px;
+.list {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.burger{
+.list li {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.list li a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.activeLink {
+  color: #dc834e !important;
+  font-weight: 500;
+}
+
+.burger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .list li {
     display: none;
-}
-
-@media(max-width:768px){
-    .list li{
-        display: none;
-    }
-    .burger{
-        display: block;
-    }
+  }
+  .burger {
+    display: block;
+  }
 }
