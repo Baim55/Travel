@@ -1,10 +1,15 @@
 import { createRoot } from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 import "./index.css";
 import App from "./App.jsx";
+import axios from "axios";               // ← axios import
 import { persistor, store } from "./redux/store/Store.js";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+
+axios.defaults.baseURL = "http://localhost:5000";
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>

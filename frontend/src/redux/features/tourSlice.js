@@ -1,0 +1,87 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios, { all } from "axios";
+
+const baseURL = "http://localhost:5000/api/tours";
+const initialState = {
+  tours: [],
+  allTours: [],
+};
+
+export const getTours = createAsyncThunk("tour/getTours", async () => {
+  const { data } = await axios.get(baseURL);
+  return data;
+});
+
+export const addTour = createAsyncThunk("tour/addTour", async (tour) => {
+  const { data } = await axios.post(baseURL, tour);
+  return data;
+});
+
+export const deleteTour = createAsyncThunk(
+  "product/deleteTour",
+  async (id) => {
+    await axios.delete(`${baseURL}/${id}`);
+    return id;
+  }
+);
+
+export const searchTour = createAsyncThunk(
+  "tour/searchTour",
+  async (search, { getState }) => {
+    if (search === "") {
+      return getState().tours.allTours;
+    }
+    const { data } = await axios.get(`${baseURL}/search/${search}`);
+    return data;
+  }
+);
+
+export const tourSlice = createSlice({
+  name: "tour",
+  initialState,
+  reducers: {
+    // searchProduct: (state, action) => {
+    //   state.products = state.allProducts.filter((item) =>
+    //     item.title.toLowerCase().includes(action.payload.toLowerCase())
+    //   );
+    // },
+    // sortProductAZ: (state) => {
+    //   state.products = state.products.sort((a, b) =>
+    //     a.title.localeCompare(b.title)
+    //   );
+    // },
+    // sortProductZA: (state) => {
+    //   state.products = state.products.sort((a, b) =>
+    //     b.title.localeCompare(a.title)
+    //   );
+    // },
+
+    sortTourLowest: (state) => {
+      state.tours = state.tours.sort((a, b) => a.price - b.price);
+    },
+    sortTourHigest: (state) => {
+      state.tours = state.tours.sort((a, b) => b.price - a.price);
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getTours.fulfilled, (state, action) => {
+      state.tours = action.payload;
+      state.allTours = action.payload;
+    });
+    builder.addCase(addTour.fulfilled, (state, action) => {
+      state.tours.push(action.payload);
+    });
+    builder.addCase(deleteTour.fulfilled, (state, action) => {
+      state.tours = state.tours.filter(
+        (item) => item._id !== action.payload
+      );
+    });
+    builder.addCase(searchTour.fulfilled, (state, action) => {
+      state.tours = action.payload;
+    });
+  },
+});
+
+export const { sortTourLowest, sortTourHigest } = tourSlice.actions;
+
+export default tourSlice.reducer;

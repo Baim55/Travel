@@ -4,6 +4,12 @@ import storage from "redux-persist/lib/storage";
 import productSlice from "../features/productSlice";
 import wishlistSlice from "../features/wishlistSlice";
 import userSlice from "../features/userSlice";
+import tourSlice from "../features/tourSlice";
+
+const persistTourConfig = {
+  key: "tour",
+  storage,
+};
 
 const persistProductConfig = {
   key: "product",
@@ -15,6 +21,8 @@ const persistWishlistConfig = {
   storage,
 };
 
+const persistedTourReducer = persistReducer(persistTourConfig, tourSlice);
+
 const persistedProductReducer = persistReducer(
   persistProductConfig,
   productSlice
@@ -25,9 +33,9 @@ const persistedWishlistReducer = persistReducer(
   wishlistSlice
 );
 
-
 export const store = configureStore({
   reducer: {
+    tour: persistedTourReducer,
     products: persistedProductReducer,
     wishlist: persistedWishlistReducer,
     user: userSlice,
