@@ -31,6 +31,8 @@ export const addTour = async (req, res) => {
       country,
       city,
       activity,
+      duration,
+      price,
       availableDateRange,
       maxGuests = 10,
     } = req.body;
@@ -51,6 +53,8 @@ export const addTour = async (req, res) => {
       country,
       city,
       activity,
+      duration,
+      price,
       availableDateRange,
       maxGuests,
       image: imageUrl,
@@ -64,11 +68,13 @@ export const addTour = async (req, res) => {
 
 export const getTours = async (req, res) => {
   try {
-    const { country, city, activity, dateFrom, guests } = req.query;
+    const { country, city, activity,duration, price, dateFrom, guests } = req.query;
     const filter = {};
     if (country) filter.country = country;
     if (city) filter.city = city;
     if (activity) filter.activity = activity;
+    if (duration) filter.duration = duration;
+    if (price) filter.price = price;
     if (dateFrom) {
       const date = new Date(dateFrom);
       filter["availableDateRange.startDate"] = { $lte: date };
@@ -108,7 +114,6 @@ export const deleteTour = async (req, res) => {
   }
 };
 
-
 export const updateTour = async (req, res) => {
   try {
     const { id } = req.params;
@@ -118,7 +123,9 @@ export const updateTour = async (req, res) => {
       country,
       city,
       activity,
+      duration,
       maxGuests,
+      price,
       "availableDateRange[startDate]": startDate,
       "availableDateRange[endDate]": endDate,
     } = req.body;
@@ -133,6 +140,8 @@ export const updateTour = async (req, res) => {
     if (country) updatedFields.country = country;
     if (city) updatedFields.city = city;
     if (activity) updatedFields.activity = activity;
+    if (duration) updatedFields.duration = duration;
+    if (price) updatedFields.price = price;
     if (maxGuests) updatedFields.maxGuests = parseInt(maxGuests);
     if (startDate && endDate) {
       updatedFields.availableDateRange = {
@@ -157,4 +166,3 @@ export const updateTour = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-

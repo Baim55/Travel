@@ -27,7 +27,6 @@ const Wrapper = () => {
     <div className={styles.wrapper}>
       <div className="dropdown">
         <button className="btn" type="button" data-bs-toggle="dropdown">
-          <i className="fa-solid fa-user"></i>
           <IoPersonOutline size={21} />
         </button>
         <ul className="dropdown-menu">

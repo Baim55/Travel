@@ -17,6 +17,8 @@ const tourSchema = new mongoose.Schema(
       ],
       required: true,
     },
+    duration: { type: String, required: true },
+    price: { type: Number, required: true },
     availableDateRange: {
       startDate: { type: Date, required: true },
       endDate: { type: Date, required: true },

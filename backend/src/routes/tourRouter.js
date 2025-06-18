@@ -10,14 +10,14 @@ import {
   updateTour
 } from "../controllers/tourController.js";
 
-const router = express.Router();
+const tourRouter = express.Router();
 
-router.get("/cities",    getCitiesByCountry);
-router.get("/activities", getActivities);
-router.post("/",          upload.single("image"), addTour);
-router.get("/",           getTours);
-router.get("/search/:name", searchTours);
-router.delete("/:id",     deleteTour);
-router.put("/tours/:id", upload.single("image"), updateTour);
+tourRouter.get("/cities",    getCitiesByCountry);
+tourRouter.get("/activities", getActivities);
+tourRouter.post("/",          upload.single("image"), addTour);
+tourRouter.get("/",           getTours);
+tourRouter.get("/search/:name", searchTours);
+tourRouter.delete("/:id",     deleteTour);
+tourRouter.put("/:id", upload.single("image"), updateTour);
 
-export default router;
+export default tourRouter;
