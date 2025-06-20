@@ -1,23 +1,22 @@
+// src/routes/tourRouter.js
 import express from "express";
 import upload from "../upload/upload.js";
 import {
-  addTour,
-  getTours,
-  deleteTour,
-  searchTours,
-  getCitiesByCountry,
-  getActivities,
-  updateTour
+  addTour, getTours, deleteTour,
+  searchTours, getCitiesByCountry,
+  getActivities, updateTour
 } from "../controllers/tourController.js";
 
-const tourRouter = express.Router();
+const router = express.Router();
 
-tourRouter.get("/cities",    getCitiesByCountry);
-tourRouter.get("/activities", getActivities);
-tourRouter.post("/",          upload.single("image"), addTour);
-tourRouter.get("/",           getTours);
-tourRouter.get("/search/:name", searchTours);
-tourRouter.delete("/:id",     deleteTour);
-tourRouter.put("/:id", upload.single("image"), updateTour);
+router.get("/cities",     getCitiesByCountry);
+router.get("/activities", getActivities);
 
-export default tourRouter;
+// İndi eyni anda 1–4 şəkil qəbul edəcək, səviyyə adı “images”
+router.post("/", upload.array("images", 4), addTour);
+router.get("/",  getTours);
+router.get("/search/:name", searchTours);
+router.delete("/:id", deleteTour);
+router.put("/:id", upload.array("images", 4), updateTour);
+
+export default router;

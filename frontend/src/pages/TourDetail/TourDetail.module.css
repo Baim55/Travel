@@ -1,0 +1,176 @@
+/* src/components/TourDetail.module.css */
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.header {
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.row{
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.location {
+  color: #666;
+  font-size: 1.1rem;
+  margin-top: 30px;
+}
+
+.metaGrid {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.metaItem h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.metaValue {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  color: #222;
+}
+
+.description h3 {
+  margin-bottom: 0.5rem;
+}
+
+.description p {
+  line-height: 1.6;
+  color: #444;
+}
+
+.notFound {
+  text-align: center;
+  margin: 2rem 0;
+  color: #900;
+}
+
+/* ... sizin əvvəlki stil qaydalarınız ... */
+
+.swiperWrapper {
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.fullImage {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Swiper pagination üçün */
+.swiper-pagination-bullet {
+  background: #007bff;
+  opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+.nearbyList i{
+    margin-right: 8px;
+}
+
+/* nearby bölməsi üçün */
+.nearbySection {
+  margin-top: 2rem;
+}
+.nearbySection h3 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+/* kart grid */
+.nearbyGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+/* hər bir kart */
+.nearbyCard {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform .1s, box-shadow .2s;
+}
+.nearbyCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.icon {
+  flex: 0 0 40px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--primary);
+}
+
+.info {
+  margin-left: 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-weight: 500;
+  color: #222;
+  text-decoration: none;
+  margin-bottom: 0.25rem;
+}
+.name:hover {
+  text-decoration: underline;
+}
+
+.distance {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.near{
+    display: flex;
+    gap: 30px;
+}
+
+.mapSection {
+  margin-top: 2rem;
+}
+.mapSection h3 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: #333;
+}
+.mapWrapper {
+  width: 100%;
+  height: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.mapWrapper iframe {
+  width: 100%;
+  height: 100%;
+}

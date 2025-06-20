@@ -1,0 +1,94 @@
+/* src/components/Footer/Footer.module.css */
+.footer {
+  background-color: #1b2b4a;
+  color: #ccc;
+  padding: 3rem 1rem;
+}
+.top {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin: 0 auto;
+  align-items: center;
+}
+.logo {
+  margin-bottom: 1rem;
+  width: 100px;
+}
+.col h4 {
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+.col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.col ul li {
+  margin-bottom: 0.5rem;
+}
+.col ul li a {
+  color: #ccc;
+  text-decoration: none;
+}
+.address {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.address i {
+  font-size: 1.25rem;
+  color: #ffc36f;
+}
+.mapBtn {
+  background: #fff;
+  color: #1b2b4a;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+.newsForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.newsForm input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  background: inherit;
+}
+.newsForm button {
+  background: #dc834e;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.bottom {
+  border-top: 1px solid #334466;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+.bottom nav {
+  display: flex;
+  gap: 1rem;
+}
+.bottom .link {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 0.9rem;
+}

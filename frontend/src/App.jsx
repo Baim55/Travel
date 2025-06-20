@@ -11,6 +11,9 @@ import AR from "./pages/AR";
 import TripPlanner from "./pages/TripPlanner";
 import Contact from "./pages/Contact";
 import Wishlist from "./pages/wishlist/Wishlist";
+import TourDetail from "./pages/TourDetail/TourDetail";
+import ForgotPassword from "./pages/auth/forgotpassword/ForgotPassword";
+import Resetpassword from "./pages/auth/resetpassword/Resetpassword";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +59,18 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/detail/:id",
+        element: <TourDetail />,
+      },
+      {
+        path: "/forgotpassword",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "/resetpassword",
+        element: <Resetpassword />,
       },
     ],
   },

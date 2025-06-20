@@ -8,28 +8,33 @@ const Resetpassword = () => {
   const baseUrl = `http://localhost:5000/auth`;
   const navigate = useNavigate();
 
-  const submitForm = async (values, actions) => {
-    try {
-      const { password } = values;
+ const submitForm = async (values, actions) => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const token = queryParams.get("token");
 
-      const result = await axios.post(
-        `${baseUrl}/resetpassword`,
-        {
-          password,
-        },
-        { withCredentials: true }
-      );
-      if (result.status === 200) {
-        alert("Password reset successfully");
-      } else {
-        alert("Password reset failed");
-      }
+  try {
+    const { password } = values;
+
+    const result = await axios.post(
+      `${baseUrl}/resetpassword`,
+      { password, token },
+      { withCredentials: true }
+    );
+
+    if (result.status === 200) {
+      alert("Password reset successfully");
       actions.resetForm();
       navigate("/login");
-    } catch (error) {
-      console.log("Password reset failed:", error);
+    } else {
+      alert("Password reset failed");
     }
-  };
+  } catch (error) {
+    console.error("Reset error:", error);
+    alert("Something went wrong during reset.");
+  }
+};
+
 
   const { values, handleChange, handleSubmit, errors } = useFormik({
     initialValues: {
