@@ -33,6 +33,7 @@ export const addTour = async (req, res) => {
       activity,
       duration,
       price,
+      location,
       description,
       availableDateRange,
       maxGuests = 10,
@@ -58,6 +59,7 @@ export const addTour = async (req, res) => {
       activity,
       duration,
       price,
+      location,
       description,
       availableDateRange,
       maxGuests,
@@ -74,8 +76,17 @@ export const addTour = async (req, res) => {
 
 export const getTours = async (req, res) => {
   try {
-    const { country, city, activity, duration,description, price, dateFrom, guests } =
-      req.query;
+    const {
+      country,
+      city,
+      activity,
+      duration,
+      description,
+      price,
+      location,
+      dateFrom,
+      guests,
+    } = req.query;
     const filter = {};
 
     if (country) filter.country = country;
@@ -84,6 +95,7 @@ export const getTours = async (req, res) => {
     if (duration) filter.duration = duration;
     if (description) filter.description = description;
     if (price) filter.price = price;
+    if (location) filter.location = location;
     if (dateFrom) {
       const date = new Date(dateFrom);
       filter["availableDateRange.startDate"] = { $lte: date };
@@ -134,6 +146,7 @@ export const updateTour = async (req, res) => {
       description,
       duration,
       price,
+      location,
       maxGuests,
       nearby,
       "availableDateRange[startDate]": startDate,
@@ -152,6 +165,7 @@ export const updateTour = async (req, res) => {
     if (activity) updated.activity = activity;
     if (duration) updated.duration = duration;
     if (description) updated.description = description;
+    if (location ) updated.location  = location ;
     if (price) updated.price = price;
     if (maxGuests) updated.maxGuests = parseInt(maxGuests, 10);
     if (nearby) updated.nearby = nearby;

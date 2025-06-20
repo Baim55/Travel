@@ -26,19 +26,22 @@ const tourSchema = new mongoose.Schema(
     },
     maxGuests: { type: Number, default: 10 },
     images: [{ type: String }],
-
+    location: {
+      lat: { type: Number, required: true },
+      lng: { type: Number, required: true },
+    },
     nearby: {
       hotels: [
         {
           name: { type: String, required: true },
           distance: { type: String }, // məsələn: "500m", "2 km"
-          link: { type: String },     // Google Maps və ya otelin vebsaytı
+          link: { type: String }, // Google Maps və ya otelin vebsaytı
         },
       ],
       restaurants: [
         {
           name: { type: String, required: true },
-          type: { type: String },     // məsələn: "Italian", "Azerbaijani"
+          type: { type: String }, // məsələn: "Italian", "Azerbaijani"
           distance: { type: String },
           link: { type: String },
         },

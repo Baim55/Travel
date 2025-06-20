@@ -1,16 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
-
 import "swiper/css";
 import "swiper/css/pagination";
-
 import styles from "./TourDetail.module.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Container from "../../components/container/Container";
+const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 export default function TourDetail() {
   const { id } = useParams();
@@ -114,7 +112,6 @@ export default function TourDetail() {
             {tour.nearby.hotels.map((h, i) => (
               <div key={i} className={styles.nearbyCard}>
                 <div className={styles.icon}>
-                  {" "}
                   <i className="fas fa-bed" />
                 </div>
                 <div className={styles.info}>
@@ -136,10 +133,12 @@ export default function TourDetail() {
           <h3>Location on Map</h3>
           <div className={styles.mapWrapper}>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1717992.3052777606!2d-77.96050918949314!3d40.7298485325464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x24c91b2c24cb68a3%3A0x4987ecfdf76e51fc!2sSkyline%20Drone%20NJ!5e0!3m2!1saz!2saz!4v1750371594518!5m2!1saz!2saz"
-              allowFullScreen=""
+              width="100%"
+              height="300"
               loading="lazy"
+              allowFullScreen
               referrerPolicy="no-referrer-when-downgrade"
+              src={`https://www.google.com/maps/embed/v1/place?key=${apiKey}&zoom=14&q=${tour.location.lat},${tour.location.lng}`}
             ></iframe>
           </div>
         </div>

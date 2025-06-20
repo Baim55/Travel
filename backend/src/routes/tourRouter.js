@@ -12,7 +12,6 @@ const router = express.Router();
 router.get("/cities",     getCitiesByCountry);
 router.get("/activities", getActivities);
 
-// İndi eyni anda 1–4 şəkil qəbul edəcək, səviyyə adı “images”
 router.post("/", upload.array("images", 4), addTour);
 router.get("/",  getTours);
 router.get("/search/:name", searchTours);
