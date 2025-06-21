@@ -2,21 +2,26 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { formatDistanceToNow } from "date-fns";
-import styles from "./ReviewsList.module.css";
+import styles from "./ReviewList.module.css";
 import Container from "../container/Container";
-import ReplyForm from "./ReplyForm";
 
 function renderStars(count) {
   const total = 5;
-  return [...Array(total)].map((_, i) => (
-    <span key={i} style={{ color: i < count ? "#dc834e" : "#ccc" }}>
-      ★
-    </span>
-  ));
+  const stars = [];
+  for (let i = 1; i <= total; i++) {
+    stars.push(
+      <span key={i} style={{ color: i <= count ? "#dc834e" : "#ccc" }}>
+        ★
+      </span>
+    );
+  }
+  return stars;
 }
 
+// Yeni: Ulduzlarla reytinq seçimi üçün komponent
 function StarRating({ rating, onChange }) {
   const total = 5;
+
   return (
     <div style={{ cursor: "pointer", userSelect: "none" }}>
       {[...Array(total)].map((_, i) => {
@@ -24,10 +29,7 @@ function StarRating({ rating, onChange }) {
         return (
           <span
             key={starValue}
-            style={{
-              color: starValue <= rating ? "#dc834e" : "#ccc",
-              fontSize: "24px",
-            }}
+            style={{ color: starValue <= rating ? "#dc834e" : "#ccc", fontSize: "24px" }}
             onClick={() => onChange(starValue)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") onChange(starValue);
@@ -107,14 +109,6 @@ export default function ReviewList({ tourId, refreshTrigger }) {
     }
   };
 
-  const handleReplySuccess = (reviewId, updatedReplies) => {
-    setReviews((prev) =>
-      prev.map((r) =>
-        r._id === reviewId ? { ...r, replies: updatedReplies } : r
-      )
-    );
-  };
-
   const averageRating =
     reviews.length > 0
       ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
@@ -129,7 +123,7 @@ export default function ReviewList({ tourId, refreshTrigger }) {
 
       <div className={`${styles.averageRatingBox} ${styles.averageRating}`}>
         <strong>Average Rating:</strong>{" "}
-        {renderStars(Math.round(averageRating))}
+        {renderStars(Math.round(averageRating))}{" "}
         <span className={styles.ratingValue}>
           <span className={styles.bigNumber}>{averageRating.toFixed(1)}</span>/5
         </span>
@@ -168,6 +162,7 @@ export default function ReviewList({ tourId, refreshTrigger }) {
                   alt="Profil şəkli"
                   className={styles.avatar}
                 />
+
                 <div>
                   <strong>{r.user?.name || "Anonim"}</strong>
                   <div className={styles.subInfo}>
@@ -177,7 +172,7 @@ export default function ReviewList({ tourId, refreshTrigger }) {
                       })}
                     </small>
                     <div className={styles.ratingBelow}>
-                      {renderStars(r.rating)}
+                      {renderStars(r.rating)}{" "}
                       <span className={styles.ratingValue}>
                         {r.rating.toFixed(1)}
                       </span>
@@ -187,30 +182,6 @@ export default function ReviewList({ tourId, refreshTrigger }) {
               </div>
 
               <p className={styles.commentText}>{r.comment}</p>
-
-              {r.replies && r.replies.length > 0 && (
-                <div className={styles.repliesBox}>
-                  {r.replies.map((rep, idx) => (
-                    <div key={idx} className={styles.reply}>
-                      <strong>{rep.user?.name || "Admin"}</strong>:{" "}
-                      {rep.comment}
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {user && (
-                <ReplyForm
-                  reviewId={r._id}
-                  onReplySent={(updatedReview) => {
-                    setReviews((prev) =>
-                      prev.map((rev) =>
-                        rev._id === updatedReview._id ? updatedReview : rev
-                      )
-                    );
-                  }}
-                />
-              )}
 
               {user?._id === r.user?._id && (
                 <div className={styles.actions}>

@@ -57,17 +57,3 @@ export const deleteReview = async (req, res) => {
   }
 };
 
-export const replyToReview = async (req, res) => {
-  const { comment } = req.body;
-  let review = await Review.findById(req.params.id);
-
-  if (!review) return res.status(404).json({ message: "Review not found" });
-
-  review.replies.push({ user: req.user._id, comment });
-  await review.save();
-
-  // Yenidən tapıb populate elə
-  review = await Review.findById(req.params.id).populate("replies.user", "name image");
-  res.status(201).json(review);
-};
-

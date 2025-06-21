@@ -1,7 +1,7 @@
 // src/components/reviews/ReviewForm.jsx
 import React, { useState } from "react";
 import axios from "axios";
-import styles from "./ReviewsForm.module.css";
+import styles from "./ReviewForm.module.css";
 
 function StarRating({ rating, setRating }) {
   const total = 5;

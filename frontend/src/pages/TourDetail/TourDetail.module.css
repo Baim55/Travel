@@ -1,5 +1,3 @@
-/* src/components/TourDetail.module.css */
-
 .detail {
   display: flex;
   flex-direction: column;
@@ -9,17 +7,14 @@
 
 .header {
   text-align: center;
+  margin-bottom: 2rem;
 }
 
 .title {
+  font-size: 2.75rem;
+  font-weight: bold;
+  color: #222;
   margin: 0;
-  font-size: 2.5rem;
-}
-
-.row{
-    display: flex;
-    gap: 50px;
-    align-items: center;
 }
 
 .location {
@@ -28,10 +23,39 @@
   margin-top: 30px;
 }
 
+.row {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.swiperWrapper {
+  max-width: 100%;
+  margin: 0 auto 2rem auto;
+}
+
+.fullImage {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Swiper pagination */
+.swiper-pagination-bullet {
+  background: #007bff;
+  opacity: 0.7;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
 .metaGrid {
   display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   gap: 1.5rem;
-  margin-bottom: 30px;
+  margin-bottom: 2rem;
 }
 
 .metaItem h4 {
@@ -48,79 +72,40 @@
   color: #222;
 }
 
+.description {
+  margin-bottom: 2rem;
+}
 .description h3 {
   margin-bottom: 0.5rem;
 }
-
 .description p {
   line-height: 1.6;
   color: #444;
 }
 
-.notFound {
-  text-align: center;
-  margin: 2rem 0;
-  color: #900;
+.near {
+  display: flex;
+  gap: 30px;
 }
 
-/* ... sizin əvvəlki stil qaydalarınız ... */
-
-.swiperWrapper {
-  max-width: 600px;
-  margin: 2rem auto;
-}
-
-.fullImage {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-/* Swiper pagination üçün */
-.swiper-pagination-bullet {
-  background: #007bff;
-  opacity: 0.7;
-}
-
-.swiper-pagination-bullet-active {
-  opacity: 1;
-}
-
-.nearbyList i{
-    margin-right: 8px;
-}
-
-/* nearby bölməsi üçün */
-.nearbySection {
-  margin-top: 2rem;
-}
-.nearbySection h3 {
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
-  color: #333;
-}
-
-/* kart grid */
 .nearbyGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 1rem;
 }
 
-/* hər bir kart */
 .nearbyCard {
   display: flex;
   align-items: center;
   padding: 0.75rem 1rem;
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  transition: transform .1s, box-shadow .2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s, box-shadow 0.2s;
 }
 .nearbyCard:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .icon {
@@ -151,11 +136,6 @@
   color: #666;
 }
 
-.near{
-    display: flex;
-    gap: 30px;
-}
-
 .mapSection {
   margin-top: 2rem;
 }
@@ -173,4 +153,54 @@
 .mapWrapper iframe {
   width: 100%;
   height: 100%;
+}
+
+.notFound {
+  text-align: center;
+  margin: 2rem 0;
+  color: #900;
+}
+.row {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.leftCol {
+  flex: 2;
+  min-width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.rightCol {
+  flex: 1;
+  min-width: 35%;
+}
+
+.detailGrid {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.content {
+  flex: 2;
+  min-width: 60%;
+}
+
+.sidebar {
+  flex: 1;
+  min-width: 35%;
+}
+
+.sidebar > * {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
