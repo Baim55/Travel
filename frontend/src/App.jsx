@@ -14,6 +14,10 @@ import Wishlist from "./pages/wishlist/Wishlist";
 import TourDetail from "./pages/TourDetail/TourDetail";
 import ForgotPassword from "./pages/auth/forgotpassword/ForgotPassword";
 import Resetpassword from "./pages/auth/resetpassword/Resetpassword";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setUser } from "./redux/features/userSlice";
+import axios from "axios";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +80,22 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
+    const dispatch = useDispatch();
+
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const res = await axios.get("http://localhost:5000/auth/me", {
+          withCredentials: true, // httpOnly cookie-ni göndərmək üçün
+        });
+        dispatch(setUser(res.data.user));
+      } catch (error) {
+        console.log("İstifadəçi login olmayıb");
+      }
+    }
+
+    fetchUser();
+  }, []);
   return <RouterProvider router={router} />;
 }
 

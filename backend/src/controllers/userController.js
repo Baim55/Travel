@@ -9,6 +9,23 @@ import LoginValidationSchema from "../middleware/validation/LoginValidation.js";
 import ForgotValidationSchema from "../middleware/validation/ForgotValidation.js";
 import ResetValidationSchema from "../middleware/validation/ResetValidation.js";
 
+
+export const getMe = async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) return res.status(401).json({ message: "Token yoxdur" });
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const existUser = await user.findById(decoded.id).select("-password");
+
+    if (!existUser) return res.status(404).json({ message: "İstifadəçi tapılmadı" });
+
+    res.status(200).json({ user: existUser });
+  } catch (err) {
+    res.status(401).json({ message: "Token etibarsızdır" });
+  }
+};
+
 export const register = async (req, res) => {
   try {
     const { name, username, email, password } = req.body;
@@ -115,3 +132,4 @@ export const resetPassword = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+

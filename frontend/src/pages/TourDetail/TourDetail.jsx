@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,12 +8,20 @@ import "swiper/css/pagination";
 import styles from "./TourDetail.module.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Container from "../../components/container/Container";
+import ReviewForm from "../../components/reviews/RewievForm";
+import ReviewList from "../../components/reviews/ReviewList";
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
-export default function TourDetail() {
+export default function TourDetail({ tourId }) {
   const { id } = useParams();
   const { tours } = useSelector((state) => state.tour);
   const tour = tours.find((t) => t._id === id);
+  const user = useSelector((state) => state.user.user);
+
+  const [refresh, setRefresh] = useState(false);
+  const handleReviewSubmit = () => {
+    setRefresh((prev) => !prev); // refresh tetikleyici
+  };
 
   if (!tour) {
     return <p className={styles.notFound}>Tour not found.</p>;
@@ -142,6 +150,12 @@ export default function TourDetail() {
             ></iframe>
           </div>
         </div>
+        <ReviewForm
+          tourId={id}
+          user={user}
+          onReviewSubmit={handleReviewSubmit}
+        />
+        <ReviewList tourId={id} refreshTrigger={refresh} />
       </div>
     </Container>
   );
