@@ -7,6 +7,7 @@ import tourRouter from "./src/routes/tourRouter.js";
 import locationRouter from "./src/routes/locationRouter.js";
 import cookieParser from "cookie-parser";
 import reviewRouter from "./src/routes/reviewRouter.js";
+import adminRouter from "./src/routes/adminRouter.js";
 
 const app = express();
 const port = process.env.PORT || 5001;
@@ -20,6 +21,7 @@ app.use("/api/locations", locationRouter);
 app.use("/auth", userRouter);
 app.use("/images", express.static("src/images"));
 app.use("/api/reviews", reviewRouter);
+app.use("/api", adminRouter);
 
 app.get("/", (req, res) => res.send("Hello World"));
 

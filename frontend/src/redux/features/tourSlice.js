@@ -25,6 +25,16 @@ export const deleteTour = createAsyncThunk(
   }
 );
 
+export const updateTour = createAsyncThunk(
+  "tour/updateTour",
+  async ({ id, formData }) => {
+    const { data } = await axios.put(`${baseURL}/${id}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return data;
+  }
+);
+
 export const searchTour = createAsyncThunk(
   "tour/searchTour",
   async (search, { getState }) => {
@@ -76,6 +86,9 @@ export const tourSlice = createSlice({
         (item) => item._id !== action.payload
       );
     });
+    builder.addCase(updateTour.fulfilled, (state, { payload }) => {
+        state.tours = state.tours.map(t => t._id === payload._id ? payload : t);
+      })
     builder.addCase(searchTour.fulfilled, (state, action) => {
       state.tours = action.payload;
     });

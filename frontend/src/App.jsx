@@ -18,6 +18,12 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setUser } from "./redux/features/userSlice";
 import axios from "axios";
+import RequireAdmin from "./components/auth/RequireAdmin";
+import AdminDashboard from "./pages/admin/adminDashboard/AdminDashboard";
+import AdminTours from "./pages/admin/adminTours/AdminTours";
+import AdminUsers from "./pages/admin/adminUsers/AdminUsers";
+import NewTour from "./pages/admin/newTour/NewTour";
+import EditTour from "./pages/admin/editTour/EditTour";
 
 const router = createBrowserRouter([
   {
@@ -76,11 +82,26 @@ const router = createBrowserRouter([
         path: "/resetpassword",
         element: <Resetpassword />,
       },
+      {
+        path: "admin",
+        element: (
+          <RequireAdmin>
+            <AdminDashboard />
+          </RequireAdmin>
+        ),
+        children: [
+          { index: true, element: <h2>Welcome, Admin!</h2> },
+          { path: "tours", element: <AdminTours /> },
+          { path: "tours/new", element: <NewTour /> },
+          { path: "tours/:id/edit", element: <EditTour /> },
+          { path: "users", element: <AdminUsers /> },
+        ],
+      },
     ],
   },
 ]);
 function App() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     async function fetchUser() {

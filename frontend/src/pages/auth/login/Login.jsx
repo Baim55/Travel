@@ -4,13 +4,14 @@ import { useFormik } from "formik";
 import { loginschema } from "../../../schema/loginSchema";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../redux/features/userSlice";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 
 const Login = () => {
   const baseUrl = "http://localhost:5000/auth";
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const submitForm = async (values, actions) => {
     try {
@@ -21,7 +22,10 @@ const Login = () => {
       if (res.status === 200) {
         dispatch(setUser(res.data.existUser)); // burda diqqətli ol: res.data içində user gəlir
         alert("Login successful");
-        navigate("/");
+
+        const from = location.state?.from?.pathname || "/";
+        navigate(from, { replace: true });
+        
       } else {
         alert("Login failed");
       }
