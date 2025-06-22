@@ -68,21 +68,21 @@ export default function BookingForm({
             <input
               type="radio"
               name="time"
-              value="12:00"
-              checked={time === "12:00"}
+              value="17:00"
+              checked={time === "17:00"}
               onChange={(e) => setTime(e.target.value)}
             />
-            12:00 pm
+            17:00 pm
           </label>
           <label>
             <input
               type="radio"
               name="time"
-              value="17:00"
-              checked={time === "17:00"}
+              value="20:00"
+              checked={time === "20:00"}
               onChange={(e) => setTime(e.target.value)}
             />
-            5:00 pm
+            20:00 pm
           </label>
         </div>
       </fieldset>
