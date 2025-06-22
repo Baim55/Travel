@@ -12,18 +12,25 @@ export const getTours = createAsyncThunk("tour/getTours", async () => {
   return data;
 });
 
-export const addTour = createAsyncThunk("tour/addTour", async (tour) => {
-  const { data } = await axios.post(baseURL, tour);
-  return data;
-});
-
-export const deleteTour = createAsyncThunk(
-  "product/deleteTour",
-  async (id) => {
-    await axios.delete(`${baseURL}/${id}`);
-    return id;
+export const addTour = createAsyncThunk(
+  "tour/addTour",
+  // burada 'formData' obyektidir, yox JSON
+  async (formData, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post(baseURL, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.response?.data?.message || err.message);
+    }
   }
 );
+
+export const deleteTour = createAsyncThunk("product/deleteTour", async (id) => {
+  await axios.delete(`${baseURL}/${id}`);
+  return id;
+});
 
 export const updateTour = createAsyncThunk(
   "tour/updateTour",
@@ -78,17 +85,27 @@ export const tourSlice = createSlice({
       state.tours = action.payload;
       state.allTours = action.payload;
     });
-    builder.addCase(addTour.fulfilled, (state, action) => {
-      state.tours.push(action.payload);
-    });
+    builder
+      .addCase(addTour.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(addTour.fulfilled, (state, action) => {
+        state.loading = false;
+        state.tours.push(action.payload);
+      })
+      .addCase(addTour.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
     builder.addCase(deleteTour.fulfilled, (state, action) => {
-      state.tours = state.tours.filter(
-        (item) => item._id !== action.payload
-      );
+      state.tours = state.tours.filter((item) => item._id !== action.payload);
     });
     builder.addCase(updateTour.fulfilled, (state, { payload }) => {
-        state.tours = state.tours.map(t => t._id === payload._id ? payload : t);
-      })
+      state.tours = state.tours.map((t) =>
+        t._id === payload._id ? payload : t
+      );
+    });
     builder.addCase(searchTour.fulfilled, (state, action) => {
       state.tours = action.payload;
     });

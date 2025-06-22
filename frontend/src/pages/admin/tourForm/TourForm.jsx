@@ -1,12 +1,26 @@
-import React, { useState, useEffect } from "react";
-import styles from "./TourForm.module.css";
+import React, { useState, useEffect } from "react"
+import styles from "./TourForm.module.css"
 
 export default function TourForm({ initialData = {}, onSubmit }) {
-  const [form, setForm] = useState({ /* ... */ });
-  const [images, setImages] = useState([]);
-  const [nearbyHotels, setNearbyHotels] = useState(initialData.nearby?.hotels || []);
-  const [nearbyRests, setNearbyRests] = useState(initialData.nearby?.restaurants || []);
+  const [form, setForm] = useState({
+    name: "",
+    country: "",
+    city: "",
+    activity: "Beaches",
+    description: "",
+    duration: "",
+    price: "",
+    startDate: "",
+    endDate: "",
+    maxGuests: "",
+    lat: "",
+    lng: "",
+  })
+  const [images, setImages] = useState([])
+  const [nearbyHotels, setNearbyHotels] = useState(initialData.nearby?.hotels || [])
+  const [nearbyRests, setNearbyRests] = useState(initialData.nearby?.restaurants || [])
 
+  // Fill form when editing
   useEffect(() => {
     if (initialData._id) {
       setForm({
@@ -22,21 +36,65 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         maxGuests: initialData.maxGuests,
         lat: initialData.location.lat,
         lng: initialData.location.lng,
-      });
-      setImages([]);
-      setNearbyHotels(initialData.nearby.hotels);
-      setNearbyRests(initialData.nearby.restaurants);
+      })
+      setImages([])
+      setNearbyHotels(initialData.nearby.hotels)
+      setNearbyRests(initialData.nearby.restaurants)
     }
-  }, [initialData]);
+  }, [initialData])
 
   const handleChange = e => {
-    const { name, value } = e.target;
-    setForm(f => ({ ...f, [name]: value }));
-  };
+    const { name, value } = e.target
+    setForm(f => ({ ...f, [name]: value }))
+  }
 
-  const handleFileChange = e => setImages(Array.from(e.target.files));
-  const addNearby = type => { /* ... */ };
-  const handleSubmit = e => { /* ... */ };
+  const handleFileChange = e => {
+    setImages(Array.from(e.target.files))
+  }
+
+  const addNearby = type => {
+    const name = prompt("Name:")
+    const distance = prompt("Distance (e.g. 500m):")
+    const link = prompt("Link:")
+    if (!name) return
+    const item = { name, distance, link }
+    if (type === "hotel") setNearbyHotels(h => [...h, item])
+    else setNearbyRests(r => [...r, item])
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    const fd = new FormData()
+
+    // Top-level
+    fd.append("name", form.name)
+    fd.append("country", form.country)
+    fd.append("city", form.city)
+    fd.append("activity", form.activity)
+    fd.append("description", form.description)
+    fd.append("duration", form.duration)
+    fd.append("price", form.price)
+    fd.append("maxGuests", form.maxGuests)
+
+    // Nested date range
+    fd.append("availableDateRange[startDate]", form.startDate)
+    fd.append("availableDateRange[endDate]", form.endDate)
+
+    // Nested location
+    fd.append("location[lat]", form.lat)
+    fd.append("location[lng]", form.lng)
+
+    // Images
+    images.forEach(file => fd.append("images", file))
+
+    // Nearby JSON
+    fd.append("nearby", JSON.stringify({
+      hotels: nearbyHotels,
+      restaurants: nearbyRests,
+    }))
+
+    onSubmit(fd)
+  }
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -46,7 +104,13 @@ export default function TourForm({ initialData = {}, onSubmit }) {
 
       {[
         { label: "Name", name: "name", type: "text" },
-        /* ... qalan sahələr ... */
+        { label: "Country", name: "country", type: "text" },
+        { label: "City", name: "city", type: "text" },
+        { label: "Duration", name: "duration", type: "text" },
+        { label: "Price", name: "price", type: "number" },
+        { label: "Max Guests", name: "maxGuests", type: "number" },
+        { label: "Latitude", name: "lat", type: "number" },
+        { label: "Longitude", name: "lng", type: "number" },
       ].map(field => (
         <div key={field.name} className={styles.field}>
           <label className={styles.label}>
@@ -63,7 +127,6 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         </div>
       ))}
 
-      {/* Activity */}
       <div className={styles.field}>
         <label className={styles.label}>
           Activity:
@@ -79,7 +142,6 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         </label>
       </div>
 
-      {/* Description */}
       <div className={styles.field}>
         <label className={styles.label}>
           Description:
@@ -94,8 +156,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         </label>
       </div>
 
-      {/* Dates */}
-      <div className={styles.field} style={{ display: "flex", gap: 8 }}>
+      <div className={styles.fieldRow}>
         <label className={styles.label}>
           Start Date:
           <input
@@ -120,7 +181,6 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         </label>
       </div>
 
-      {/* Images */}
       <div className={styles.field}>
         <label className={styles.label}>
           Images:
@@ -135,7 +195,6 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         </label>
       </div>
 
-      {/* Nearby Hotels */}
       <fieldset className={styles.fieldset}>
         <legend className={styles.legend}>Nearby Hotels</legend>
         <button
@@ -146,14 +205,14 @@ export default function TourForm({ initialData = {}, onSubmit }) {
           + Add Hotel
         </button>
         <ul className={styles.list}>
-          {nearbyHotels.map((h, i) => (
+          {nearbyHotels.map((h,i) => (
             <li key={i} className={styles.listItem}>
               {h.name} — {h.distance}
               <button
                 type="button"
                 className={styles.removeButton}
                 onClick={() =>
-                  setNearbyHotels(n => n.filter((_, j) => j !== i))
+                  setNearbyHotels(n => n.filter((_,j)=>j!==i))
                 }
               >
                 x
@@ -163,7 +222,6 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         </ul>
       </fieldset>
 
-      {/* Nearby Restaurants */}
       <fieldset className={styles.fieldset}>
         <legend className={styles.legend}>Nearby Restaurants</legend>
         <button
@@ -174,14 +232,14 @@ export default function TourForm({ initialData = {}, onSubmit }) {
           + Add Restaurant
         </button>
         <ul className={styles.list}>
-          {nearbyRests.map((r, i) => (
+          {nearbyRests.map((r,i) => (
             <li key={i} className={styles.listItem}>
               {r.name} — {r.distance}
               <button
                 type="button"
                 className={styles.removeButton}
                 onClick={() =>
-                  setNearbyRests(rlist => rlist.filter((_, j) => j !== i))
+                  setNearbyRests(rlist => rlist.filter((_,j)=>j!==i))
                 }
               >
                 x
@@ -195,5 +253,5 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         {initialData._id ? "Update Tour" : "Create Tour"}
       </button>
     </form>
-  );
+  )
 }

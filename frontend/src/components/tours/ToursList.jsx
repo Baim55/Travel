@@ -24,7 +24,7 @@ export default function ToursList({ tours }) {
           >
             <div className={styles.imageWrapper}>
               <img
-                src={`http://localhost:5000/${tour.images[3]}`}
+                src={`http://localhost:5000/${tour.images[0]}`}
                 alt={tour.name}
                 className={styles.image}
               />
