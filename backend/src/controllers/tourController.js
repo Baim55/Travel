@@ -36,8 +36,8 @@ export const addTour = async (req, res) => {
       location,
       description,
       availableDateRange,
-      maxGuests = 10,
-      nearby = {},
+      maxGuests,
+      nearby,
     } = req.body;
 
     // Tarix yoxlaması
@@ -52,6 +52,17 @@ export const addTour = async (req, res) => {
       `images/${f.filename}`.replace(/\\/g, "/")
     );
 
+    let parsedNearby = {};
+    if (nearby) {
+      try {
+        parsedNearby = JSON.parse(nearby);
+      } catch (err) {
+        return res
+          .status(400)
+          .json({ message: "Nearby sahəsi düzgün formatda deyil" });
+      }
+    }
+
     const newTour = await Tour.create({
       name,
       country,
@@ -64,7 +75,7 @@ export const addTour = async (req, res) => {
       availableDateRange,
       maxGuests,
       images: imagePaths, // <-- plural
-      nearby,
+      nearby: parsedNearby,
     });
 
     res.status(201).json(newTour);
@@ -164,20 +175,20 @@ export const updateTour = async (req, res) => {
     const updated = {};
 
     // Sadə sahələr
-    if (name)        updated.name = name;
-    if (country)     updated.country = country;
-    if (city)        updated.city = city;
-    if (activity)    updated.activity = activity;
+    if (name) updated.name = name;
+    if (country) updated.country = country;
+    if (city) updated.city = city;
+    if (activity) updated.activity = activity;
     if (description) updated.description = description;
-    if (duration)    updated.duration = duration;
-    if (price)       updated.price = price;
-    if (maxGuests)   updated.maxGuests = parseInt(maxGuests, 10);
+    if (duration) updated.duration = duration;
+    if (price) updated.price = price;
+    if (maxGuests) updated.maxGuests = parseInt(maxGuests, 10);
 
     // nearby: JSON.parse edirik
     if (nearby) {
       try {
         updated.nearby = JSON.parse(nearby);
-      } catch (_){
+      } catch (_) {
         return res.status(400).json({ message: "Nearby sahəsi düzgün deyil" });
       }
     }
@@ -218,7 +229,6 @@ export const updateTour = async (req, res) => {
     }
 
     res.json(updatedTour);
-
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: err.message });

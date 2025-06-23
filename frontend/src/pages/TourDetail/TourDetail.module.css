@@ -68,7 +68,7 @@
 /* Hover effekti */
 :global(.swiper-button-prev:hover),
 :global(.swiper-button-next:hover) {
-  background-color: #1082FF !important;
+  background-color: black !important;
   color: #fff !important;
 }
 
