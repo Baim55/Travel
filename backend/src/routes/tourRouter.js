@@ -7,15 +7,15 @@ import {
   getActivities, updateTour
 } from "../controllers/tourController.js";
 
-const router = express.Router();
+const tourRouter = express.Router();
 
-router.get("/cities",     getCitiesByCountry);
-router.get("/activities", getActivities);
+tourRouter.get("/cities",     getCitiesByCountry);
+tourRouter.get("/activities", getActivities);
 
-router.post("/", upload.array("images", 4), addTour);
-router.get("/",  getTours);
-router.get("/search/:name", searchTours);
-router.delete("/:id", deleteTour);
-router.put("/:id", upload.array("images", 4), updateTour);
+tourRouter.post("/", upload.array("images", 10), addTour);
+tourRouter.put("/:id", upload.array("images", 10), updateTour);
+tourRouter.get("/",  getTours);
+tourRouter.get("/search/:name", searchTours);
+tourRouter.delete("/:id", deleteTour);
 
-export default router;
+export default tourRouter;

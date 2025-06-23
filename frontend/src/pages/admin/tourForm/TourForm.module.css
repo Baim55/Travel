@@ -94,3 +94,21 @@
 .submitButton:hover {
   background: #218838;
 }
+
+.file {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.selectedList {
+  margin-top: 0.5rem;
+  list-style: disc inside;
+  max-height: 150px;
+  overflow-y: auto;
+  padding-left: 1rem;
+}
+
+.selectedItem {
+  font-size: 0.9rem;
+  color: #333;
+}

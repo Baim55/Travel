@@ -138,6 +138,8 @@ export const deleteTour = async (req, res) => {
 export const updateTour = async (req, res) => {
   try {
     const { id } = req.params;
+
+    // Sadə sahələr body-dən destructure edirik
     const {
       name,
       country,
@@ -146,45 +148,77 @@ export const updateTour = async (req, res) => {
       description,
       duration,
       price,
-      location,
       maxGuests,
-      nearby,
-      "availableDateRange[startDate]": startDate,
-      "availableDateRange[endDate]": endDate,
+      nearby, // JSON string gözləyirik
+      // aşağıdakılar req.body-dən açıqca parse edəcəyik, destructure-ə ehtiyac yoxdur
+      // "availableDateRange[startDate]": startDate,
+      // "availableDateRange[endDate]": endDate,
+      // location obyekti artıq formData-da göndərilmir
     } = req.body;
 
+    // Şəkil yollarını multer fayllarından alırıq
     const imagePaths = req.files?.length
       ? req.files.map((f) => `images/${f.filename}`.replace(/\\/g, "/"))
       : undefined;
 
     const updated = {};
 
-    if (name) updated.name = name;
-    if (country) updated.country = country;
-    if (city) updated.city = city;
-    if (activity) updated.activity = activity;
-    if (duration) updated.duration = duration;
+    // Sadə sahələr
+    if (name)        updated.name = name;
+    if (country)     updated.country = country;
+    if (city)        updated.city = city;
+    if (activity)    updated.activity = activity;
     if (description) updated.description = description;
-    if (location ) updated.location  = location ;
-    if (price) updated.price = price;
-    if (maxGuests) updated.maxGuests = parseInt(maxGuests, 10);
-    if (nearby) updated.nearby = nearby;
-    if (startDate && endDate) {
+    if (duration)    updated.duration = duration;
+    if (price)       updated.price = price;
+    if (maxGuests)   updated.maxGuests = parseInt(maxGuests, 10);
+
+    // nearby: JSON.parse edirik
+    if (nearby) {
+      try {
+        updated.nearby = JSON.parse(nearby);
+      } catch (_){
+        return res.status(400).json({ message: "Nearby sahəsi düzgün deyil" });
+      }
+    }
+
+    // availableDateRange[startDate] və [endDate]
+    const sd = req.body["availableDateRange[startDate]"];
+    const ed = req.body["availableDateRange[endDate]"];
+    if (sd && ed) {
       updated.availableDateRange = {
-        startDate: new Date(startDate),
-        endDate: new Date(endDate),
+        startDate: new Date(sd),
+        endDate: new Date(ed),
       };
     }
-    if (imagePaths) updated.images = imagePaths; // <-- plural
 
+    // location[lat] və location[lng]
+    const lat = req.body["location[lat]"];
+    const lng = req.body["location[lng]"];
+    if (lat != null && lng != null) {
+      updated.location = {
+        lat: parseFloat(lat),
+        lng: parseFloat(lng),
+      };
+    }
+
+    // Yeni şəkillər varsa, override edirik
+    if (imagePaths) {
+      updated.images = imagePaths;
+    }
+
+    // Mongoose update
     const updatedTour = await Tour.findByIdAndUpdate(id, updated, {
       new: true,
       runValidators: true,
     });
-    if (!updatedTour)
+
+    if (!updatedTour) {
       return res.status(404).json({ message: "Tour tapılmadı" });
+    }
 
     res.json(updatedTour);
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: err.message });

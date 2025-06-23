@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react"
-import styles from "./TourForm.module.css"
+// src/components/admin/TourForm.jsx
+import React, { useState, useEffect } from "react";
+import styles from "./TourForm.module.css";
 
 export default function TourForm({ initialData = {}, onSubmit }) {
   const [form, setForm] = useState({
@@ -15,12 +16,16 @@ export default function TourForm({ initialData = {}, onSubmit }) {
     maxGuests: "",
     lat: "",
     lng: "",
-  })
-  const [images, setImages] = useState([])
-  const [nearbyHotels, setNearbyHotels] = useState(initialData.nearby?.hotels || [])
-  const [nearbyRests, setNearbyRests] = useState(initialData.nearby?.restaurants || [])
+  });
+  const [images, setImages] = useState([]);
+  const [nearbyHotels, setNearbyHotels] = useState(
+    initialData.nearby?.hotels || []
+  );
+  const [nearbyRests, setNearbyRests] = useState(
+    initialData.nearby?.restaurants || []
+  );
 
-  // Fill form when editing
+  // Düzəliş zamanı initialData ilə doldur
   useEffect(() => {
     if (initialData._id) {
       setForm({
@@ -31,70 +36,71 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         description: initialData.description,
         duration: initialData.duration,
         price: initialData.price,
-        startDate: initialData.availableDateRange.startDate.slice(0,10),
-        endDate: initialData.availableDateRange.endDate.slice(0,10),
+        startDate: initialData.availableDateRange.startDate.slice(0, 10),
+        endDate: initialData.availableDateRange.endDate.slice(0, 10),
         maxGuests: initialData.maxGuests,
         lat: initialData.location.lat,
         lng: initialData.location.lng,
-      })
-      setImages([])
-      setNearbyHotels(initialData.nearby.hotels)
-      setNearbyRests(initialData.nearby.restaurants)
+      });
+      setImages([]); // yeni fayl seçimi üçün sıfırla
+      setNearbyHotels(initialData.nearby.hotels);
+      setNearbyRests(initialData.nearby.restaurants);
     }
-  }, [initialData])
+  }, [initialData]);
 
-  const handleChange = e => {
-    const { name, value } = e.target
-    setForm(f => ({ ...f, [name]: value }))
-  }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((f) => ({ ...f, [name]: value }));
+  };
 
-  const handleFileChange = e => {
-    setImages(Array.from(e.target.files))
-  }
+  const handleFileChange = (e) => {
+    // multiple seçilmiş faylları massivə çevir
+    setImages(Array.from(e.target.files));
+  };
 
-  const addNearby = type => {
-    const name = prompt("Name:")
-    const distance = prompt("Distance (e.g. 500m):")
-    const link = prompt("Link:")
-    if (!name) return
-    const item = { name, distance, link }
-    if (type === "hotel") setNearbyHotels(h => [...h, item])
-    else setNearbyRests(r => [...r, item])
-  }
+  const addNearby = (type) => {
+    const name = prompt("Name:");
+    const distance = prompt("Distance (e.g. 500m):");
+    const link = prompt("Link:");
+    if (!name) return;
+    const item = { name, distance, link };
+    if (type === "hotel") setNearbyHotels((h) => [...h, item]);
+    else setNearbyRests((r) => [...r, item]);
+  };
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    const fd = new FormData()
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const fd = new FormData();
 
-    // Top-level
-    fd.append("name", form.name)
-    fd.append("country", form.country)
-    fd.append("city", form.city)
-    fd.append("activity", form.activity)
-    fd.append("description", form.description)
-    fd.append("duration", form.duration)
-    fd.append("price", form.price)
-    fd.append("maxGuests", form.maxGuests)
+    // Sadə sahələr
+    Object.entries({
+      name: form.name,
+      country: form.country,
+      city: form.city,
+      activity: form.activity,
+      description: form.description,
+      duration: form.duration,
+      price: form.price,
+      maxGuests: form.maxGuests,
+    }).forEach(([k, v]) => fd.append(k, v));
 
-    // Nested date range
-    fd.append("availableDateRange[startDate]", form.startDate)
-    fd.append("availableDateRange[endDate]", form.endDate)
+    fd.append("availableDateRange[startDate]", form.startDate);
+    fd.append("availableDateRange[endDate]", form.endDate);
+    fd.append("location[lat]", form.lat);
+    fd.append("location[lng]", form.lng);
 
-    // Nested location
-    fd.append("location[lat]", form.lat)
-    fd.append("location[lng]", form.lng)
+    images.forEach((file) => fd.append("images", file));
 
-    // Images
-    images.forEach(file => fd.append("images", file))
+    fd.append(
+      "nearby",
+      JSON.stringify({
+        hotels: nearbyHotels,
+        restaurants: nearbyRests,
+      })
+    );
 
-    // Nearby JSON
-    fd.append("nearby", JSON.stringify({
-      hotels: nearbyHotels,
-      restaurants: nearbyRests,
-    }))
-
-    onSubmit(fd)
-  }
+    onSubmit(fd);
+  };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -111,7 +117,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         { label: "Max Guests", name: "maxGuests", type: "number" },
         { label: "Latitude", name: "lat", type: "number" },
         { label: "Longitude", name: "lng", type: "number" },
-      ].map(field => (
+      ].map((field) => (
         <div key={field.name} className={styles.field}>
           <label className={styles.label}>
             {field.label}:
@@ -136,8 +142,18 @@ export default function TourForm({ initialData = {}, onSubmit }) {
             value={form.activity}
             onChange={handleChange}
           >
-            {["Beaches","City Tours","Cruises","Hiking","Historical","Museum Tours"]
-              .map(act => <option key={act} value={act}>{act}</option>)}
+            {[
+              "Beaches",
+              "City Tours",
+              "Cruises",
+              "Hiking",
+              "Historical",
+              "Museum Tours",
+            ].map((act) => (
+              <option key={act} value={act}>
+                {act}
+              </option>
+            ))}
           </select>
         </label>
       </div>
@@ -193,6 +209,15 @@ export default function TourForm({ initialData = {}, onSubmit }) {
             onChange={handleFileChange}
           />
         </label>
+        {images.length > 0 && (
+          <ul className={styles.selectedList}>
+            {images.map((f, i) => (
+              <li key={i} className={styles.selectedItem}>
+                {f.name} ({(f.size / 1024).toFixed(1)} KB)
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       <fieldset className={styles.fieldset}>
@@ -205,14 +230,14 @@ export default function TourForm({ initialData = {}, onSubmit }) {
           + Add Hotel
         </button>
         <ul className={styles.list}>
-          {nearbyHotels.map((h,i) => (
+          {nearbyHotels.map((h, i) => (
             <li key={i} className={styles.listItem}>
               {h.name} — {h.distance}
               <button
                 type="button"
                 className={styles.removeButton}
                 onClick={() =>
-                  setNearbyHotels(n => n.filter((_,j)=>j!==i))
+                  setNearbyHotels((n) => n.filter((_, j) => j !== i))
                 }
               >
                 x
@@ -232,14 +257,14 @@ export default function TourForm({ initialData = {}, onSubmit }) {
           + Add Restaurant
         </button>
         <ul className={styles.list}>
-          {nearbyRests.map((r,i) => (
+          {nearbyRests.map((r, i) => (
             <li key={i} className={styles.listItem}>
               {r.name} — {r.distance}
               <button
                 type="button"
                 className={styles.removeButton}
                 onClick={() =>
-                  setNearbyRests(rlist => rlist.filter((_,j)=>j!==i))
+                  setNearbyRests((rlist) => rlist.filter((_, j) => j !== i))
                 }
               >
                 x
@@ -253,5 +278,5 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         {initialData._id ? "Update Tour" : "Create Tour"}
       </button>
     </form>
-  )
+  );
 }

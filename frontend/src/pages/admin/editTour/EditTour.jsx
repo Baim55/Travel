@@ -16,11 +16,18 @@ export default function EditTour() {
     if (!tours.length) dispatch(getTours());
   }, [dispatch, tours]);
 
-  const handleSubmit = (formData) => {
-    dispatch(updateTour({ id, ...formData })).then(() =>
-      navigate("/admin/tours")
-    );
-  };
+
+const handleSubmit = (fd) => {
+  dispatch(updateTour({ id, formData: fd }))
+    .unwrap()
+    .then(() => navigate("/admin/tours"))
+    .catch((err) => {
+      const msg =
+        typeof err === "string" ? err : err.message || JSON.stringify(err);
+      alert("Yeniləmə zamanı xəta: " + msg);
+    });
+};
+
 
   return tour ? <TourForm initialData={tour} onSubmit={handleSubmit} /> : null;
 }

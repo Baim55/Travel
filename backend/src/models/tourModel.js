@@ -41,7 +41,6 @@ const tourSchema = new mongoose.Schema(
       restaurants: [
         {
           name: { type: String, required: true },
-          type: { type: String }, // məsələn: "Italian", "Azerbaijani"
           distance: { type: String },
           link: { type: String },
         },
