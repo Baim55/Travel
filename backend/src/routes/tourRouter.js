@@ -12,8 +12,8 @@ const tourRouter = express.Router();
 tourRouter.get("/cities",     getCitiesByCountry);
 tourRouter.get("/activities", getActivities);
 
-tourRouter.post("/", upload.array("images", 4), addTour);
-tourRouter.put("/:id", upload.array("images", 4), updateTour);
+tourRouter.post("/", upload.array("images", 10), addTour);
+tourRouter.put("/:id", upload.array("images", 10), updateTour);
 tourRouter.get("/",  getTours);
 tourRouter.get("/search/:name", searchTours);
 tourRouter.delete("/:id", deleteTour);
