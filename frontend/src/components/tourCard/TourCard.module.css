@@ -1,0 +1,115 @@
+.card {
+  width: 400px;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 70%;
+  background: #eee;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.5), transparent 60%);
+  z-index: 1;
+}
+
+.discountBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #ff4d4f;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.featuredBadge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #00cfe8;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 16px;
+  color: #fff;
+  width: 100%;
+  z-index: 2;
+}
+
+.rating {
+  font-size: 12px;
+  color: #2dd75d;
+  margin-bottom: 6px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 10px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  color: white;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #eee;
+}
+
+.price {
+  font-weight: bold;
+  color: white;
+}
+
+.price del {
+  color: #ccc;
+  margin-right: 5px;
+  font-weight: normal;
+}

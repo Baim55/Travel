@@ -234,3 +234,12 @@ export const updateTour = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+export const getDiscountedTours = async (req, res) => {
+  try {
+    const discountedTours = await Tour.find({ discount: { $gt: 0 } });
+    res.status(200).json(discountedTours);
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+};

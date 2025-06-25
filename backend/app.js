@@ -8,6 +8,7 @@ import locationRouter from "./src/routes/locationRouter.js";
 import cookieParser from "cookie-parser";
 import reviewRouter from "./src/routes/reviewRouter.js";
 import adminRouter from "./src/routes/adminRouter.js";
+// import testimonialRouter from "./src/routes/testimonialRouter.js";
 
 const app = express();
 const port = process.env.PORT || 5001;
@@ -22,7 +23,7 @@ app.use("/auth", userRouter);
 app.use("/images", express.static("src/images"));
 app.use("/api/reviews", reviewRouter);
 app.use("/api", adminRouter);
+// app.use("/api/testimonials", testimonialRouter);
 
 app.get("/", (req, res) => res.send("Hello World"));
-
 app.listen(port, () => console.log(`Server running on ${port}`));

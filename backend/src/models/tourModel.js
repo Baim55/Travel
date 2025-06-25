@@ -20,6 +20,7 @@ const tourSchema = new mongoose.Schema(
     description: { type: String, required: true },
     duration: { type: String, required: true }, // məsələn: "3 days" və ya "4 hours"
     price: { type: Number, required: true },
+    discount: { type: Number, default: 0 },
     availableDateRange: {
       startDate: { type: Date, required: true },
       endDate: { type: Date, required: true },

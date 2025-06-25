@@ -1,0 +1,151 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto 100px;
+  max-width: 1290px;
+  padding: 40px 30px;
+  gap: 2rem;
+  align-items: flex-start; /* ✅ bunu əlavə et */
+}
+
+
+.sectionHeader {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.subtitle {
+  font-family: "Thea Amelia", cursive;
+  font-size: 1.25rem;
+  color: var(--primary, #dc834e);
+  margin-bottom: 8px;
+}
+
+.sectionTitle {
+  font-family: "Poppins", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0 auto;
+  max-width: 600px;
+  line-height: 1.1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.flex{
+    display: flex;
+    gap: 20px;
+}
+
+.left {
+  flex: 1 1 300px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  min-height: 650px;
+  display: flex;
+  align-items: flex-end;
+  padding: 40px 30px;
+  color: #fff;
+  background-color: #000;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bgImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.discountBadge {
+  position: absolute;
+  left: 20px;
+  top: 60px;
+  height: auto;
+  z-index: 1;
+}
+
+.promoContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5); /* ← sadəcə yarıqaranlıq overlay */
+  padding: 30px 20px;
+  border-radius: 20px 20px 0 0;
+  backdrop-filter: blur(2px); /* opsional olaraq biraz "glass effect" üçün */
+}
+
+.promoTitle {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.promoText {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #eee;
+}
+
+.promoButton {
+  display: inline-flex;
+  align-items: center;
+  background: #fff;
+  color: #202f59;
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.promoButton:hover {
+  background: #c36b36;
+  color: #fff;
+}
+
+/* SAĞ tərəf turlar */
+.right {
+  flex: 2 1 600px;
+}
+.msg,
+.msgError {
+  text-align: center;
+  padding: 1rem 0;
+  color: var(--text, #666);
+}
+.msgError {
+  color: #c35d5d;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

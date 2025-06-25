@@ -11,6 +11,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
     description: "",
     duration: "",
     price: "",
+    discount: "",
     startDate: "",
     endDate: "",
     maxGuests: "",
@@ -36,6 +37,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         description: initialData.description,
         duration: initialData.duration,
         price: initialData.price,
+        discount: initialData.discount || "",
         startDate: initialData.availableDateRange.startDate.slice(0, 10),
         endDate: initialData.availableDateRange.endDate.slice(0, 10),
         maxGuests: initialData.maxGuests,
@@ -81,6 +83,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
       description: form.description,
       duration: form.duration,
       price: form.price,
+      discount: form.discount,
       maxGuests: form.maxGuests,
     }).forEach(([k, v]) => fd.append(k, v));
 
@@ -114,6 +117,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         { label: "City", name: "city", type: "text" },
         { label: "Duration", name: "duration", type: "text" },
         { label: "Price", name: "price", type: "number" },
+        { label: "Discount (%)", name: "discount", type: "number" },
         { label: "Max Guests", name: "maxGuests", type: "number" },
         { label: "Latitude", name: "lat", type: "number" },
         { label: "Longitude", name: "lng", type: "number" },
