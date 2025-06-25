@@ -1,5 +1,6 @@
 .searchFilter {
   display: flex;
+  flex-wrap: wrap;
   background: #fff;
   border-radius: 30px;
   padding: 16px;
@@ -134,4 +135,10 @@
 }
 .searchBtn:hover {
   background: #b55f32;
+}
+
+@media (max-width: 768px){
+  .field{
+    width: 100%;
+  }
 }

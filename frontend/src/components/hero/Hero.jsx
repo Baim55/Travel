@@ -43,17 +43,6 @@ const Hero = () => {
           </div>
         </Carousel.Item>
       </Carousel>
-      <div className="container">
-        <div className="row">
-            <div className="col-3"></div>
-            <div className="col-3"></div>
-            <div className="col-3"></div>
-            <div className="col-3"></div>
-            <div className="search">
-                
-            </div>
-        </div>
-      </div>
     </section>
   );
 };

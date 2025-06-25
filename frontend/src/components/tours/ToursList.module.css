@@ -125,3 +125,9 @@
 .button:hover {
   color: #dc834e;
 }
+
+@media(max-width:768px){
+  .card{
+    padding: 30px;
+  }
+}
