@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import styles from "./BookingForm.module.css";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function BookingForm({
   basePrice,
   youthPrice,
   childPrice,
   extras,
-  availableFrom, // "YYYY-MM-DD"
-  availableTo, // "YYYY-MM-DD"
-  tourId, // Turun ID-si
+  availableFrom,
+  availableTo,
+  tourId,
 }) {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("12:00");
-  const [tickets, setTickets] = useState({
-    adult: 0,
-    youth: 0,
-    child: 0,
-  });
+  const [tickets, setTickets] = useState({ adult: 0, youth: 0, child: 0 });
   const [chosenExtras, setChosenExtras] = useState({
     serviceBooking: false,
     servicePerson: false,
@@ -25,12 +23,14 @@ export default function BookingForm({
   const [slots, setSlots] = useState([]);
   const [error, setError] = useState("");
 
-  // Tarix seçildikdə slotları yükləyirik
+  const user = useSelector((state) => state.user.user);
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (date) {
       axios
         .get(`/api/tours/${tourId}/slots`, { params: { date } })
-        .then((res) =>{console.log("Slots", res.data); setSlots(res.data)})
+        .then((res) => setSlots(res.data))
         .catch((err) => console.error(err));
     }
   }, [date, tourId]);
@@ -55,13 +55,18 @@ export default function BookingForm({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!user) {
+      navigate("/login");
+      return;
+    }
+
     const selectedSlot = slots.find((s) => s.time === time);
     if (!selectedSlot || selectedSlot.remaining <= 0) {
       setError("This time slot is full. Please choose another.");
       return;
     }
 
-    // Backend-ə rezervasiya göndəririk
     try {
       await axios.post("/api/bookings", {
         tourId,
@@ -69,10 +74,10 @@ export default function BookingForm({
         time,
         guestCount: tickets.adult + tickets.youth + tickets.child,
       });
-      alert(`Rezervasiya tarixi: ${date}\nTotal: $${calculateTotal()}`);
+      alert(`Rezervasiya uğurla tamamlandı!\nTarix: ${date}\nTotal: $${calculateTotal()}`);
     } catch (err) {
       console.error(err);
-      setError("There was an error with your booking.");
+      setError("Booking zamanı xəta baş verdi.");
     }
   };
 
@@ -81,7 +86,7 @@ export default function BookingForm({
       <h3>Book This Tour</h3>
 
       <label>
-        From:
+        From:{" "}
         <input
           type="date"
           value={date}
@@ -105,7 +110,8 @@ export default function BookingForm({
                 onChange={(e) => setTime(e.target.value)}
                 disabled={slot.remaining <= 0}
               />
-              {slot.time} {slot.remaining <= 0 ? "(Full)" : `(${slot.remaining} left)`}
+              {slot.time}{" "}
+              {slot.remaining <= 0 ? "(Full)" : `(${slot.remaining} left)`}
             </label>
           ))}
         </div>
@@ -113,39 +119,26 @@ export default function BookingForm({
 
       <div className={styles.tickets}>
         <h4>Tickets:</h4>
-        <label>
-          Adult (18+ years) ${basePrice.toFixed(2)}
-          <select
-            value={tickets.adult}
-            onChange={(e) => handleTicketsChange("adult", e.target.value)}
-          >
-            {[0, 1, 2, 3, 4, 5].map((n) => (
-              <option key={n}>{n}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Youth (13–17) ${youthPrice.toFixed(2)}
-          <select
-            value={tickets.youth}
-            onChange={(e) => handleTicketsChange("youth", e.target.value)}
-          >
-            {[0, 1, 2, 3, 4, 5].map((n) => (
-              <option key={n}>{n}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Children (0–12) ${childPrice.toFixed(2)}
-          <select
-            value={tickets.child}
-            onChange={(e) => handleTicketsChange("child", e.target.value)}
-          >
-            {[0, 1, 2, 3, 4, 5].map((n) => (
-              <option key={n}>{n}</option>
-            ))}
-          </select>
-        </label>
+
+        {["adult", "youth", "child"].map((type) => (
+          <label key={type}>
+            {type === "adult" && `Adult (18+ years) $${basePrice.toFixed(2)}`}
+            {type === "youth" && `Youth (13–17) $${youthPrice.toFixed(2)}`}
+            {type === "child" && `Children (0–12) $${childPrice.toFixed(2)}`}
+            <div className={styles.select}>
+              <select
+                value={tickets[type]}
+                onChange={(e) => handleTicketsChange(type, e.target.value)}
+              >
+                {[...Array(10).keys()].map((n) => (
+                  <option key={n} value={n}>
+                    {n}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </label>
+        ))}
       </div>
 
       <div className={styles.extras}>
@@ -156,7 +149,7 @@ export default function BookingForm({
             checked={chosenExtras.serviceBooking}
             onChange={() => toggleExtra("serviceBooking")}
           />
-          {extras.serviceBooking.label} $ {extras.serviceBooking.price.toFixed(2)}
+          {extras.serviceBooking.label} ${extras.serviceBooking.price.toFixed(2)}
         </label>
         <label>
           <input
@@ -174,8 +167,15 @@ export default function BookingForm({
 
       {error && <div className={styles.error}>{error}</div>}
 
-      <button type="submit" className={styles.button}>
-        Book Now
+      <button
+        type="submit"
+        className={styles.button}
+        disabled={!user}
+        onClick={() => {
+          if (!user) navigate("/login");
+        }}
+      >
+        {user ? "Book Now" : "Login to Book"}
       </button>
     </form>
   );

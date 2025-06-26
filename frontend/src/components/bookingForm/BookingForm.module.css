@@ -2,7 +2,7 @@
   background: #fff;
   padding: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
 }
 .form h3 {
   margin-top: 0;
@@ -18,17 +18,25 @@
 .timeField legend {
   font-weight: bold;
 }
-.time{
-    display: flex; 
+.time {
+  display: flex;
+  flex-wrap: wrap;
 }
-.time label{
-    margin-right: 10px;
+.time label {
+  margin-right: 10px;
 }
 .tickets label,
 .extras label {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
+}
+.select {
+  max-height: 120px;
+  overflow-y: auto;
+}
+.select select {
+  width: 60px;
 }
 .total {
   font-size: 1.25rem;
@@ -46,4 +54,9 @@
 }
 .button:hover {
   background: #c36b36;
+}
+.error {
+  color: red;
+  font-weight: 500;
+  margin-top: 0.5rem;
 }
