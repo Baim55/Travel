@@ -3,6 +3,7 @@ import styles from "./Wrapper.module.css";
 import { Link } from "react-router-dom";
 import { IoPersonOutline } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
+import { IoIosBasket } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setUser } from "../../redux/features/userSlice";
@@ -16,13 +17,13 @@ const Wrapper = () => {
     dispatch(setUser(null));
     const res = await axios.get(`${baseUrl}/logout`, { withCredentials: true });
 
-
     if (res.status === 200) {
       alert("Logout successful");
     } else {
       alert("Logout failed");
     }
   };
+
   return (
     <div className={styles.wrapper}>
       <div className="dropdown">
@@ -52,8 +53,13 @@ const Wrapper = () => {
           )}
         </ul>
       </div>
-      <Link to="/wishlist">
+
+      <Link to="/wishlist" className={styles.iconLink} title="Wishlist">
         <FaRegHeart size={21} />
+      </Link>
+
+      <Link to="/basket" className={styles.iconLink} title="Basket" style={{ marginLeft: '15px' }}>
+        <IoIosBasket size={21} />
       </Link>
     </div>
   );

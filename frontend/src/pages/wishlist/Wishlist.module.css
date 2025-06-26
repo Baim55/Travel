@@ -1,0 +1,163 @@
+.heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #000;
+  text-align: center;
+}
+
+.emptyMessage {
+  color: #666;
+  font-size: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(6, 30, 98, 0.08);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 60px rgba(6, 30, 98, 0.1);
+}
+
+.imageWrapper {
+  position: relative;
+  padding-top: 80%;
+  background: #eee;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(29, 42, 79, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.card:hover .overlay {
+  opacity: 1;
+}
+
+.heartIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  font-size: 15px;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 50%;
+  opacity: 0;
+  cursor: pointer;
+  background: rgba(44, 44, 44, 0.4);
+  transition: all 0.3s ease;
+}
+
+.card:hover .heartIcon {
+  opacity: 1;
+}
+
+.heartIcon.active {
+  opacity: 1;
+  color: #fff;
+  background: rgba(40, 40, 40, 0.5);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  flex: 1;
+}
+
+.title {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #202F59;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+.location i {
+  margin-right: 8px;
+}
+
+.price {
+  color: #dc834e;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+
+.addToBasketBtn {
+  margin-top: 10px;
+  background-color: #dc834e;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.addToBasketBtn:hover {
+  background-color: #b9662e;
+}
+
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.meta span {
+  display: flex;
+  align-items: center;
+}
+
+.meta span i {
+  margin-right: 5px;
+  color: #dc834e;
+}

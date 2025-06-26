@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import styles from "./BookingForm.module.css";
 
 export default function BookingForm({
@@ -8,6 +9,7 @@ export default function BookingForm({
   extras,
   availableFrom, // "YYYY-MM-DD"
   availableTo, // "YYYY-MM-DD"
+  tourId, // Turun ID-si
 }) {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("12:00");
@@ -20,6 +22,18 @@ export default function BookingForm({
     serviceBooking: false,
     servicePerson: false,
   });
+  const [slots, setSlots] = useState([]);
+  const [error, setError] = useState("");
+
+  // Tarix seçildikdə slotları yükləyirik
+  useEffect(() => {
+    if (date) {
+      axios
+        .get(`/api/tours/${tourId}/slots`, { params: { date } })
+        .then((res) =>{console.log("Slots", res.data); setSlots(res.data)})
+        .catch((err) => console.error(err));
+    }
+  }, [date, tourId]);
 
   const handleTicketsChange = (type, value) => {
     setTickets((prev) => ({ ...prev, [type]: +value }));
@@ -39,10 +53,27 @@ export default function BookingForm({
     return total.toFixed(2);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // burada rezervasiya göndərmə loqikanız gələcək
-    alert(`Rezervasiya tarixi: ${date}\nTotal: $${calculateTotal()}`);
+    const selectedSlot = slots.find((s) => s.time === time);
+    if (!selectedSlot || selectedSlot.remaining <= 0) {
+      setError("This time slot is full. Please choose another.");
+      return;
+    }
+
+    // Backend-ə rezervasiya göndəririk
+    try {
+      await axios.post("/api/bookings", {
+        tourId,
+        date,
+        time,
+        guestCount: tickets.adult + tickets.youth + tickets.child,
+      });
+      alert(`Rezervasiya tarixi: ${date}\nTotal: $${calculateTotal()}`);
+    } catch (err) {
+      console.error(err);
+      setError("There was an error with your booking.");
+    }
   };
 
   return (
@@ -64,26 +95,19 @@ export default function BookingForm({
       <fieldset className={styles.timeField}>
         <legend>Time:</legend>
         <div className={styles.time}>
-          <label>
-            <input
-              type="radio"
-              name="time"
-              value="17:00"
-              checked={time === "17:00"}
-              onChange={(e) => setTime(e.target.value)}
-            />
-            17:00 pm
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="time"
-              value="20:00"
-              checked={time === "20:00"}
-              onChange={(e) => setTime(e.target.value)}
-            />
-            20:00 pm
-          </label>
+          {slots.map((slot) => (
+            <label key={slot.time}>
+              <input
+                type="radio"
+                name="time"
+                value={slot.time}
+                checked={time === slot.time}
+                onChange={(e) => setTime(e.target.value)}
+                disabled={slot.remaining <= 0}
+              />
+              {slot.time} {slot.remaining <= 0 ? "(Full)" : `(${slot.remaining} left)`}
+            </label>
+          ))}
         </div>
       </fieldset>
 
@@ -132,8 +156,7 @@ export default function BookingForm({
             checked={chosenExtras.serviceBooking}
             onChange={() => toggleExtra("serviceBooking")}
           />
-          {extras.serviceBooking.label} $
-          {extras.serviceBooking.price.toFixed(2)}
+          {extras.serviceBooking.label} $ {extras.serviceBooking.price.toFixed(2)}
         </label>
         <label>
           <input
@@ -141,14 +164,15 @@ export default function BookingForm({
             checked={chosenExtras.servicePerson}
             onChange={() => toggleExtra("servicePerson")}
           />
-          {extras.servicePerson.label} ${extras.servicePerson.price.toFixed(2)}{" "}
-          per person
+          {extras.servicePerson.label} ${extras.servicePerson.price.toFixed(2)} per person
         </label>
       </div>
 
       <div className={styles.total}>
         <strong>Total:</strong> ${calculateTotal()}
       </div>
+
+      {error && <div className={styles.error}>{error}</div>}
 
       <button type="submit" className={styles.button}>
         Book Now

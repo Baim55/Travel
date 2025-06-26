@@ -1,4 +1,5 @@
 import Tour from "../models/tourModel.js";
+import Booking from "../models/bookingModel.js";
 
 export const getCitiesByCountry = async (req, res) => {
   const { country } = req.query;
@@ -241,5 +242,45 @@ export const getDiscountedTours = async (req, res) => {
     res.status(200).json(discountedTours);
   } catch (error) {
     res.status(500).json({ message: "Server error" });
+  }
+};
+
+
+export const getSlots = async (req, res) => {
+  const { id } = req.params;
+  const { date } = req.query;
+  if (!date) return res.status(400).json({ message: "Date required" });
+
+  try {
+    const tour = await Tour.findById(id);
+    if (!tour) return res.status(404).json({ message: "Tour not found" });
+
+    // Bu gün üçün bütün rezervasiyaları toplayırıq
+    const start = new Date(date);
+    const end = new Date(date);
+    end.setHours(23,59,59);
+
+    const bookings = await Booking.aggregate([
+      { $match: { tour: tour._id, date: { $gte: start, $lte: end } } },
+      { $group: { _id: "$time", totalGuests: { $sum: "$guestCount" } } }
+    ]);
+
+    // bookings: [ { _id: "11:00", totalGuests: 12 }, … ]
+
+    const slots = tour.timeSlots.map(slot => {
+      const b = bookings.find(b => b._id === slot.time);
+      const used = b ? b.totalGuests : 0;
+      return {
+        time: slot.time,
+        capacity: slot.capacity,
+        remaining: slot.capacity - used
+      };
+    });
+
+    res.json(slots);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: err.message });
   }
 };

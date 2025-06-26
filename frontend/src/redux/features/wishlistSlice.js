@@ -1,5 +1,5 @@
+// src/redux/features/wishlistSlice.js
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 const initialState = {
   wishlist: [],
@@ -10,26 +10,15 @@ export const wishlistSlice = createSlice({
   initialState,
   reducers: {
     addWishlist: (state, action) => {
-      const existProduct = state.wishlist.find(
-        (item) => item._id === action.payload._id
-      );
-
-      if (!existProduct) {
-        state.wishlist.push(action.payload);
+      const exist = state.wishlist.find(i => i._id === action.payload._id);
+      if (exist) {
+        state.wishlist = state.wishlist.filter(i => i._id !== action.payload._id);
       } else {
-        state.wishlist = state.wishlist.filter(
-          (item) => item._id !== action.payload._id
-        );
+        state.wishlist.push(action.payload);
       }
     },
-    // deleteWishlist: (state, action) => {
-    //   state.wishlist = state.wishlist.filter(
-    //     (item) => item._id !== action.payload
-    //   );
-    // },
   },
 });
 
-export const { addWishlist, deleteWishlist } = wishlistSlice.actions;
-
+export const { addWishlist } = wishlistSlice.actions;
 export default wishlistSlice.reducer;

@@ -24,6 +24,7 @@ import AdminTours from "./pages/admin/adminTours/AdminTours";
 import AdminUsers from "./pages/admin/adminUsers/AdminUsers";
 import NewTour from "./pages/admin/newTour/NewTour";
 import EditTour from "./pages/admin/editTour/EditTour";
+import Basket from "./pages/basket/Basket";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "/wishlist",
         element: <Wishlist />,
+      },
+      {
+        path: "/basket",
+        element: <Basket />,
       },
       {
         path: "/login",

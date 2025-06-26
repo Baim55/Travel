@@ -1,31 +1,24 @@
-// src/features/basketSlice.js
+// src/redux/features/basketSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  items: [], // { _id, name, price, qty, ... }
+  items: [], // товары в корзине
 };
 
-const basketSlice = createSlice({
+export const basketSlice = createSlice({
   name: "basket",
   initialState,
   reducers: {
-    addToBasket: (state, action) => {
-      const item = action.payload;
-      const exist = state.items.find(i => i._id === item._id);
-      if (exist) {
-        // mövcud item-ın sayını artır
-        state.items = state.items.map(i =>
-          i._id === item._id ? { ...i, qty: i.qty + 1 } : i
-        );
-      } else {
-        state.items.push({ ...item, qty: 1 });
+    addBasket: (state, action) => {
+      const exist = state.items.find(i => i._id === action.payload._id);
+      if (!exist) {
+        state.items.push({ ...action.payload, qty: 1 });
       }
     },
-    removeFromBasket: (state, action) => {
-      const id = action.payload;
-      state.items = state.items.filter(i => i._id !== id);
+    removeBasket: (state, action) => {
+      state.items = state.items.filter(i => i._id !== action.payload);
     },
-    updateQty: (state, action) => {
+    updateGuestCount: (state, action) => {
       const { _id, qty } = action.payload;
       state.items = state.items.map(i =>
         i._id === _id ? { ...i, qty } : i
@@ -38,9 +31,9 @@ const basketSlice = createSlice({
 });
 
 export const {
-  addToBasket,
-  removeFromBasket,
-  updateQty,
+  addBasket,
+  removeBasket,
+  updateGuestCount,
   clearBasket,
 } = basketSlice.actions;
 

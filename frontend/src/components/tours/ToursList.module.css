@@ -126,6 +126,75 @@
   color: #dc834e;
 }
 
+.wishlistIcon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 8px;
+  z-index: 10;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.wishlistIcon:hover {
+  background-color: #fff;
+}
+
+.wishlistIcon i {
+  font-size: 18px;
+  color: #dc3545; /* qırmızı ürək */
+}
+
+.imageWrapper {
+  position: relative;
+  padding-top: 80%;
+  background: #eee;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Overlay efekti */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(29, 42, 79, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.card:hover .overlay {
+  opacity: 1;
+}
+
+/* Ürək iconu */
+.heartIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  font-size: 20px;
+  color: #fff;
+  padding: 6px;
+  border-radius: 50%;
+  opacity: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card:hover .heartIcon {
+  opacity: 1;
+}
+
+.heartIcon.active {
+  opacity: 1;
+  color: #dc3545;
+}
+
+
 @media(max-width:768px){
   .card{
     padding: 30px;

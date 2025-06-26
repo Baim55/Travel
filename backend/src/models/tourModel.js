@@ -21,6 +21,12 @@ const tourSchema = new mongoose.Schema(
     duration: { type: String, required: true }, // məsələn: "3 days" və ya "4 hours"
     price: { type: Number, required: true },
     discount: { type: Number, default: 0 },
+    timeSlots: [
+      {
+        time: { type: String, required: true }, // “11:00”, “15:00” və s.
+        capacity: { type: Number, default: 20 }, // maksimum qonaq sayı hər slot üçün
+      },
+    ],
     availableDateRange: {
       startDate: { type: Date, required: true },
       endDate: { type: Date, required: true },
