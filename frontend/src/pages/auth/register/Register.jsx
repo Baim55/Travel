@@ -16,9 +16,21 @@ const Register = () => {
       formData.append("email", values.email);
       formData.append("password", values.password);
 
-      await axios.post(`${baseUrl}/register`, formData, {
-        withCredentials: true,
-      });
+      await axios
+        .post(`${baseUrl}/register`, formData, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log("SUCCESS:", res.data); // BURA ƏLAVƏ ET
+          actions.resetForm();
+          alert("Please check your email to verify your account.");
+        })
+        .catch((error) => {
+          console.error(
+            "Registration failed:",
+            error.response?.data || error.message
+          ); // daha düzgün error göstər
+        });
 
       actions.resetForm();
 
@@ -57,6 +69,7 @@ const Register = () => {
             <input
               type="file"
               id="image"
+              name="image"
               className={styles.input}
               onChange={(e) => setFieldValue("image", e.target.files[0])}
             />

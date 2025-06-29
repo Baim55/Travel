@@ -29,6 +29,7 @@ export const getMe = async (req, res) => {
 export const register = async (req, res) => {
   try {
     const { name, username, email, password } = req.body;
+    
     const { filename } = req.file;
 
     const imageUrl = `images/${filename}`.replace(/\\/g, "/");

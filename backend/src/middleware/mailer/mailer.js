@@ -8,6 +8,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+
+
 export const recieveMail = async (user, link) => {
   const { email, username } = user;
   await transporter.sendMail({
