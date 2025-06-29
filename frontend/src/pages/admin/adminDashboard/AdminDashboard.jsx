@@ -9,6 +9,9 @@ export default function AdminDashboard() {
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li><NavLink to="tours">Tours</NavLink></li>
           <li><NavLink to="users">Users</NavLink></li>
+          <li><NavLink to="bookings">Bookings</NavLink></li>
+          <li><NavLink to="messages">Messages</NavLink></li>
+          <li><NavLink to="comments">Comments</NavLink></li>
         </ul>
       </aside>
       <section style={{ flex: 1, padding: "1rem" }}>

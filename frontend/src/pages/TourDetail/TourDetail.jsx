@@ -68,7 +68,8 @@ export default function TourDetail() {
           <div className={styles.header}>
             <h1 className={styles.title}>{tour.name}</h1>
             <div className={styles.location}>
-              <i className="fas fa-map-marker-alt" /> {tour.city}, {tour.country}
+              <i className="fas fa-map-marker-alt" /> {tour.city},{" "}
+              {tour.country}
             </div>
           </div>
 
@@ -188,23 +189,6 @@ export default function TourDetail() {
                 </div>
               </div>
 
-              {/* Street View Iframe */}
-              {tour.streetViewSrc && (
-                <div className={styles.streetViewSection}>
-                  <h3>Street View</h3>
-                  <iframe
-                    width="100%"
-                    height="300"
-                    style={{ border: 0 }}
-                    loading="lazy"
-                    allowFullScreen
-                    referrerPolicy="no-referrer-when-downgrade"
-                    src={tour.streetViewSrc}
-                    title="Street View"
-                  />
-                </div>
-              )}
-
               {/* Reviews */}
               <ReviewForm
                 tourId={id}
@@ -218,6 +202,7 @@ export default function TourDetail() {
             <aside className={styles.sidebar}>
               <BookingForm
                 tourId={tour._id}
+                discount={tour.discount}
                 basePrice={tour.price}
                 youthPrice={tour.price - 10}
                 childPrice={0}

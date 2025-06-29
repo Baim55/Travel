@@ -8,7 +8,8 @@ export const getReviews = async (req, res) => {
   try {
     const reviews = await Review.find(filter)
       .sort({ createdAt: -1 })
-      .populate("user", "name image");
+      .populate("user", "name image")
+      .populate("tour", "name");
     res.json(reviews);
   } catch (err) {
     res.status(500).json({ error: "Yorumlar alınmadı." });
@@ -56,4 +57,3 @@ export const deleteReview = async (req, res) => {
     res.status(500).json({ error: "Yorum silinmədi." });
   }
 };
-

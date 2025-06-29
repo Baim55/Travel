@@ -17,6 +17,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
     maxGuests: "",
     lat: "",
     lng: "",
+    streetViewSrc: "",
   });
   const [images, setImages] = useState([]);
   const [nearbyHotels, setNearbyHotels] = useState(
@@ -43,6 +44,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         maxGuests: initialData.maxGuests,
         lat: initialData.location.lat,
         lng: initialData.location.lng,
+        streetViewSrc: initialData.streetViewSrc || "",
       });
       setImages([]); // yeni fayl seçimi üçün sıfırla
       setNearbyHotels(initialData.nearby.hotels);
@@ -85,6 +87,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
       price: form.price,
       discount: form.discount,
       maxGuests: form.maxGuests,
+      streetViewSrc: form.streetViewSrc,
     }).forEach(([k, v]) => fd.append(k, v));
 
     fd.append("availableDateRange[startDate]", form.startDate);
@@ -121,6 +124,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         { label: "Max Guests", name: "maxGuests", type: "number" },
         { label: "Latitude", name: "lat", type: "number" },
         { label: "Longitude", name: "lng", type: "number" },
+        { label: "Street View Src", name: "streetViewSrc", type: "text" },
       ].map((field) => (
         <div key={field.name} className={styles.field}>
           <label className={styles.label}>
@@ -175,8 +179,19 @@ export default function TourForm({ initialData = {}, onSubmit }) {
           />
         </label>
       </div>
-
-      
+      <div className={styles.field}>
+        <label className={styles.label}>
+          Street View Src:
+          <input
+            name="streetViewSrc"
+            type="text"
+            className={styles.input}
+            value={form.streetViewSrc}
+            onChange={handleChange}
+            required
+          />
+        </label>
+      </div>
 
       <div className={styles.fieldRow}>
         <label className={styles.label}>

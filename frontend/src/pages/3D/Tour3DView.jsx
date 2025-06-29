@@ -1,38 +1,63 @@
 // src/pages/tours/Tour3DView.jsx
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 export default function Tour3DView() {
-   const { id } = useParams();
-  const { tours } = useSelector((state) => state.tour);
-  const tour = tours.find((t) => t._id === id);
+  const { id } = useParams();
+  const [tour, setTour] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/tours/${id}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Tour tapılmadı");
+        }
+        return res.json();
+      })
       .then((data) => setTour(data))
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error("Tour3DView fetch error:", err);
+        setError(err.message);
+      });
   }, [id]);
 
-  if (!tour) return <p>Loading 3D View...</p>;
+  if (error) {
+    return (
+      <div style={{ textAlign: "center", padding: "40px", color: "red" }}>
+        <h3>Xəta baş verdi:</h3>
+        <p>{error}</p>
+      </div>
+    );
+  }
+
+  if (!tour) {
+    return <p style={{ textAlign: "center", padding: "40px" }}>Loading 3D View...</p>;
+  }
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2 style={{textAlign:"center"}}>{tour.name} - 3D View</h2>
-      {tour.streetViewSrc && (
+      <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
+        {tour.name} - 3D View
+      </h2>
+
+      {tour.streetViewSrc ? (
         <div>
           <iframe
             width="100%"
             height="600"
             style={{ border: 0 }}
             loading="lazy"
-            allowFullScreen
+            allow="geolocation; accelerometer; gyroscope; magnetometer; fullscreen"
             referrerPolicy="no-referrer-when-downgrade"
             src={tour.streetViewSrc}
             title="Street View"
           />
         </div>
+      ) : (
+        <p style={{ textAlign: "center", color: "gray" }}>
+          Street View mövcud deyil.
+        </p>
       )}
     </div>
   );

@@ -278,3 +278,16 @@ export const getSlots = async (req, res) => {
   }
 };
 
+// 🟢 10. ID ilə tur gətir
+export const getTourById = async (req, res) => {
+  try {
+    const tour = await Tour.findById(req.params.id);
+    if (!tour) {
+      return res.status(404).json({ message: "Tour tapılmadı" });
+    }
+    res.json(tour);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+

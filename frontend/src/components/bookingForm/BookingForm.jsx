@@ -12,6 +12,7 @@ export default function BookingForm({
   availableFrom,
   availableTo,
   tourId,
+  discount = 0,
 }) {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("12:00");
@@ -45,11 +46,20 @@ export default function BookingForm({
 
   const calculateTotal = () => {
     const { adult, youth, child } = tickets;
-    let total = adult * basePrice + youth * youthPrice + child * childPrice;
+
+    // Endirimli qiymət
+    const effectiveBase = basePrice - (basePrice * discount) / 100;
+    const effectiveYouth = youthPrice - (youthPrice * discount) / 100;
+    const effectiveChild = childPrice - (childPrice * discount) / 100;
+
+    let total =
+      adult * effectiveBase + youth * effectiveYouth + child * effectiveChild;
+
     if (chosenExtras.serviceBooking) total += extras.serviceBooking.price;
     if (chosenExtras.servicePerson) {
       total += extras.servicePerson.price * (adult + youth + child);
     }
+
     return total.toFixed(2);
   };
 
@@ -70,11 +80,14 @@ export default function BookingForm({
     try {
       await axios.post("/api/bookings", {
         tourId,
+        userId: user._id,
         date,
         time,
         guestCount: tickets.adult + tickets.youth + tickets.child,
       });
-      alert(`Rezervasiya uğurla tamamlandı!\nTarix: ${date}\nTotal: $${calculateTotal()}`);
+      alert(
+        `Rezervasiya uğurla tamamlandı!\nTarix: ${date}\nTotal: $${calculateTotal()}`
+      );
     } catch (err) {
       console.error(err);
       setError("Booking zamanı xəta baş verdi.");
@@ -122,9 +135,27 @@ export default function BookingForm({
 
         {["adult", "youth", "child"].map((type) => (
           <label key={type}>
-            {type === "adult" && `Adult (18+ years) $${basePrice.toFixed(2)}`}
-            {type === "youth" && `Youth (13–17) $${youthPrice.toFixed(2)}`}
-            {type === "child" && `Children (0–12) $${childPrice.toFixed(2)}`}
+            {type === "adult" &&
+              `Adult (18+) $${(
+                basePrice -
+                (basePrice * discount) / 100
+              ).toFixed(2)}`}
+            {type === "youth" &&
+              `Youth (13–17) $${(
+                youthPrice -
+                (youthPrice * discount) / 100
+              ).toFixed(2)}`}
+            {type === "child" &&
+              `Children (0–12) $${(
+                childPrice -
+                (childPrice * discount) / 100
+              ).toFixed(2)}`}
+            {discount > 0 && (
+              <div className={styles.discountNote}>
+               {discount}% endirim
+              </div>
+            )}
+
             <div className={styles.select}>
               <select
                 value={tickets[type]}
@@ -149,7 +180,8 @@ export default function BookingForm({
             checked={chosenExtras.serviceBooking}
             onChange={() => toggleExtra("serviceBooking")}
           />
-          {extras.serviceBooking.label} ${extras.serviceBooking.price.toFixed(2)}
+          {extras.serviceBooking.label} $
+          {extras.serviceBooking.price.toFixed(2)}
         </label>
         <label>
           <input
@@ -157,7 +189,8 @@ export default function BookingForm({
             checked={chosenExtras.servicePerson}
             onChange={() => toggleExtra("servicePerson")}
           />
-          {extras.servicePerson.label} ${extras.servicePerson.price.toFixed(2)} per person
+          {extras.servicePerson.label} ${extras.servicePerson.price.toFixed(2)}{" "}
+          per person
         </label>
       </div>
 

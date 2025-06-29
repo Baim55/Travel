@@ -26,6 +26,10 @@ import NewTour from "./pages/admin/newTour/NewTour";
 import EditTour from "./pages/admin/editTour/EditTour";
 import Basket from "./pages/basket/Basket";
 import Tour3DView from "./pages/3D/Tour3DView";
+import MyBookings from "./pages/myBookings/MyBookings";
+import AdminBookings from "./pages/admin/booking/AdminBookings";
+import AdminMessages from "./pages/admin/messages/AdminMessages";
+import AdminComments from "./pages/admin/comments/AdminComments";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/mybooking",
+        element: <MyBookings />,
       },
       {
         path: "/wishlist",
@@ -105,6 +113,9 @@ const router = createBrowserRouter([
           { path: "tours/new", element: <NewTour /> },
           { path: "tours/:id/edit", element: <EditTour /> },
           { path: "users", element: <AdminUsers /> },
+          { path: "bookings", element: <AdminBookings /> },
+          { path: "comments", element: <AdminComments /> },
+          { path: "messages", element: <AdminMessages /> },
         ],
       },
     ],

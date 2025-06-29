@@ -44,3 +44,40 @@ export const createBooking = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+export const getUserBookings = async (req, res) => {
+  try {
+    const userId = req.query.userId;
+    if (!userId) return res.status(400).json({ message: "User ID yoxdur" });
+
+    const bookings = await Booking.find({ user: userId })
+      .populate("tour")
+      .sort({ date: -1 });
+
+    res.json(bookings);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+export const deleteBooking = async (req, res) => {
+  try {
+    const deleted = await Booking.findByIdAndDelete(req.params.id);
+    if (!deleted) return res.status(404).json({ message: "Rezervasiya tapılmadı" });
+    res.json({ message: "Rezervasiya uğurla silindi" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+export const getAllBookings = async (req, res) => {
+  try {
+    const bookings = await Booking.find()
+      .populate("tour")
+      .populate("user")
+      .sort({ createdAt: -1 });
+    res.json(bookings);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

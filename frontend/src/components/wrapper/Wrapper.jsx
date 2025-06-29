@@ -58,7 +58,7 @@ const Wrapper = () => {
         <FaRegHeart size={21} />
       </Link>
 
-      <Link to="/basket" className={styles.iconLink} title="Basket" style={{ marginLeft: '15px' }}>
+      <Link to="/mybooking" className={styles.iconLink} title="Basket" style={{ marginLeft: '15px' }}>
         <IoIosBasket size={21} />
       </Link>
     </div>

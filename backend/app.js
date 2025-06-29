@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 import reviewRouter from "./src/routes/reviewRouter.js";
 import adminRouter from "./src/routes/adminRouter.js";
 import bookingRouter from "./src/routes/bookingRouter.js";
+// import messageRouter from "./src/routes/messageRouter.js";
 // import testimonialRouter from "./src/routes/testimonialRouter.js";
 
 const app = express();
@@ -25,6 +26,7 @@ app.use("/images", express.static("src/images"));
 app.use("/api/reviews", reviewRouter);
 app.use("/api", adminRouter);
 app.use("/api/bookings", bookingRouter);
+// app.use("/api/messages", messageRouter);
 // app.use("/api/testimonials", testimonialRouter);
 
 app.get("/", (req, res) => res.send("Hello World"));

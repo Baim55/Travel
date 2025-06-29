@@ -1,49 +1,75 @@
-// src/components/testimonials/Testimonials.jsx
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import styles from './Testimonials.module.css';
+import React, { useEffect, useState } from "react";
+import Slider from "react-slick";
+import axios from "axios";
+import styles from "./Testimonials.module.css";
+import test1 from "../../assets/images/h1_quote-1.png";
+import test2 from "../../assets/images/h1_quote-2.png";
+import { FaQuoteLeft } from "react-icons/fa";
 
 export default function Testimonials() {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/testimonials')
-      .then(res => setItems(res.data))
-      .catch(err => setError(err.message))
-      .finally(() => setLoading(false));
+    axios
+      .get("http://localhost:5000/api/admin/comments")
+      .then((res) => setReviews(res.data.slice(0, 5)))
+      .catch((err) => console.error("Yorumlar alınmadı:", err));
   }, []);
 
-  if (loading) return <p>Loading reviews…</p>;
-  if (error)   return <p className={styles.error}>Error: {error}</p>;
+  const settings = {
+    dots: true,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    infinite: true,
+    speed: 800,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
 
   return (
-    <section className={styles.wrapper}>
-      <div className={styles.header}>
-        <p className={styles.subtitle}>Testimonials</p>
-        <h2 className={styles.title}>Customer Reviews</h2>
-      </div>
-      {items.length > 0 && (
-        <div className={styles.carousel}>
-          {items.map((t, i) => (
-            <div key={t._id} className={styles.slide} style={{ display: i === 0 ? 'block' : 'none' }}>
-              <blockquote className={styles.text}>"{t.text}"</blockquote>
-              <div className={styles.meta}>
-                <img src={t.avatar} alt={t.author} className={styles.avatar}/>
-                <div>
-                  <div className={styles.author}>{t.author}</div>
-                  <div className={styles.location}>{t.location}</div>
-                  <div className={styles.rating}>
-                    {'★'.repeat(t.rating)}{'☆'.repeat(5-t.rating)}
-                  </div>
+    <section className={styles.testimonialSection}>
+      {/* Arxa fonda yerləşəcək şəkillər */}
+      <img src={test1} alt="quote left" className={styles.quoteLeft} />
+      <img src={test2} alt="quote right" className={styles.quoteRight} />
+
+      <h5 className={styles.subTitle}>Testimonials</h5>
+      <h2 className={styles.mainTitle}>Customer Reviews</h2>
+
+      <Slider {...settings} className={styles.slider}>
+        {reviews.map((review) => (
+          <div key={review._id} className={styles.slide}>
+            <p className={styles.comment}>"{review.comment}"</p>
+
+            <div className={styles.details}>
+              <div className={styles.circleIcon}>
+                <FaQuoteLeft size={35} />
+              </div>
+              <img
+                src={
+                  review.user?.image
+                    ? `http://localhost:5000/${review.user.image}`
+                    : "/avatar.png"
+                }
+                alt="avatar"
+                className={styles.avatar}
+              />
+              <div className={styles.info}>
+                <div className={styles.name}>
+                  {review.user?.name || "İstifadəçi"}
+                </div>
+                <div className={styles.job}>
+                  {review.tour?.name || "Unknown"}
+                </div>
+                <div className={styles.rating}>
+                  {"★".repeat(review.rating)}
+                  {"☆".repeat(5 - review.rating)}
                 </div>
               </div>
             </div>
-          ))}
-          {/* İstəsəniz burda navigation dotları və ya avtomatik slider da əlavə edə bilərsiniz */}
-        </div>
-      )}
+          </div>
+        ))}
+      </Slider>
     </section>
   );
 }

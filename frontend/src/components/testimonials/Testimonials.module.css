@@ -1,0 +1,116 @@
+.testimonialSection {
+  background-color: #f9f4f0;
+  padding: 100px 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  height: 600px;
+}
+
+.quoteLeft,
+.quoteRight {
+  position: absolute;
+  top: 50%;
+  width: 200px;
+  transform: translateY(-50%);
+  opacity: 0.9;
+  z-index: 0;
+}
+
+.quoteLeft {
+  left: 80px;
+}
+
+.quoteRight {
+  right: 80px;
+}
+
+.subTitle {
+  font-family: "Thea Amelia", sans-serif;
+  font-size: 30px;
+  color: #dc834e;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.mainTitle {
+  font-size: 50px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.slider {
+  max-width: 850px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.slide {
+  padding: 0 20px;
+}
+
+.comment {
+  font-size: 25px;
+  font-style: italic;
+  margin-bottom: 40px;
+  color: #444;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.circleIcon {
+  background-color: #dc834e;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 85px;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+
+.info {
+  text-align: left;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.job {
+  font-size: 14px;
+  color: #888;
+}
+
+.rating {
+  font-size: 16px;
+  color: #2dd75d;
+}
