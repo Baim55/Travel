@@ -1,6 +1,7 @@
 import Tour from "../models/tourModel.js";
 import Booking from "../models/bookingModel.js";
 
+// 🟢 1. Ölkəyə görə şəhərləri gətir
 export const getCitiesByCountry = async (req, res) => {
   const { country } = req.query;
   if (!country) {
@@ -10,21 +11,21 @@ export const getCitiesByCountry = async (req, res) => {
     const cities = await Tour.distinct("city", { country });
     res.json(cities);
   } catch (err) {
-    console.error(err);
     res.status(500).json({ message: err.message });
   }
 };
 
+// 🟢 2. Mövcud activity-ləri gətir
 export const getActivities = async (req, res) => {
   try {
     const activities = await Tour.distinct("activity");
     res.json(activities);
   } catch (err) {
-    console.error(err);
     res.status(500).json({ message: err.message });
   }
 };
 
+// 🟢 3. Yeni tur əlavə et
 export const addTour = async (req, res) => {
   try {
     const {
@@ -39,16 +40,13 @@ export const addTour = async (req, res) => {
       availableDateRange,
       maxGuests,
       nearby,
+      streetViewIframe,
     } = req.body;
 
-    // Tarix yoxlaması
     if (!availableDateRange?.startDate || !availableDateRange?.endDate) {
-      return res
-        .status(400)
-        .json({ message: "availableDateRange tam olmalıdır" });
+      return res.status(400).json({ message: "Tarix aralığı tam deyil" });
     }
 
-    // Multer ilə gələn faylları path halına gətir
     const imagePaths = req.files.map((f) =>
       `images/${f.filename}`.replace(/\\/g, "/")
     );
@@ -57,10 +55,8 @@ export const addTour = async (req, res) => {
     if (nearby) {
       try {
         parsedNearby = JSON.parse(nearby);
-      } catch (err) {
-        return res
-          .status(400)
-          .json({ message: "Nearby sahəsi düzgün formatda deyil" });
+      } catch {
+        return res.status(400).json({ message: "Nearby formatı yanlışdır" });
       }
     }
 
@@ -75,17 +71,18 @@ export const addTour = async (req, res) => {
       description,
       availableDateRange,
       maxGuests,
-      images: imagePaths, // <-- plural
+      images: imagePaths,
       nearby: parsedNearby,
+      streetViewIframe,
     });
 
     res.status(201).json(newTour);
   } catch (err) {
-    console.error(err);
     res.status(500).json({ message: err.message });
   }
 };
 
+// 🟢 4. Turları filtrlə
 export const getTours = async (req, res) => {
   try {
     const {
@@ -99,6 +96,7 @@ export const getTours = async (req, res) => {
       dateFrom,
       guests,
     } = req.query;
+
     const filter = {};
 
     if (country) filter.country = country;
@@ -108,50 +106,53 @@ export const getTours = async (req, res) => {
     if (description) filter.description = description;
     if (price) filter.price = price;
     if (location) filter.location = location;
+
     if (dateFrom) {
       const date = new Date(dateFrom);
       filter["availableDateRange.startDate"] = { $lte: date };
       filter["availableDateRange.endDate"] = { $gte: date };
     }
+
     if (guests) filter.maxGuests = { $gte: parseInt(guests) };
 
     const tours = await Tour.find(filter).sort({ createdAt: -1 });
     res.json(tours);
   } catch (err) {
-    console.error(err);
     res.status(500).json({ message: err.message });
   }
 };
 
+// 🟢 5. Ada görə axtarış
 export const searchTours = async (req, res) => {
   try {
     const { name } = req.params;
     const tours = await Tour.find({ name: { $regex: name, $options: "i" } });
+
     if (!tours.length)
       return res.status(404).json({ message: "Heç bir tur tapılmadı" });
+
     res.json(tours);
   } catch (err) {
-    console.error(err);
     res.status(500).json({ message: err.message });
   }
 };
 
+// 🟢 6. Tur silmək
 export const deleteTour = async (req, res) => {
   try {
     const deleted = await Tour.findByIdAndDelete(req.params.id);
     if (!deleted) return res.status(404).json({ message: "Tour tapılmadı" });
     res.json({ message: "Tour uğurla silindi" });
   } catch (err) {
-    console.error(err);
     res.status(500).json({ message: err.message });
   }
 };
 
+// 🟢 7. Tur güncəllə (şəkillər itməsin)
 export const updateTour = async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Sadə sahələr body-dən destructure edirik
     const {
       name,
       country,
@@ -161,40 +162,30 @@ export const updateTour = async (req, res) => {
       duration,
       price,
       maxGuests,
-      nearby, // JSON string gözləyirik
-      // aşağıdakılar req.body-dən açıqca parse edəcəyik, destructure-ə ehtiyac yoxdur
-      // "availableDateRange[startDate]": startDate,
-      // "availableDateRange[endDate]": endDate,
-      // location obyekti artıq formData-da göndərilmir
+      nearby,
+      streetViewIframe,
     } = req.body;
 
-    // Şəkil yollarını multer fayllarından alırıq
+    const tour = await Tour.findById(id);
+    if (!tour) return res.status(404).json({ message: "Tour tapılmadı" });
+
     const imagePaths = req.files?.length
       ? req.files.map((f) => `images/${f.filename}`.replace(/\\/g, "/"))
-      : undefined;
+      : [];
 
-    const updated = {};
+    const updated = {
+      name: name || tour.name,
+      country: country || tour.country,
+      city: city || tour.city,
+      activity: activity || tour.activity,
+      description: description || tour.description,
+      duration: duration || tour.duration,
+      price: price || tour.price,
+      maxGuests: maxGuests || tour.maxGuests,
+      images: imagePaths.length > 0 ? imagePaths : tour.images,
+      streetViewIframe: streetViewIframe || tour.streetViewIframe,
+    };
 
-    // Sadə sahələr
-    if (name) updated.name = name;
-    if (country) updated.country = country;
-    if (city) updated.city = city;
-    if (activity) updated.activity = activity;
-    if (description) updated.description = description;
-    if (duration) updated.duration = duration;
-    if (price) updated.price = price;
-    if (maxGuests) updated.maxGuests = parseInt(maxGuests, 10);
-
-    // nearby: JSON.parse edirik
-    if (nearby) {
-      try {
-        updated.nearby = JSON.parse(nearby);
-      } catch (_) {
-        return res.status(400).json({ message: "Nearby sahəsi düzgün deyil" });
-      }
-    }
-
-    // availableDateRange[startDate] və [endDate]
     const sd = req.body["availableDateRange[startDate]"];
     const ed = req.body["availableDateRange[endDate]"];
     if (sd && ed) {
@@ -204,7 +195,6 @@ export const updateTour = async (req, res) => {
       };
     }
 
-    // location[lat] və location[lng]
     const lat = req.body["location[lat]"];
     const lng = req.body["location[lng]"];
     if (lat != null && lng != null) {
@@ -214,28 +204,26 @@ export const updateTour = async (req, res) => {
       };
     }
 
-    // Yeni şəkillər varsa, override edirik
-    if (imagePaths) {
-      updated.images = imagePaths;
+    if (nearby) {
+      try {
+        updated.nearby = JSON.parse(nearby);
+      } catch {
+        return res.status(400).json({ message: "Nearby formatı səhvdir" });
+      }
     }
 
-    // Mongoose update
     const updatedTour = await Tour.findByIdAndUpdate(id, updated, {
       new: true,
       runValidators: true,
     });
 
-    if (!updatedTour) {
-      return res.status(404).json({ message: "Tour tapılmadı" });
-    }
-
     res.json(updatedTour);
   } catch (err) {
-    console.error(err);
     res.status(500).json({ message: err.message });
   }
 };
 
+// 🟢 8. Endirimli turlar
 export const getDiscountedTours = async (req, res) => {
   try {
     const discountedTours = await Tour.find({ discount: { $gt: 0 } });
@@ -245,42 +233,48 @@ export const getDiscountedTours = async (req, res) => {
   }
 };
 
-
+// 🟢 9. Slot və qonaq sayı yoxlaması
 export const getSlots = async (req, res) => {
   const { id } = req.params;
   const { date } = req.query;
-  if (!date) return res.status(400).json({ message: "Date required" });
+  if (!date) return res.status(400).json({ message: "Date tələb olunur" });
 
   try {
     const tour = await Tour.findById(id);
-    if (!tour) return res.status(404).json({ message: "Tour not found" });
+    if (!tour) return res.status(404).json({ message: "Tour tapılmadı" });
 
-    // Bu gün üçün bütün rezervasiyaları toplayırıq
     const start = new Date(date);
     const end = new Date(date);
-    end.setHours(23,59,59);
+    end.setHours(23, 59, 59);
 
     const bookings = await Booking.aggregate([
-      { $match: { tour: tour._id, date: { $gte: start, $lte: end } } },
-      { $group: { _id: "$time", totalGuests: { $sum: "$guestCount" } } }
+      {
+        $match: {
+          tour: tour._id,
+          date: { $gte: start, $lte: end },
+        },
+      },
+      {
+        $group: {
+          _id: "$time",
+          totalGuests: { $sum: "$guestCount" },
+        },
+      },
     ]);
 
-    // bookings: [ { _id: "11:00", totalGuests: 12 }, … ]
-
-    const slots = tour.timeSlots.map(slot => {
-      const b = bookings.find(b => b._id === slot.time);
-      const used = b ? b.totalGuests : 0;
+    const slots = tour.timeSlots.map((slot) => {
+      const found = bookings.find((b) => b._id === slot.time);
+      const used = found ? found.totalGuests : 0;
       return {
         time: slot.time,
         capacity: slot.capacity,
-        remaining: slot.capacity - used
+        remaining: slot.capacity - used,
       };
     });
 
     res.json(slots);
-
   } catch (err) {
-    console.error(err);
     res.status(500).json({ message: err.message });
   }
 };
+

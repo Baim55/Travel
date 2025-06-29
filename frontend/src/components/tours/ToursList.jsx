@@ -7,7 +7,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import Container from "../container/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { addWishlist } from "../../redux/features/wishlistSlice";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaCube } from "react-icons/fa";
 
 export default function ToursList({ tours }) {
   const navigate = useNavigate();
@@ -17,6 +17,11 @@ export default function ToursList({ tours }) {
   const toggleWishlist = (tour, e) => {
     e.stopPropagation(); // parent kliklənməsin
     dispatch(addWishlist(tour));
+  };
+
+  const goTo3DView = (tour, e) => {
+    e.stopPropagation();
+    navigate(`/detail/${tour._id}/3d-view`);
   };
 
   const isInWishlist = (id) => {
@@ -51,6 +56,15 @@ export default function ToursList({ tours }) {
               >
                 <FaHeart />
               </div>
+              {tour.streetViewSrc && (
+                <button
+                  className={styles.icon3DButton}
+                  onClick={(e) => goTo3DView(tour, e)}
+                  title="View in 3D"
+                >
+                  <FaCube />
+                </button>
+              )}
             </div>
             <div className={styles.content}>
               <h3 className={styles.title}>{tour.name}</h3>

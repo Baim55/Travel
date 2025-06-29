@@ -7,12 +7,12 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-
 import styles from "./TourDetail.module.css";
 import Container from "../../components/container/Container";
 import ReviewForm from "../../components/reviews/ReviewForm";
 import ReviewList from "../../components/reviews/ReviewList";
 import BookingForm from "../../components/bookingForm/BookingForm";
+
 import { addBasket } from "../../redux/features/basketSlice";
 
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
@@ -68,8 +68,7 @@ export default function TourDetail() {
           <div className={styles.header}>
             <h1 className={styles.title}>{tour.name}</h1>
             <div className={styles.location}>
-              <i className="fas fa-map-marker-alt" /> {tour.city},{" "}
-              {tour.country}
+              <i className="fas fa-map-marker-alt" /> {tour.city}, {tour.country}
             </div>
           </div>
 
@@ -188,6 +187,23 @@ export default function TourDetail() {
                   />
                 </div>
               </div>
+
+              {/* Street View Iframe */}
+              {tour.streetViewSrc && (
+                <div className={styles.streetViewSection}>
+                  <h3>Street View</h3>
+                  <iframe
+                    width="100%"
+                    height="300"
+                    style={{ border: 0 }}
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                    src={tour.streetViewSrc}
+                    title="Street View"
+                  />
+                </div>
+              )}
 
               {/* Reviews */}
               <ReviewForm

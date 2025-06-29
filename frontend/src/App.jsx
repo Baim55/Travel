@@ -25,6 +25,7 @@ import AdminUsers from "./pages/admin/adminUsers/AdminUsers";
 import NewTour from "./pages/admin/newTour/NewTour";
 import EditTour from "./pages/admin/editTour/EditTour";
 import Basket from "./pages/basket/Basket";
+import Tour3DView from "./pages/3D/Tour3DView";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
       {
         path: "/detail/:id",
         element: <TourDetail />,
+      },
+      {
+        path: "/detail/:id/3d-view",
+        element: <Tour3DView />,
       },
       {
         path: "/forgotpassword",

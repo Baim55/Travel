@@ -33,6 +33,7 @@ const tourSchema = new mongoose.Schema(
     },
     maxGuests: { type: Number, default: 10 },
     images: [{ type: String }],
+    streetViewSrc: { type: String, required: true },
     location: {
       lat: { type: Number, required: true },
       lng: { type: Number, required: true },
