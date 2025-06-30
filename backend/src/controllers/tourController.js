@@ -99,7 +99,9 @@ export const getTours = async (req, res) => {
 
     const filter = {};
 
-    if (country) filter.country = country;
+    if (country) {
+      filter.country = { $regex: new RegExp(`^${country.trim()}$`, "i") };
+    }
     if (city) filter.city = city;
     if (activity) filter.activity = activity;
     if (duration) filter.duration = duration;
@@ -290,4 +292,3 @@ export const getTourById = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-

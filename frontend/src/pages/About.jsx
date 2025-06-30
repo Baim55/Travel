@@ -1,0 +1,22 @@
+import React from "react";
+import AboutUs from "../components/about/AboutUs";
+import WhyUs from "../components/whyUs/WhyUs";
+import AboutStats from "../components/aboutStats/AboutStats";
+import Team from "../components/team/Team";
+import PageHeader from "../components/pageHeader/PageHeader";
+import Testimonials from "../components/testimonials/Testimonials";
+
+const About = () => {
+  return (
+    <div>
+      <PageHeader title="About Us"/>
+      <AboutUs />
+      <WhyUs />
+      <AboutStats/>
+      <Team/>
+      <Testimonials/>
+    </div>
+  );
+};
+
+export default About;

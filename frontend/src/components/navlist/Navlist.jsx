@@ -26,7 +26,7 @@ const Navlist = () => {
           <NavLink to="/destinations" className={({ isActive }) => isActive ? styles.activeLink : ""} onClick={closeMenu}>Destinations</NavLink>
         </li>
         <li>
-          <NavLink to="/stay" className={({ isActive }) => isActive ? styles.activeLink : ""} onClick={closeMenu}>Stay</NavLink>
+          <NavLink to="/about" className={({ isActive }) => isActive ? styles.activeLink : ""} onClick={closeMenu}>About</NavLink>
         </li>
         <li>
           <NavLink to="/activities" className={({ isActive }) => isActive ? styles.activeLink : ""} onClick={closeMenu}>Activities</NavLink>

@@ -1,0 +1,29 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.icon {
+  font-size: 48px;
+  color: #ffa500; /* narıncı ton */
+  margin-bottom: 15px;
+}
+
+.count {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.label {
+  font-size: 18px;
+  font-style: italic;
+  color: #ffb347;
+}

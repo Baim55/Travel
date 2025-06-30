@@ -1,0 +1,84 @@
+.destinations {
+  padding: 60px 20px;
+  background-color: #f8f8f8;
+  text-align: center;
+}
+
+.subtitle {
+  font-family: "Thea Amelia", cursive;
+  font-size: 1.25rem;
+  color: var(--primary, #dc834e);
+  margin-bottom: 8px;
+}
+
+.sectionTitle {
+  font-family: "Poppins", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0 auto;
+  max-width: 600px;
+  line-height: 1.1;
+  margin-bottom: 30px;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.card {
+  width: 200px;
+  position: relative;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.imageWrapper {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.2);
+}
+
+.country {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 15px;
+  color: #333;
+}
+
+.count {
+  background-color: #dc834e;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 5px 15px;
+  border-radius: 50px;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}

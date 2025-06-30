@@ -1,0 +1,59 @@
+.about {
+  padding: 60px 0;
+  background-color: #f9f9f9;
+}
+
+.aboutarea {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.subtitle {
+  font-family: "Thea Amelia", cursive;
+  font-size: 1.25rem;
+  color: var(--primary, #dc834e) !important;
+  margin-bottom: 8px;
+}
+
+.sectionTitle {
+  font-family: "Poppins", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0 auto;
+  max-width: 600px;
+  line-height: 1.1;
+  margin-bottom: 30px;
+}
+
+.image img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.text {
+  max-width: 600px;
+}
+
+.text h3 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.text p {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.text button {
+  background-color: #dc834e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}

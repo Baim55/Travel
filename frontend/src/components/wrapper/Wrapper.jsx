@@ -3,11 +3,10 @@ import styles from "./Wrapper.module.css";
 import { Link } from "react-router-dom";
 import { IoPersonOutline } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
-import { IoIosBasket } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setUser } from "../../redux/features/userSlice";
-
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 const Wrapper = () => {
   const baseUrl = "http://localhost:5000/auth";
   const { user } = useSelector((state) => state.user);
@@ -59,7 +58,7 @@ const Wrapper = () => {
       </Link>
 
       <Link to="/mybooking" className={styles.iconLink} title="Basket" style={{ marginLeft: '15px' }}>
-        <IoIosBasket size={21} />
+        <EventAvailableIcon size={21} />
       </Link>
     </div>
   );

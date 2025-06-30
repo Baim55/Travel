@@ -5,11 +5,10 @@ import Home from "./pages/Home";
 import Login from "./pages/auth/login/Login";
 import Register from "./pages/auth/register/Register";
 import Destination from "./pages/Destination";
-import Stay from "./pages/Stay";
 import Activities from "./pages/Activities";
 import AR from "./pages/AR";
 import TripPlanner from "./pages/TripPlanner";
-import Contact from "./pages/Contact";
+import Contact from "./pages/contact/Contact";
 import Wishlist from "./pages/wishlist/Wishlist";
 import TourDetail from "./pages/TourDetail/TourDetail";
 import ForgotPassword from "./pages/auth/forgotpassword/ForgotPassword";
@@ -30,6 +29,8 @@ import MyBookings from "./pages/myBookings/MyBookings";
 import AdminBookings from "./pages/admin/booking/AdminBookings";
 import AdminMessages from "./pages/admin/messages/AdminMessages";
 import AdminComments from "./pages/admin/comments/AdminComments";
+import CountryTours from "./pages/countryTours/CountryTours";
+import About from "./pages/About";
 
 const router = createBrowserRouter([
   {
@@ -45,8 +46,8 @@ const router = createBrowserRouter([
         element: <Destination />,
       },
       {
-        path: "/stay",
-        element: <Stay />,
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/activities",
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
       {
         path: "/resetpassword",
         element: <Resetpassword />,
+      },
+      {
+        path: "/tours/country/:country",
+        element: <CountryTours />,
       },
       {
         path: "admin",

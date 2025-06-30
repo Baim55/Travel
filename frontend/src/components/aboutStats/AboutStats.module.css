@@ -1,0 +1,20 @@
+.stats {
+  background-image: url(../../assets/images/baku.jpg); /* dağ şəkli qoy */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 120px 0;
+  color: white;
+  text-align: center;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6); /* yarı şəffaf fon */
+  padding: 60px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 10px;
+}

@@ -1,8 +1,9 @@
 .wrapper {
-  background-image: url(../../assets/images/h3-img-1_optimized-1.png);
+  background-image: url(../../assets/images/about_deco-2.png);
   padding: 100px 20px;
+  background-color: #f9f4f0;
+  background-position: bottom left;
   background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .container {
@@ -73,7 +74,6 @@
   color: #fff;
   fill: #fff;
 }
-
 
 .cardTitle {
   font-family: "Poppins", sans-serif;

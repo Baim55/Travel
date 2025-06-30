@@ -5,16 +5,24 @@ import WhyUs from "../components/whyUs/WhyUs";
 import AllTours from "../components/allTours/AllTours";
 import Discount from "../components/discount/Discount";
 import Testimonials from "../components/testimonials/Testimonials";
+import Destinations from "../components/destinations/Destinations";
+import { Helmet } from "react-helmet";
+import About from "../components/about/AboutUs";
 
 const Home = () => {
   return (
     <div>
-      <Hero/>
-      <SearchFilter/>
-      <AllTours/>
-      <WhyUs/>
-      <Discount/>
-      <Testimonials/>
+      <Helmet>
+        <title> Home | NeoTravel</title>
+      </Helmet>
+      <Hero />
+      <SearchFilter />
+      <AllTours />
+      <WhyUs />
+      <Discount />
+      <Testimonials />
+      <Destinations />
+      <About/>
     </div>
   );
 };
