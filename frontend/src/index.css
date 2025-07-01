@@ -51,6 +51,7 @@ img {
   --cube-hover-bg: rgba(255, 255, 255, 0.8);
   --cube-hover-color: #000;
   --title-color: #202f59;
+  --input-bg: #fff;
 }
 
 [data-theme="dark"] {
@@ -75,4 +76,5 @@ img {
   --cube-hover-bg: rgba(255, 255, 255, 0.8);
   --cube-hover-color: #000;
   --title-color: #f8fafc;
+  --input-bg: #333;
 }

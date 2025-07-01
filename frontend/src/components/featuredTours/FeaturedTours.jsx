@@ -9,10 +9,10 @@ export default function FeaturedTours() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/tours/featured")
+    axios.get("http://localhost:5000/api/tours")
       .then(res => {
-        // Ən çox 6 tur göstər
-        const featured = res.data.slice(0, 8);
+        // Yalnız seçilmiş turları götürək – ilk 3 və ya discount olanlar
+        const featured = res.data.filter(t => t.isFeatured || t.discount > 0).slice(0, 12);
         setTours(featured);
       })
       .catch(err => console.error("Seçilmiş turlar alınmadı:", err))
@@ -21,9 +21,7 @@ export default function FeaturedTours() {
 
   return (
     <Container>
-      <h2 style={{ margin: "2rem 0 1rem", textAlign: "center" }}>
-        Featured Tours
-      </h2>
+      <h2 style={{ margin: "2rem 0 1rem", textAlign: "center" }}>Featured Tours</h2>
       {loading ? <p>Loading...</p> : <ToursList tours={tours} />}
     </Container>
   );

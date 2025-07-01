@@ -2,7 +2,7 @@
   max-width: 500px;
   margin: 20px auto;
   padding: 40px;
-  background-color: #eef0f8;
+  background-color: var(--card-bg);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
@@ -15,7 +15,7 @@
 h3 {
   text-align: center;
   margin-bottom: 20px;
-  color: #333;
+  color: var(--text);
   font-weight: 800;
 }
 
@@ -26,27 +26,33 @@ h3 {
 label {
   display: block;
   margin-bottom: 5px;
-  color: #333;
+  color: var(--text);
   font-weight: 500;
 }
 
 .input {
   width: 100%;
   padding: 8px;
-  border: 1px solid #ccc;
+  background-color: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
   border-radius: 5px;
   font-size: 16px;
 }
 
+.input::placeholder {
+  color: var(--text-secondary);
+}
+
 .error {
-  color: red;
+  color: var(--heart-color);
   font-size: 14px;
   margin-top: 5px;
 }
 
 .button {
   padding: 12px;
-  background-color: #dc834e;
+  background-color: var(--primary);
   color: white;
   border: none;
   border-radius: 5px;
@@ -57,7 +63,7 @@ label {
 }
 
 .button:hover {
-  background-color: #9e5d36;
+  background-color: var(--primary-hover);
 }
 
 .loginLink {
@@ -66,10 +72,10 @@ label {
 }
 
 .loginLink a {
-  color: #dc834e;
+  color: var(--primary);
   text-decoration: none;
 }
 
 .loginLink a:hover {
-  color: #9e5d36;
+  color: var(--primary-hover);
 }

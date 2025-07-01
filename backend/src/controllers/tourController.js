@@ -41,6 +41,7 @@ export const addTour = async (req, res) => {
       maxGuests,
       nearby,
       streetViewSrc,
+      isFeatured
     } = req.body;
 
     if (!availableDateRange?.startDate || !availableDateRange?.endDate) {
