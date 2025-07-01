@@ -48,3 +48,37 @@
   background: #e9ecef;
   font-weight: 600;
 }
+
+.admin {
+  display: flex;
+  min-height: 100vh;
+  font-family: sans-serif;
+  background-color: var(--bg);
+}
+
+.nav {
+  width: 200px;
+  background: var(--card-bg);
+  padding: 1rem;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+}
+
+.navLink {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+}
+
+.activeNav {
+  background: var(--primary);
+  color: white;
+}
+
+.content {
+  flex: 1;
+  padding: 1.5rem;
+  background: var(--bg-hover-light);
+}

@@ -18,6 +18,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
     lat: "",
     lng: "",
     streetViewSrc: "",
+    isFeatured: false,
   });
   const [images, setImages] = useState([]);
   const [nearbyHotels, setNearbyHotels] = useState(
@@ -45,6 +46,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         lat: initialData.location.lat,
         lng: initialData.location.lng,
         streetViewSrc: initialData.streetViewSrc || "",
+        isFeatured: initialData.isFeatured || false,
       });
       setImages([]); // yeni fayl seçimi üçün sıfırla
       setNearbyHotels(initialData.nearby.hotels);
@@ -94,9 +96,8 @@ export default function TourForm({ initialData = {}, onSubmit }) {
     fd.append("availableDateRange[endDate]", form.endDate);
     fd.append("location[lat]", form.lat);
     fd.append("location[lng]", form.lng);
-
+    fd.append("isFeatured", form.isFeatured);
     images.forEach((file) => fd.append("images", file));
-
     fd.append(
       "nearby",
       JSON.stringify({
@@ -178,6 +179,20 @@ export default function TourForm({ initialData = {}, onSubmit }) {
           />
         </label>
       </div>
+      <div className={styles.field}>
+        <label className={styles.label}>
+          <input
+            type="checkbox"
+            name="isFeatured"
+            checked={form.isFeatured}
+            onChange={(e) =>
+              setForm((prev) => ({ ...prev, isFeatured: e.target.checked }))
+            }
+          />{" "}
+          Is Featured (Seçilmiş tur)
+        </label>
+      </div>
+
       <div className={styles.field}>
         <label className={styles.label}>
           Street View Src:

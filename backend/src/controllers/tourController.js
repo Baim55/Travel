@@ -40,7 +40,7 @@ export const addTour = async (req, res) => {
       availableDateRange,
       maxGuests,
       nearby,
-      streetViewIframe,
+      streetViewSrc,
     } = req.body;
 
     if (!availableDateRange?.startDate || !availableDateRange?.endDate) {
@@ -73,7 +73,8 @@ export const addTour = async (req, res) => {
       maxGuests,
       images: imagePaths,
       nearby: parsedNearby,
-      streetViewIframe,
+      streetViewSrc,
+      isFeatured: isFeatured === "true", 
     });
 
     res.status(201).json(newTour);
@@ -166,6 +167,7 @@ export const updateTour = async (req, res) => {
       maxGuests,
       nearby,
       streetViewSrc,
+      isFeatured 
     } = req.body;
 
     const tour = await Tour.findById(id);
@@ -186,6 +188,7 @@ export const updateTour = async (req, res) => {
       maxGuests: maxGuests || tour.maxGuests,
       images: imagePaths.length > 0 ? imagePaths : tour.images,
       streetViewSrc: req.body.streetViewSrc || tour.streetViewSrc,
+      isFeatured: req.body.isFeatured === "true" || tour.isFeatured,
     };
 
     const sd = req.body["availableDateRange[startDate]"];
@@ -288,6 +291,16 @@ export const getTourById = async (req, res) => {
       return res.status(404).json({ message: "Tour tapılmadı" });
     }
     res.json(tour);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// 🟢 11. Seçilmiş (featured) turlar
+export const getFeaturedTours = async (req, res) => {
+  try {
+    const featured = await Tour.find({ isFeatured: true }).sort({ createdAt: -1 });
+    res.json(featured);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

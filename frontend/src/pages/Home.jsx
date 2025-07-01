@@ -8,6 +8,7 @@ import Testimonials from "../components/testimonials/Testimonials";
 import Destinations from "../components/destinations/Destinations";
 import { Helmet } from "react-helmet";
 import About from "../components/about/AboutUs";
+import FeaturedTours from "../components/featuredTours/FeaturedTours";
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <Hero />
       <SearchFilter />
       <AllTours />
+      <FeaturedTours/>
       <WhyUs />
       <Discount />
       <Testimonials />

@@ -1,86 +1,107 @@
 .form {
-  max-width: 600px;
+  max-width: 700px;
   margin: 2rem auto;
-  background: #fff;
+  background: var(--card-bg);
   padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: 'Poppins', sans-serif;
 }
+
 .title {
   margin-bottom: 1.5rem;
   font-size: 1.75rem;
-  color: #222;
+  color: var(--text);
   text-align: center;
 }
+
 .field {
   margin-bottom: 1rem;
 }
+
 .fieldRow {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
 }
+
 .label {
   display: block;
   font-weight: 500;
   margin-bottom: 0.25rem;
+  color: var(--text);
 }
+
 .input,
 .select,
 .textarea,
 .file {
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid #ccc;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
   border-radius: 4px;
+  color: var(--text);
 }
+
 .textarea {
   resize: vertical;
 }
+
 .fieldset {
   margin-bottom: 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   padding: 0.75rem;
   border-radius: 4px;
 }
+
 .legend {
   font-weight: 500;
+  color: var(--text);
   padding: 0 0.5rem;
 }
+
 .addButton {
   margin-bottom: 0.5rem;
-  padding: 0.25rem 0.5rem;
-  background: #007bff;
-  color: #fff;
+  padding: 0.4rem 0.75rem;
+  background: var(--primary);
+  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
+
 .addButton:hover {
-  background: #0056b3;
+  background: var(--primary-hover);
 }
+
 .list {
   list-style: none;
   padding-left: 0;
 }
+
 .listItem {
   display: flex;
   justify-content: space-between;
-  background: #f9f9f9;
+  background: var(--bg-hover-light);
   padding: 0.5rem;
   margin-bottom: 0.25rem;
   border-radius: 4px;
+  color: var(--text);
 }
+
 .removeButton {
   background: transparent;
   border: none;
-  color: #c00;
+  color: #e63946;
   cursor: pointer;
   font-weight: bold;
 }
+
 .removeButton:hover {
-  color: #800;
+  color: #a4161a;
 }
+
 .submitButton {
   width: 100%;
   padding: 0.75rem;
@@ -91,6 +112,7 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
 .submitButton:hover {
   background: #218838;
 }
@@ -110,5 +132,5 @@
 
 .selectedItem {
   font-size: 0.9rem;
-  color: #333;
+  color: var(--text);
 }

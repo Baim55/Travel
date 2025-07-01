@@ -1,20 +1,21 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import styles from "./AdminDashboard.module.css";
 
 export default function AdminDashboard() {
   return (
-    <div style={{ display: "flex" }}>
-      <aside style={{ width: 200, padding: "1rem", background: "#f7f7f7" }}>
-        <h3>Admin Menu</h3>
-        <ul style={{ listStyle: "none", padding: 0 }}>
-          <li><NavLink to="tours">Tours</NavLink></li>
-          <li><NavLink to="users">Users</NavLink></li>
-          <li><NavLink to="bookings">Bookings</NavLink></li>
-          <li><NavLink to="messages">Messages</NavLink></li>
-          <li><NavLink to="comments">Comments</NavLink></li>
+    <div className={styles.wrapper}>
+      <aside className={styles.sidebar}>
+        <h3 className={styles.menuTitle}>Admin Menu</h3>
+        <ul className={styles.menuList}>
+          <li><NavLink to="tours" className={({ isActive }) => isActive ? styles.active : styles.link}>Tours</NavLink></li>
+          <li><NavLink to="users" className={({ isActive }) => isActive ? styles.active : styles.link}>Users</NavLink></li>
+          <li><NavLink to="bookings" className={({ isActive }) => isActive ? styles.active : styles.link}>Bookings</NavLink></li>
+          <li><NavLink to="messages" className={({ isActive }) => isActive ? styles.active : styles.link}>Messages</NavLink></li>
+          <li><NavLink to="comments" className={({ isActive }) => isActive ? styles.active : styles.link}>Comments</NavLink></li>
         </ul>
       </aside>
-      <section style={{ flex: 1, padding: "1rem" }}>
+      <section className={styles.content}>
         <Outlet />
       </section>
     </div>

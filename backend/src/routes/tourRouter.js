@@ -12,6 +12,7 @@ import {
   getDiscountedTours,
   getSlots,
   getTourById,
+  getFeaturedTours,
 } from "../controllers/tourController.js";
 
 const tourRouter = express.Router();
@@ -26,6 +27,7 @@ tourRouter.delete("/:id", deleteTour);
 tourRouter.get("/discounted", getDiscountedTours);
 tourRouter.get("/:id/slots", getSlots);
 tourRouter.get("/:id", getTourById);
+tourRouter.get("/featured", getFeaturedTours);
 
 
 export default tourRouter;

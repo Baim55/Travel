@@ -1,27 +1,28 @@
 .container {
   padding: 1.5rem;
-  background: #f1f5f9;
+  background: var(--bg);
   min-height: 100vh;
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .title {
   font-size: 1.5rem;
-  color: #333;
+  font-weight: 600;
+  color: var(--text);
 }
 
 .tableWrapper {
   overflow-x: auto;
-  background: white;
+  background: var(--card-bg);
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .table {
@@ -32,13 +33,15 @@
 .th,
 .td {
   padding: 0.75rem 1rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border);
   text-align: left;
+  color: var(--text);
+  font-size: 0.95rem;
   max-width: 300px;
   overflow-wrap: break-word;
 }
 
 .th {
-  background: #e9ecef;
+  background-color: var(--card-bg);
   font-weight: 600;
 }

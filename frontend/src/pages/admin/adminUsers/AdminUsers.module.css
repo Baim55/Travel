@@ -1,13 +1,13 @@
 .container {
   padding: 1.5rem;
-  background: #f1f5f9;
+  background: var(--bg);
   min-height: 100vh;
   font-family: sans-serif;
 }
 
 .title {
   font-size: 1.5rem;
-  color: #333;
+  color: var(--text);
   margin-bottom: 1rem;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .listItem {
-  background: #fff;
+  background: var(--card-bg);
   margin-bottom: 0.5rem;
   padding: 0.75rem 1rem;
   border-radius: 6px;
@@ -25,12 +25,19 @@
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  color: var(--text);
+  transition: background 0.3s;
+}
+
+.listItem:hover {
+  background: var(--bg-hover-light);
 }
 
 .adminBadge {
   background: #dc3545;
-  color: #fff;
+  color: white;
   font-size: 0.75rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
+  padding: 0.25rem 0.6rem;
+  border-radius: 10px;
+  font-weight: bold;
 }

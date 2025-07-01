@@ -42,7 +42,7 @@ const tourSchema = new mongoose.Schema(
       type: String, // Faylın adı və ya tam path
       required: false,
     },
-
+    isFeatured: { type: Boolean, default: false },
     nearby: {
       hotels: [
         {

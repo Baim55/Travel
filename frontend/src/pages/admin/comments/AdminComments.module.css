@@ -1,40 +1,28 @@
 .container {
   padding: 1.5rem;
-  background: #f1f5f9;
+  background: var(--bg);
   min-height: 100vh;
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .title {
   font-size: 1.5rem;
-  color: #333;
-}
-
-.newButton {
-  padding: 0.5rem 1rem;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.newButton:hover {
-  background: #0056b3;
+  font-weight: 600;
+  color: var(--text);
 }
 
 .tableWrapper {
   overflow-x: auto;
-  background: white;
+  background: var(--card-bg);
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .table {
@@ -42,42 +30,18 @@
   border-collapse: collapse;
 }
 
-.th, .td {
+.th,
+.td {
   padding: 0.75rem 1rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border);
   text-align: left;
+  color: var(--text);
+  font-size: 0.95rem;
   max-width: 300px;
   overflow-wrap: break-word;
 }
 
 .th {
-  background: #e9ecef;
+  background-color: var(--card-bg);
   font-weight: 600;
-}
-
-.actionButton {
-  margin-right: 0.5rem;
-  padding: 0.3rem 0.6rem;
-  font-size: 0.875rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.editButton {
-  background: #ffc107;
-  color: #212529;
-}
-
-.editButton:hover {
-  background: #e0a800;
-}
-
-.deleteButton {
-  background: #dc3545;
-  color: white;
-}
-
-.deleteButton:hover {
-  background: #c82333;
 }
