@@ -96,20 +96,20 @@ export const logout = (req, res) => {
 export const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
-    const { error } = ForgotValidationSchema.validate(req.body);
-    if (error) return res.status(400).json({ message: error.details[0].message });
-
     const existUser = await user.findOne({ email });
     if (!existUser) return res.status(404).json({ message: "User not found" });
 
-    const resetToken = jwt.sign({ id: existUser._id }, process.env.JWT_SECRET, { expiresIn: "15m" });
+    const resetToken = jwt.sign({ id: existUser._id }, process.env.JWT_SECRET, {
+      expiresIn: "15m",
+    });
     const encodedResetToken = encodeURIComponent(resetToken);
     const resetLink = `${process.env.CLIENT_LINK}/resetpassword?token=${encodedResetToken}`;
+
     await recieveMail(existUser, resetLink);
 
-    return res.status(200).json({ message: "Reset link sent to your email" });
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
+    return res.status(200).json({ message: "Reset link sent to email" });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
   }
 };
 
@@ -117,20 +117,17 @@ export const resetPassword = async (req, res) => {
   try {
     const { password } = req.body;
     const { token } = req.query;
-    const { error } = ResetValidationSchema.validate({ password });
-    if (error) return res.status(400).json({ message: error.details[0].message });
-
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const existUser = await user.findById(decoded.id);
-    if (!existUser) return res.status(400).json({ message: "Token not valid or expired" });
 
     const hashedPassword = await bcrypt.hash(password, 10);
     existUser.password = hashedPassword;
     await existUser.save();
 
     return res.status(200).json({ message: "Password reset successfully" });
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
   }
 };
+
 

@@ -2,12 +2,12 @@
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #000;
+  color: var(--accent);
   text-align: center;
 }
 
 .emptyMessage {
-  color: #666;
+  color: var(--text-light);
   font-size: 1rem;
   margin-top: 1rem;
   text-align: center;
@@ -23,11 +23,12 @@
 .card {
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: var(--card-bg);
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 0 30px rgba(6, 30, 98, 0.08);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
+  color: var(--text);
 }
 
 .card:hover {
@@ -104,14 +105,14 @@
   margin: 0 0 10px;
   font-size: 20px;
   font-weight: 500;
-  color: #202F59;
+  color: var(--text);
 }
 
 .location {
   display: flex;
   align-items: center;
   font-size: 14px;
-  color: #999;
+  color: var(--text-light);
   margin-bottom: 10px;
 }
 
@@ -120,15 +121,14 @@
 }
 
 .price {
-  color: #dc834e;
+  color: var(--primary);
   font-weight: 600;
   font-size: 16px;
 }
 
-
 .addToBasketBtn {
   margin-top: 10px;
-  background-color: #dc834e;
+  background-color: var(--primary);
   color: white;
   border: none;
   padding: 10px 15px;
@@ -140,15 +140,14 @@
 }
 
 .addToBasketBtn:hover {
-  background-color: #b9662e;
+  background-color: #c36b36;
 }
-
 
 .meta {
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  color: #666;
+  color: var(--text-light);
   margin-bottom: 15px;
 }
 
@@ -159,5 +158,5 @@
 
 .meta span i {
   margin-right: 5px;
-  color: #dc834e;
+  color: var(--primary);
 }

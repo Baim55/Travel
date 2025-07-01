@@ -5,11 +5,12 @@
   margin: 2rem 0;
 }
 
-/* Hər bir kart */
+/* ==== Card ==== */
 .card {
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: var(--card-bg);
+  color: var(--text);
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 0 30px rgba(6,30,98,.08);
@@ -21,130 +22,7 @@
   box-shadow: 0 10px 60px rgba(6,30,98,.1);
 }
 
-/* Şəkil konteyneri */
-.imageWrapper {
-  position: relative;
-  padding-top: 80%;
-  background: #eee;
-  overflow: hidden;
-}
-
-.imageWrapper::before {
-  content: "";
-  position: absolute; top:0; left:0; right:0; bottom:0;
-  background: rgba(32,47,89,0.6);
-  opacity: 0;
-  transition: opacity .3s ease;
-}
-
-.card:hover .imageWrapper::before {
-  opacity: 1;
-}
-
-/* Img elementi */
-.image {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-}
-
-/* Mətni saxlayan div */
-.content {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  flex: 1;
-}
-
-/* H1 başlıq */
-.title {
-  margin: 0 0 10px;
-  font-size: 20px;
-  font-weight: 500;
-  color: #202F59;
-}
-
-/* Kartın yeri */
-.location {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  color: #999;
-  margin-bottom: 15px;
-}
-
-.location i {
-  margin-right: 8px;
-}
-
-/* Meta bölmə (duration, guests və s.) */
-.meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 15px;
-}
-
-.meta span {
-  display: flex;
-  align-items: center;
-}
-
-.meta span i {
-  margin-right: 5px;
-  color: #dc834e;
-}
-
-/* Alt sətir (price + düymə) */
-.footer {
-  margin-top: auto;
-  border-top: 1px solid #e5e5e5;
-  padding-top: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-}
-
-.price {
-  font-weight: 700;
-  color: #dc834e;
-}
-
-.button {
-  background: transparent;
-  border: none;
-  color: #202F59;
-  font-weight: 600;
-  cursor: pointer;
-  transition: color .3s ease;
-}
-
-.button:hover {
-  color: #dc834e;
-}
-
-.wishlistIcon {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  padding: 8px;
-  z-index: 10;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.wishlistIcon:hover {
-  background-color: #fff;
-}
-
-.wishlistIcon i {
-  font-size: 18px;
-  color: #dc3545; /* qırmızı ürək */
-}
-
+/* ==== Image Wrapper ==== */
 .imageWrapper {
   position: relative;
   padding-top: 80%;
@@ -153,14 +31,35 @@
   transition: all 0.3s ease;
 }
 
-/* Overlay efekti */
+.image {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+/* ==== Hover Overlay ==== */
+.imageWrapper::before {
+  content: "";
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  background: var(--overlay);
+  opacity: 0;
+  transition: opacity .3s ease;
+  z-index: 1;
+}
+
+.card:hover .imageWrapper::before {
+  opacity: 1;
+}
+
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(29, 42, 79, 0.4);
+  background: var(--overlay);
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: 1;
@@ -170,6 +69,7 @@
   opacity: 1;
 }
 
+/* ==== Heart Icon ==== */
 .heartIcon {
   position: absolute;
   top: 10px;
@@ -190,9 +90,10 @@
 
 .heartIcon.active {
   opacity: 1;
-  color: #dc3545;
+  color: var(--heart-color);
 }
 
+/* ==== 3D Button ==== */
 .icon3DButton {
   position: absolute;
   bottom: 10px;
@@ -215,9 +116,83 @@
   color: #000;
 }
 
+/* ==== Card Content ==== */
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  flex: 1;
+}
 
-@media(max-width:768px){
-  .card{
+.title {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+}
+
+.location i {
+  margin-right: 8px;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+}
+
+.meta span {
+  display: flex;
+  align-items: center;
+}
+
+.meta span i {
+  margin-right: 5px;
+  color: var(--primary);
+}
+
+/* ==== Footer ==== */
+.footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.price {
+  font-weight: 700;
+  color: var(--price-color);
+}
+
+.button {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: color .3s ease;
+}
+
+.button:hover {
+  color: var(--primary);
+}
+
+/* ==== Responsive ==== */
+@media(max-width: 768px) {
+  .card {
     padding: 30px;
   }
 }

@@ -74,3 +74,31 @@
   color: #f5a623;
   outline: none;
 }
+[data-theme="dark"] .formContainer {
+  background-color: var(--card-bg);
+  color: var(--card-text);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .heading {
+  color: var(--accent);
+}
+
+[data-theme="dark"] .textarea {
+  background-color: var(--bg-hover-light);
+  color: var(--card-text);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .selectLabel {
+  color: var(--card-text);
+}
+
+[data-theme="dark"] .button {
+  background-color: var(--primary);
+  color: white;
+}
+
+[data-theme="dark"] .button:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}

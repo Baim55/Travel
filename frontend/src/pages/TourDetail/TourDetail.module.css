@@ -220,3 +220,57 @@
 }
 
 
+[data-theme="dark"] .tourdetail {
+  background-color: var(--bg);
+}
+
+[data-theme="dark"] .title {
+  color: var(--title-color);
+}
+
+[data-theme="dark"] .location {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .metaItem h4,
+[data-theme="dark"] .metaValue,
+[data-theme="dark"] .description p,
+[data-theme="dark"] .mapSection h3 {
+  color: var(--card-text);
+}
+
+[data-theme="dark"] .nearbyCard {
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .name {
+  color: var(--card-text);
+}
+
+[data-theme="dark"] .distance {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .sidebar > * {
+  background-color: var(--card-bg);
+  color: var(--card-text);
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .notFound {
+  color: #f87171;
+}
+
+[data-theme="dark"] :global(.swiper-button-prev),
+[data-theme="dark"] :global(.swiper-button-next) {
+  background-color: var(--card-bg) !important;
+  color: var(--text) !important;
+  box-shadow: 0 3px 12px rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-theme="dark"] :global(.swiper-button-prev:hover),
+[data-theme="dark"] :global(.swiper-button-next:hover) {
+  background-color: var(--text) !important;
+  color: #fff !important;
+}

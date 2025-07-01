@@ -1,9 +1,9 @@
 .wrapper {
   background-image: url(../../assets/images/about_deco-2.png);
-  padding: 100px 20px;
-  background-color: #f9f4f0;
   background-position: bottom left;
   background-repeat: no-repeat;
+  background-color: var(--whyus-bg);
+  padding: 100px 20px;
 }
 
 .container {
@@ -21,7 +21,7 @@
 .subheading {
   font-family: "Thea Amelia", cursive;
   font-size: 1.25rem;
-  color: var(--primary, #dc834e);
+  color: var(--primary);
   margin-bottom: 8px;
 }
 
@@ -29,7 +29,7 @@
   font-family: "Poppins", sans-serif;
   font-size: 3rem;
   font-weight: 700;
-  color: #000;
+  color: var(--text);
   margin: 0 auto;
   max-width: 600px;
   line-height: 1.1;
@@ -53,7 +53,7 @@
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--icon-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,12 +61,12 @@
 }
 
 .iconWrapper:hover {
-  background: var(--primary, #dc834e);
+  background: var(--primary);
 }
 
 .iconWrapper svg {
   font-size: 28px;
-  color: var(--primary, #dc834e);
+  color: var(--primary);
   transition: color 0.3s, fill 0.3s;
 }
 
@@ -80,7 +80,7 @@
   font-size: 1.25rem;
   font-weight: 500;
   margin: 0 0 8px;
-  color: #000;
+  color: var(--text);
   text-align: left;
 }
 
@@ -88,7 +88,7 @@
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  color: #555;
+  color: var(--text-secondary);
   margin: 0;
 }
 

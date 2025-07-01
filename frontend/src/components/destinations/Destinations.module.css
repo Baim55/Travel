@@ -4,11 +4,19 @@
   text-align: center;
 }
 
+[data-theme="dark"] .destinations {
+  background-color: #0f172a;
+}
+
 .subtitle {
   font-family: "Thea Amelia", cursive;
   font-size: 1.25rem;
   color: var(--primary, #dc834e);
   margin-bottom: 8px;
+}
+
+[data-theme="dark"] .subtitle {
+  color: #fbbf24;
 }
 
 .sectionTitle {
@@ -20,6 +28,10 @@
   max-width: 600px;
   line-height: 1.1;
   margin-bottom: 30px;
+}
+
+[data-theme="dark"] .sectionTitle {
+  color: #f8fafc;
 }
 
 .grid {
@@ -67,6 +79,10 @@
   color: #333;
 }
 
+[data-theme="dark"] .country {
+  color: #f1f5f9;
+}
+
 .count {
   background-color: #dc834e;
   color: white;
@@ -76,6 +92,11 @@
   border-radius: 50px;
   display: inline-block;
   margin-top: 8px;
+}
+
+[data-theme="dark"] .count {
+  background-color: #fbbf24;
+  color: #000;
 }
 
 .link {

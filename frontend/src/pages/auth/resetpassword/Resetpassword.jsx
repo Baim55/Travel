@@ -1,40 +1,31 @@
-import { useFormik } from "formik";
 import React from "react";
+import { useFormik } from "formik";
 import { resetschema } from "../../../schema/ResetSchema";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import styles from "../login/Login.module.css";
 
-const Resetpassword = () => {
-  const baseUrl = `http://localhost:5000/auth`;
-  const navigate = useNavigate();
-
- const submitForm = async (values, actions) => {
+const ResetPassword = () => {
   const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const token = queryParams.get("token");
+  const navigate = useNavigate();
+  const baseUrl = `http://localhost:5000/auth`;
+  const token = new URLSearchParams(location.search).get("token");
 
-  try {
-    const { password } = values;
-
-    const result = await axios.post(
-      `${baseUrl}/resetpassword`,
-      { password, token },
-      { withCredentials: true }
-    );
-
-    if (result.status === 200) {
-      alert("Password reset successfully");
-      actions.resetForm();
-      navigate("/login");
-    } else {
+  const submitForm = async (values, actions) => {
+    try {
+      const res = await axios.post(
+        `${baseUrl}/resetpassword?token=${token}`,
+        { password: values.password }
+      );
+      if (res.status === 200) {
+        alert("Password reset successfully");
+        actions.resetForm();
+        navigate("/login");
+      }
+    } catch (error) {
       alert("Password reset failed");
     }
-  } catch (error) {
-    console.error("Reset error:", error);
-    alert("Something went wrong during reset.");
-  }
-};
-
+  };
 
   const { values, handleChange, handleSubmit, errors } = useFormik({
     initialValues: {
@@ -44,51 +35,46 @@ const Resetpassword = () => {
     onSubmit: submitForm,
     validationSchema: resetschema,
   });
+
   return (
-    <div className="container">
-      <form
-        action=""
-        className="form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit();
-        }}
-      >
-        <h3>ResetPassword</h3>
+    <div className={styles.container}>
+      <div className={styles.login}>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <h3>Reset Password</h3>
 
-        <div className="form-group">
-          <label htmlFor="username">New password</label>
-          <div className="text-danger">{errors.password}</div>
-          <input
-            placeholder="Enter your new password"
-            type="password"
-            id="password"
-            name="password"
-            className="form-control"
-            onChange={handleChange}
-            value={values.password}
-          />
-        </div>
+          <div className={styles.formGroup}>
+            <label>New Password</label>
+            <input
+              type="password"
+              name="password"
+              className={styles.input}
+              placeholder="Enter new password"
+              onChange={handleChange}
+              value={values.password}
+            />
+            {errors.password && <div className={styles.error}>{errors.password}</div>}
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="username">Confirm new password</label>
-          <div className="text-danger">{errors.confirmpassword}</div>
-          <input
-            placeholder="Enter your new password again"
-            type="password"
-            id="confirmpassword"
-            name="confirmpassword"
-            className="form-control"
-            onChange={handleChange}
-            value={values.confirmpassword}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Reset
-        </button>
-      </form>
+          <div className={styles.formGroup}>
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              name="confirmpassword"
+              className={styles.input}
+              placeholder="Confirm new password"
+              onChange={handleChange}
+              value={values.confirmpassword}
+            />
+            {errors.confirmpassword && <div className={styles.error}>{errors.confirmpassword}</div>}
+          </div>
+
+          <button type="submit" className={styles.button}>
+            Reset
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
 
-export default Resetpassword;
+export default ResetPassword;

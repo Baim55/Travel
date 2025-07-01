@@ -3,6 +3,10 @@
   background-color: #f9f9f9;
 }
 
+[data-theme="dark"] .about {
+  background-color: #0f172a;
+}
+
 .aboutarea {
   display: flex;
   align-items: center;
@@ -18,6 +22,10 @@
   margin-bottom: 8px;
 }
 
+[data-theme="dark"] .subtitle {
+  color: #fbbf24 !important;
+}
+
 .sectionTitle {
   font-family: "Poppins", sans-serif;
   font-size: 3rem;
@@ -27,6 +35,10 @@
   max-width: 600px;
   line-height: 1.1;
   margin-bottom: 30px;
+}
+
+[data-theme="dark"] .sectionTitle {
+  color: #f8fafc;
 }
 
 .image img {
@@ -49,6 +61,10 @@
   color: #555;
 }
 
+[data-theme="dark"] .text p {
+  color: #cbd5e1;
+}
+
 .text button {
   background-color: #dc834e;
   color: white;
@@ -56,4 +72,10 @@
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+[data-theme="dark"] .text button {
+  background-color: #fbbf24;
+  color: #000;
 }

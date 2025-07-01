@@ -5,6 +5,12 @@
   position: relative;
   overflow: hidden;
   height: 600px;
+  color: #202f59;
+}
+
+[data-theme="dark"] .testimonialSection {
+  background-color: #0f172a;
+  color: #f8fafc;
 }
 
 .quoteLeft,
@@ -34,6 +40,10 @@
   z-index: 1;
 }
 
+[data-theme="dark"] .subTitle {
+  color: #fbbf24;
+}
+
 .mainTitle {
   font-size: 50px;
   font-weight: 700;
@@ -41,6 +51,10 @@
   margin-bottom: 40px;
   position: relative;
   z-index: 1;
+}
+
+[data-theme="dark"] .mainTitle {
+  color: #f8fafc;
 }
 
 .slider {
@@ -68,6 +82,10 @@
   white-space: normal;
 }
 
+[data-theme="dark"] .comment {
+  color: #e2e8f0;
+}
+
 .details {
   display: flex;
   align-items: center;
@@ -88,12 +106,21 @@
   justify-content: center;
 }
 
+[data-theme="dark"] .circleIcon {
+  background-color: #fbbf24;
+  color: #000;
+}
+
 .avatar {
   width: 85px;
   height: 85px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #fff;
+}
+
+[data-theme="dark"] .avatar {
+  border-color: #334155;
 }
 
 .info {
@@ -103,6 +130,11 @@
 .name {
   font-size: 20px;
   font-weight: 600;
+  color: #202f59;
+}
+
+[data-theme="dark"] .name {
+  color: #f1f5f9;
 }
 
 .job {
@@ -110,7 +142,15 @@
   color: #888;
 }
 
+[data-theme="dark"] .job {
+  color: #94a3b8;
+}
+
 .rating {
   font-size: 16px;
   color: #2dd75d;
+}
+
+[data-theme="dark"] .rating {
+  color: #4ade80;
 }

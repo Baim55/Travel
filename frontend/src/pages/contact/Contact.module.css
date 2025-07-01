@@ -1,6 +1,6 @@
 .contactSection {
   padding: 80px 20px;
-  background: #f9f9f9;
+  background-color: #f9f9f9;
 }
 
 .contactWrapper {
@@ -10,39 +10,46 @@
   flex-wrap: wrap;
   gap: 40px;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .contactInfo {
-  flex: 1 1 20%;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+  flex: 1 1 40%;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 40px 30px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+  font-family: 'Poppins', sans-serif;
 }
 
 .iconBox {
   display: flex;
-  gap: 20px;
   align-items: flex-start;
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  gap: 16px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.contactInfo .iconBox:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .icon {
-  font-size: 30px;
+  font-size: 22px;
   color: #dc834e;
-  flex-shrink: 0;
-}
-
-.content{
-    text-align: center;
+  margin-top: 6px;
 }
 
 .content h3 {
-  margin: 0 0 8px;
-  font-size: 18px;
-  color: #222;
+  margin: 0;
+  font-size: 17px;
+  color: #000;
+  font-weight: 600;
+  border-bottom: none;
+  text-align: left;
 }
 
 .content p {
@@ -52,23 +59,22 @@
 }
 
 .formBox {
-  flex: 1 1 50%;
-  background: #fff;
-  padding: 40px 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  flex: 1 1 55%;
+  background-color: transparent;
 }
 
 .heading {
   font-size: 28px;
-  color: #333;
+  font-weight: 700;
+  color: #000;
   margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .description {
-  margin-bottom: 30px;
-  color: #666;
   font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
 }
 
 .form {
@@ -80,34 +86,98 @@
 .input,
 .textarea {
   padding: 14px 16px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 16px;
-  outline: none;
-  transition: border-color 0.3s ease;
+  background-color: #fff;
+  transition: border 0.3s ease;
+  font-family: 'Poppins', sans-serif;
 }
 
 .input:focus,
 .textarea:focus {
   border-color: #dc834e;
+  outline: none;
 }
 
 .button {
   padding: 14px;
-  background: #dc834e;
+  background-color: #dc834e;
   color: #fff;
   font-size: 16px;
+  font-weight: 500;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s ease;
+  width: fit-content;
 }
 
 .button:hover {
-  background: #c06c3f;
+  background-color: #b85f33;
 }
 
-/* Responsive */
+.icon {
+  font-size: 28px;
+  color: #dc834e;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+/* === DARK MODE ƏLAVƏLƏRİ root dəyişənləri ilə uyğun === */
+[data-theme="dark"] .contactSection {
+  background-color: var(--bg);
+}
+
+[data-theme="dark"] .contactInfo {
+  background-color: var(--card-bg);
+  box-shadow: 0 15px 30px rgba(255, 255, 255, 0.05);
+  color: var(--card-text);
+}
+
+[data-theme="dark"] .content h3 {
+  color: var(--title-color);
+}
+
+[data-theme="dark"] .content p {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .heading {
+  color: var(--title-color);
+}
+
+[data-theme="dark"] .description {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .input,
+[data-theme="dark"] .textarea {
+  background-color: var(--bg-hover-light);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+[data-theme="dark"] .input:focus,
+[data-theme="dark"] .textarea:focus {
+  border-color: var(--primary);
+}
+
+[data-theme="dark"] .button {
+  background-color: var(--primary);
+  color: var(--accent);
+}
+
+[data-theme="dark"] .button:hover {
+  background-color: var(--primary-hover);
+}
+
+[data-theme="dark"] .icon {
+  color: var(--primary);
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .contactWrapper {
     flex-direction: column;

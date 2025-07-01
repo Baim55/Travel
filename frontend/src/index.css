@@ -1,36 +1,78 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
-
-a{
+a {
   text-decoration: none;
   color: inherit;
 }
 
-li{
+ul {
+  margin: 0;
   list-style: none;
 }
 
-ul{
-  margin: 0;
-}
-
-img{
+img {
   width: 100%;
   height: auto;
 }
 
+/* =======================
+   Light Theme Variables
+========================= */
 :root {
+  /* Rənglər */
+  --bg: #ffffff;
+  --bg-hover-light: #f5f5f5;
+  --text: #202f59;
+  --card-bg: #fff;
+  --card-text: #202f59;
+  --overlay: rgba(32, 47, 89, 0.3);
   --primary: #dc834e;
   --primary-hover: #c36b36;
   --accent: #000000;
-  --text: #666666;
+  --text-secondary: #666666;
   --border: #e5e5e5;
+  --price-color: #dc834e;
+  --heart-color: #dc3545;
+  --location-text: #666;
+  --rating-color: #2dd75d;
+  --explore-color: #202f59;
+  --explore-hover: #dc834e;
+  --cube-bg: rgba(0, 0, 0, 0.4);
+  --cube-hover-bg: rgba(255, 255, 255, 0.8);
+  --cube-hover-color: #000;
+  --title-color: #202f59;
+}
+
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --bg-hover-light: #2a2a2a;
+  --text: #f8fafc;
+  --card-bg: #1e293b;
+  --card-text: #f8fafc;
+  --overlay: rgba(0, 0, 0, 0.3);
+  --primary: #fbbf24;
+  --primary-hover: #facc15;
+  --accent: #ffffff;
+  --text-secondary: #cbd5e1;
+  --border: #334155;
+  --price-color: #fbbf24;
+  --heart-color: #ef4444;
+  --location-text: #94a3b8;
+  --rating-color: #4ade80;
+  --explore-color: #ffffff;
+  --explore-hover: #fbbf24;
+  --cube-bg: rgba(255, 255, 255, 0.2);
+  --cube-hover-bg: rgba(255, 255, 255, 0.8);
+  --cube-hover-color: #000;
+  --title-color: #f8fafc;
 }

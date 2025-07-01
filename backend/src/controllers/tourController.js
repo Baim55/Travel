@@ -165,7 +165,7 @@ export const updateTour = async (req, res) => {
       price,
       maxGuests,
       nearby,
-      streetViewIframe,
+      streetViewSrc,
     } = req.body;
 
     const tour = await Tour.findById(id);
@@ -185,7 +185,7 @@ export const updateTour = async (req, res) => {
       price: price || tour.price,
       maxGuests: maxGuests || tour.maxGuests,
       images: imagePaths.length > 0 ? imagePaths : tour.images,
-      streetViewIframe: streetViewIframe || tour.streetViewIframe,
+      streetViewSrc: req.body.streetViewSrc || tour.streetViewSrc,
     };
 
     const sd = req.body["availableDateRange[startDate]"];

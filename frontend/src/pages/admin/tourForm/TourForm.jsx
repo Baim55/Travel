@@ -124,7 +124,6 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         { label: "Max Guests", name: "maxGuests", type: "number" },
         { label: "Latitude", name: "lat", type: "number" },
         { label: "Longitude", name: "lng", type: "number" },
-        { label: "Street View Src", name: "streetViewSrc", type: "text" },
       ].map((field) => (
         <div key={field.name} className={styles.field}>
           <label className={styles.label}>
@@ -135,7 +134,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
               className={styles.input}
               value={form[field.name]}
               onChange={handleChange}
-              required
+              {...(field.name !== "discount" && { required: true })}
             />
           </label>
         </div>
@@ -188,10 +187,24 @@ export default function TourForm({ initialData = {}, onSubmit }) {
             className={styles.input}
             value={form.streetViewSrc}
             onChange={handleChange}
-            required
+            placeholder="Google Maps iframe src linki buraya"
           />
         </label>
       </div>
+
+      {/* Preview üçün iframe */}
+      {form.streetViewSrc && (
+        <div className={styles.field}>
+          <iframe
+            src={form.streetViewSrc}
+            width="100%"
+            height="400"
+            style={{ border: "1px solid #ccc", marginTop: "10px" }}
+            allowFullScreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      )}
 
       <div className={styles.fieldRow}>
         <label className={styles.label}>

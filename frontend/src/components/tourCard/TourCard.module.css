@@ -4,7 +4,7 @@
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s ease;
-  background-color: #F9F9FB;
+  background-color: var(--card-bg);
 }
 
 .card:hover {
@@ -67,12 +67,12 @@
 
 .content {
   padding: 16px;
-  color: #202f59;
+  color: var(--card-text);
 }
 
 .rating {
   font-size: 12px;
-  color: #2dd75d;
+  color: var(--rating-color);
   margin-bottom: 6px;
 }
 
@@ -80,6 +80,7 @@
   font-size: 18px;
   font-weight: 600;
   margin: 0 0 10px;
+  color: var(--title-color);
 }
 
 .location {
@@ -87,7 +88,7 @@
   align-items: center;
   gap: 5px;
   font-size: 14px;
-  color: #666;
+  color: var(--location-text);
   margin-bottom: 10px;
 }
 
@@ -100,10 +101,9 @@
   flex-wrap: wrap;
 }
 
-/* Price stili */
 .price {
   font-weight: bold;
-  color: #dc834e;
+  color: var(--price-color);
 }
 
 .price del {
@@ -112,7 +112,6 @@
   font-weight: normal;
 }
 
-/* Explore və 3D icon buttonları */
 .actions {
   display: flex;
   align-items: center;
@@ -120,32 +119,32 @@
 }
 
 .cubeButton {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: var(--cube-bg);
   border: none;
   border-radius: 6px;
   padding: 6px 8px;
   color: #fff;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .cubeButton:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #000;
+  background-color: var(--cube-hover-bg);
+  color: var(--cube-hover-color);
 }
 
 .exploreBtn {
   background: transparent;
   border: none;
-  color: #202f59;
+  color: var(--explore-color);
   font-weight: 600;
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
 .exploreBtn:hover {
-  color: #dc834e;
+  color: var(--explore-hover);
 }
 
 @media (max-width: 768px) {

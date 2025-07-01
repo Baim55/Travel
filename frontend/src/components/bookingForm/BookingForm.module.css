@@ -60,3 +60,35 @@
   font-weight: 500;
   margin-top: 0.5rem;
 }
+[data-theme="dark"] .form {
+  background: var(--card-bg);
+  color: var(--card-text);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .form h3,
+[data-theme="dark"] .timeField legend,
+[data-theme="dark"] .tickets label,
+[data-theme="dark"] .extras label,
+[data-theme="dark"] .total {
+  color: var(--card-text);
+}
+
+[data-theme="dark"] .select select {
+  background-color: var(--bg-hover-light);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+[data-theme="dark"] .button {
+  background-color: var(--primary);
+  color: var(--accent);
+}
+
+[data-theme="dark"] .button:hover {
+  background-color: var(--primary-hover);
+}
+
+[data-theme="dark"] .error {
+  color: #ef4444;
+}

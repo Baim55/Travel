@@ -9,13 +9,16 @@ import axios from "axios";               // ← axios import
 import { persistor, store } from "./redux/store/Store.js";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import { ThemeProvider } from "./context/darkModeContext";
 
 axios.defaults.baseURL = "http://localhost:5000";
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <App />
+     <ThemeProvider>
+        <App />
+      </ThemeProvider>
     </PersistGate>
   </Provider>
 );

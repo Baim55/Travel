@@ -8,7 +8,6 @@
   align-items: flex-start;
 }
 
-
 .sectionHeader {
   text-align: center;
   width: 100%;
@@ -18,7 +17,7 @@
 .subtitle {
   font-family: "Thea Amelia", cursive;
   font-size: 1.25rem;
-  color: var(--primary, #dc834e);
+  color: var(--primary);
   margin-bottom: 8px;
 }
 
@@ -26,7 +25,7 @@
   font-family: "Poppins", sans-serif;
   font-size: 3rem;
   font-weight: 700;
-  color: #000;
+  color: var(--text);
   margin: 0 auto;
   max-width: 600px;
   line-height: 1.1;
@@ -39,10 +38,10 @@
   margin-top: 1rem;
 }
 
-.flex{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .left {
@@ -54,8 +53,8 @@
   display: flex;
   align-items: flex-end;
   padding: 40px 30px;
-  color: #fff;
-  background-color: #000;
+  background-color: var(--discount-bg);
+  color: var(--text-light);
 }
 
 .overlay {
@@ -86,31 +85,31 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  background: rgba(0, 0, 0, 0.5); /* ← sadəcə yarıqaranlıq overlay */
+  background: rgba(0, 0, 0, 0.5);
   padding: 30px 20px;
   border-radius: 20px 20px 0 0;
-  backdrop-filter: blur(2px); /* opsional olaraq biraz "glass effect" üçün */
+  backdrop-filter: blur(2px);
 }
 
 .promoTitle {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 8px;
-  color: #fff;
+  color: var(--text-light);
 }
 
 .promoText {
   font-size: 14px;
   line-height: 1.6;
   margin-bottom: 20px;
-  color: #eee;
+  color: var(--text-muted-light);
 }
 
 .promoButton {
   display: inline-flex;
   align-items: center;
-  background: #fff;
-  color: #202f59;
+  background: var(--button-bg);
+  color: var(--button-text);
   padding: 12px 24px;
   border-radius: 5px;
   font-weight: 700;
@@ -119,24 +118,26 @@
 }
 
 .promoButton:hover {
-  background: #c36b36;
+  background: var(--primary-hover);
   color: #fff;
 }
 
-/* SAĞ tərəf turlar */
 .right {
   flex: 2 1 600px;
 }
+
 .msg,
 .msgError {
   text-align: center;
   padding: 1rem 0;
-  color: var(--text, #666);
+  color: var(--text);
 }
+
 .msgError {
   color: #c35d5d;
 }
 
+/* Responsive */
 @media (max-width: 1024px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);

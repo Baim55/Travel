@@ -1,6 +1,7 @@
-.header_area{
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background-color: white;
+.header_area {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--bg);
+  transition: background-color 0.3s ease;
 }

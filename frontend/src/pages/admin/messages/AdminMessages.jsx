@@ -2,40 +2,48 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./AdminMessages.module.css";
 
-export default function AdminMessages() {
+const AdminMessages = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     axios
-      .get("/api/messages") // mesajlar üçün backend endpoint
+      .get("http://localhost:5000/api/messages")
       .then((res) => setMessages(res.data))
-      .catch((err) => console.error("Mesajlar alınarkən xəta:", err));
+      .catch((err) => console.log(err));
   }, []);
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Gələn Mesajlar</h2>
+      <div className={styles.header}>
+        <h2 className={styles.title}>Gələn Mesajlar</h2>
+      </div>
 
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>Ad</th>
-            <th>Email</th>
-            <th>Mesaj</th>
-            <th>Tarix</th>
-          </tr>
-        </thead>
-        <tbody>
-          {messages.map((m) => (
-            <tr key={m._id}>
-              <td>{m.name}</td>
-              <td>{m.email}</td>
-              <td>{m.message}</td>
-              <td>{new Date(m.createdAt).toLocaleString()}</td>
+      <div className={styles.tableWrapper}>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th className={styles.th}>Ad Soyad</th>
+              <th className={styles.th}>Email</th>
+              <th className={styles.th}>Mesaj</th>
+              <th className={styles.th}>Tarix</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {messages.map((msg) => (
+              <tr key={msg._id}>
+                <td className={styles.td}>{msg.name}</td>
+                <td className={styles.td}>{msg.email}</td>
+                <td className={styles.td}>{msg.message}</td>
+                <td className={styles.td}>
+                  {new Date(msg.createdAt).toLocaleString()}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
-}
+};
+
+export default AdminMessages;

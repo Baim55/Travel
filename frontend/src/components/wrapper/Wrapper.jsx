@@ -7,6 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setUser } from "../../redux/features/userSlice";
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import { useContext } from "react";
+import { ThemeContext } from "../../context/darkModeContext";
+import { FaMoon, FaSun } from "react-icons/fa";
+
 const Wrapper = () => {
   const baseUrl = "http://localhost:5000/auth";
   const { user } = useSelector((state) => state.user);
@@ -22,6 +26,8 @@ const Wrapper = () => {
       alert("Logout failed");
     }
   };
+
+  const { dark, toggleTheme } = useContext(ThemeContext);
 
   return (
     <div className={styles.wrapper}>
@@ -60,6 +66,9 @@ const Wrapper = () => {
       <Link to="/mybooking" className={styles.iconLink} title="Basket" style={{ marginLeft: '15px' }}>
         <EventAvailableIcon size={21} />
       </Link>
+      <button onClick={toggleTheme} className={styles.iconLink} title="Toggle Theme">
+        {dark ? <FaSun /> : <FaMoon />}
+      </button>
     </div>
   );
 };

@@ -1,9 +1,77 @@
-.wrapper{
-    display: flex;
-    align-items: center;
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
+/* İkon linkləri üçün */
+.iconLink {
+  color: var(--text-color);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.iconLink:hover {
+  color: var(--hover-color);
+}
+
+/* Aktiv link */
 .activeLink {
-  color: #dc834e !important;
+  color: var(--primary-color) !important;
   font-weight: bold;
 }
+
+/* Wrapper.module.css */
+.dropdown .btn {
+  color: var(--text-color); /* dark modda açıq olacaq */
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+
+.dropdown .btn:hover {
+  color: var(--hover-color);
+}
+
+
+/* Light mode dəyişənlər */
+:root {
+  --text-color: #222;
+  --hover-color: #dc834e;
+  --primary-color: #dc834e;
+  --dropdown-bg: #fff;
+  --dropdown-border: #ccc;
+  --dropdown-item-color: #333;
+  --dropdown-item-hover-bg: #f2f2f2;
+  --dropdown-item-hover-color: #000;
+}
+
+/* Dark mode dəyişənlər */
+[data-theme="dark"] {
+  --text-color: #f0f0f0;
+  --hover-color: #ffa726;
+  --primary-color: #ffa726;
+  --dropdown-bg: #2b2b2b;
+  --dropdown-border: #444;
+  --dropdown-item-color: #ddd;
+  --dropdown-item-hover-bg: #3a3a3a;
+  --dropdown-item-hover-color: #fff;
+}
+
+[data-theme="dark"] .dropdown-menu {
+  background-color: #2b2b2b !important;
+  border-color: #444 !important;
+}
+
+[data-theme="dark"] .dropdown-item {
+  color: #ddd !important;
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+  background-color: #3a3a3a !important;
+  color: #fff !important;
+}
+

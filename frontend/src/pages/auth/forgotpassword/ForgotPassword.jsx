@@ -2,65 +2,51 @@ import React from "react";
 import { useFormik } from "formik";
 import { forgotschema } from "../../../schema/ForgotSchema";
 import axios from "axios";
+import styles from "../login/Login.module.css"; // Burada login stilini istifadə edirik
 
 const ForgotPassword = () => {
   const baseUrl = `http://localhost:5000/auth`;
 
   const submitForm = async (values, actions) => {
     try {
-      const res = await axios.post(`${baseUrl}/forgotpassword`, values, {
-        withCredentials: true,
-      });
+      const res = await axios.post(`${baseUrl}/forgotpassword`, values);
       if (res.status === 200) {
         alert("Check your email to reset your password");
-      } else {
-        alert("Failed to send email");
+        actions.resetForm();
       }
-
-      actions.resetForm();
     } catch (error) {
-      console.error("Forgot password failed:", error);
+      alert("Failed to send reset email");
     }
   };
 
   const { values, handleChange, handleSubmit, errors } = useFormik({
-    initialValues: {
-      email: "",
-    },
-
+    initialValues: { email: "" },
     onSubmit: submitForm,
     validationSchema: forgotschema,
   });
 
   return (
-    <div className="container">
-      <form
-        action=""
-        className="form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit();
-        }}
-      >
-        <h3>ForgotPassword</h3>
-
-        <div className="form-group">
-          <label htmlFor="username">Email</label>
-          <div className="text-danger">{errors.email}</div>
-          <input
-            placeholder="Enter your email"
-            type="text"
-            id="email"
-            name="email"
-            className="form-control"
-            onChange={handleChange}
-            value={values.email}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Send
-        </button>
-      </form>
+    <div className={styles.container}>
+      <div className={styles.login}>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <h3>Forgot Password</h3>
+          <div className={styles.formGroup}>
+            <label>Email</label>
+            <input
+              type="email"
+              name="email"
+              className={styles.input}
+              placeholder="Enter your email"
+              onChange={handleChange}
+              value={values.email}
+            />
+            {errors.email && <div className={styles.error}>{errors.email}</div>}
+          </div>
+          <button type="submit" className={styles.button}>
+            Send
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

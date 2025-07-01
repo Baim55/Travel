@@ -1,7 +1,12 @@
-// // routes/messageRouter.js
-// import express from "express";
-// import { getMessages } from "../controllers/messageController";
-// const messageRouter = express.Router();
+import express from "express";
+import {
+  getMessages,
+  sendContactMessage,
+} from "../controllers/messageController.js"; // burada contactController yox, messageController olacaq
 
-// messageRouter.get("/", getMessages);
-// export default messageRouter;
+const router = express.Router();
+
+router.post("/send", sendContactMessage);
+router.get("/", getMessages);
+
+export default router;
