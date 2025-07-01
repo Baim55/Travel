@@ -1,8 +1,9 @@
 import React from "react";
+import AllTours from "../components/allTours/AllTours";
 const Destination = () => {
   return (
     <div>
-      Destination
+      <AllTours/>
     </div>
   );
 };
