@@ -4,6 +4,7 @@
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s ease;
+  box-shadow: 0 0 30px rgba(6,30,98,.08);
   background-color: var(--card-bg);
 }
 

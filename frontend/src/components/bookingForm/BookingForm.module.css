@@ -10,6 +10,7 @@
 .form label {
   display: block;
   margin-bottom: 0.75rem;
+  color: var(--text) !important;
 }
 .timeField {
   border: none;
@@ -30,6 +31,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
+   color: var(--text); 
 }
 .select {
   max-height: 120px;

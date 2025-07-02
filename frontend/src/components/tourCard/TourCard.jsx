@@ -1,12 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import styles from "./TourCard.module.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { FaCube } from "react-icons/fa";
+import axios from "axios";
 
 export default function TourCard({ tour }) {
   const navigate = useNavigate();
+  const [averageRating, setAverageRating] = useState(0);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/api/reviews?tourId=${tour._id}`);
+        const reviews = res.data;
+        if (reviews.length > 0) {
+          const avg = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
+          setAverageRating(avg.toFixed(1));
+        } else {
+          setAverageRating(0);
+        }
+      } catch (err) {
+        console.error("Reytinq alınmadı:", err);
+      }
+    };
+
+    fetchReviews();
+  }, [tour._id]);
 
   const goTo3DView = (e) => {
     e.stopPropagation();
@@ -33,7 +54,7 @@ export default function TourCard({ tour }) {
 
       <div className={styles.content}>
         <div className={styles.rating}>
-          <i className="fas fa-star"></i> 4.5
+          <i className="fas fa-star"></i> {averageRating}
         </div>
 
         <h3 className={styles.title}>{tour.name}</h3>

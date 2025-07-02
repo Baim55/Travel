@@ -10,6 +10,7 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import { useContext } from "react";
 import { ThemeContext } from "../../context/darkModeContext";
 import { FaMoon, FaSun } from "react-icons/fa";
+import { clearWishlist } from "../../redux/features/wishlistSlice";
 
 const Wrapper = () => {
   const baseUrl = "http://localhost:5000/auth";
@@ -18,6 +19,7 @@ const Wrapper = () => {
 
   const handleLogout = async () => {
     dispatch(setUser(null));
+    dispatch(clearWishlist());
     const res = await axios.get(`${baseUrl}/logout`, { withCredentials: true });
 
     if (res.status === 200) {

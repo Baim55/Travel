@@ -13,9 +13,14 @@ export default function ToursList({ tours }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const wishlist = useSelector((state) => state.wishlist.wishlist);
+  const { user } = useSelector((state) => state.user);
 
   const toggleWishlist = (tour, e) => {
-    e.stopPropagation(); // parent kliklənməsin
+    e.stopPropagation(); 
+    if (!user) {
+    alert("Zəhmət olmasa, favoritlərə əlavə etmək üçün login olun");
+    return;
+  }
     dispatch(addWishlist(tour));
   };
 
