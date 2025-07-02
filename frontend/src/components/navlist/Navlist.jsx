@@ -32,7 +32,7 @@ const Navlist = () => {
           <NavLink to="/activities" className={({ isActive }) => isActive ? styles.activeLink : ""} onClick={closeMenu}>Activities</NavLink>
         </li>
         <li>
-          <NavLink to="/ar" className={({ isActive }) => isActive ? styles.activeLink : ""} onClick={closeMenu}>AR</NavLink>
+          <NavLink to="/blog" className={({ isActive }) => isActive ? styles.activeLink : ""} onClick={closeMenu}>Blog</NavLink>
         </li>
         <li>
           <NavLink to="/plan" className={({ isActive }) => isActive ? styles.activeLink : ""} onClick={closeMenu}>Trip Planner</NavLink>

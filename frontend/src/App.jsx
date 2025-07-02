@@ -6,7 +6,6 @@ import Login from "./pages/auth/login/Login";
 import Register from "./pages/auth/register/Register";
 import Destination from "./pages/Destination";
 import Activities from "./pages/Activities";
-import AR from "./pages/AR";
 import TripPlanner from "./pages/TripPlanner";
 import Contact from "./pages/contact/Contact";
 import Wishlist from "./pages/wishlist/Wishlist";
@@ -30,6 +29,7 @@ import AdminMessages from "./pages/admin/messages/AdminMessages";
 import AdminComments from "./pages/admin/comments/AdminComments";
 import CountryTours from "./pages/countryTours/CountryTours";
 import About from "./pages/About";
+import Blog from "./pages/Blog";
 
 const router = createBrowserRouter([
   {
@@ -53,8 +53,8 @@ const router = createBrowserRouter([
         element: <Activities />,
       },
       {
-        path: "/ar",
-        element: <AR />,
+        path: "/blog",
+        element: <Blog />,
       },
       {
         path: "/plan",
