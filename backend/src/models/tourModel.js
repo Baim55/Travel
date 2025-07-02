@@ -31,6 +31,8 @@ const tourSchema = new mongoose.Schema(
       startDate: { type: Date, required: true },
       endDate: { type: Date, required: true },
     },
+    disabledDays: {type: [String], default: [],
+    },
     maxGuests: { type: Number, default: 10 },
     images: [{ type: String }],
     streetViewSrc: { type: String, required: true },

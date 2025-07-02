@@ -134,3 +134,65 @@
   font-size: 0.9rem;
   color: var(--text);
 }
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Modal üçün ümumi stil */
+.modal {
+  background: var(--card-bg);
+  color: var(--text);
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal input-lar */
+.modal input {
+  background: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+/* Modal düymələr */
+.modalActions button {
+  padding: 0.5rem 1.2rem;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modalActions .submitButton {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+}
+
+.modalActions .submitButton:hover {
+  background-color: #218838;
+}
+
+.modalActions .removeButton {
+  background-color: transparent;
+  border: 1px solid var(--border);
+  color: #e63946;
+}
+
+.modalActions .removeButton:hover {
+  color: #a4161a;
+  border-color: #a4161a;
+}

@@ -41,8 +41,9 @@ export const addTour = async (req, res) => {
       maxGuests,
       nearby,
       streetViewSrc,
-      model3D,
-      isFeatured
+      isFeatured,
+      timeSlots,
+      disabledDays,
     } = req.body;
 
     if (!availableDateRange?.startDate || !availableDateRange?.endDate) {
@@ -62,6 +63,26 @@ export const addTour = async (req, res) => {
       }
     }
 
+    let parsedTimeSlots = [];
+    if (timeSlots) {
+      try {
+        parsedTimeSlots = JSON.parse(timeSlots); // frontend string göndərirsə
+      } catch {
+        return res.status(400).json({ message: "timeSlots formatı səhvdir" });
+      }
+    }
+
+    let parsedDisabledDays = [];
+    if (disabledDays) {
+      try {
+        parsedDisabledDays = JSON.parse(disabledDays);
+      } catch {
+        return res
+          .status(400)
+          .json({ message: "disabledDays formatı səhvdir" });
+      }
+    }
+
     const newTour = await Tour.create({
       name,
       country,
@@ -76,7 +97,9 @@ export const addTour = async (req, res) => {
       images: imagePaths,
       nearby: parsedNearby,
       streetViewSrc,
-      isFeatured: isFeatured === "true", 
+      isFeatured: isFeatured === "true",
+      timeSlots: parsedTimeSlots,
+      disabledDays: parsedDisabledDays,
     });
 
     res.status(201).json(newTour);
@@ -153,7 +176,7 @@ export const deleteTour = async (req, res) => {
   }
 };
 
-// 🟢 7. Tur güncəllə (şəkillər itməsin)
+// 🟢 7. Tur güncəllə
 export const updateTour = async (req, res) => {
   try {
     const { id } = req.params;
@@ -169,7 +192,9 @@ export const updateTour = async (req, res) => {
       maxGuests,
       nearby,
       streetViewSrc,
-      isFeatured 
+      isFeatured,
+      timeSlots,
+      disabledDays,
     } = req.body;
 
     const tour = await Tour.findById(id);
@@ -216,6 +241,24 @@ export const updateTour = async (req, res) => {
         updated.nearby = JSON.parse(nearby);
       } catch {
         return res.status(400).json({ message: "Nearby formatı səhvdir" });
+      }
+    }
+
+    if (timeSlots) {
+      try {
+        updated.timeSlots = JSON.parse(timeSlots);
+      } catch {
+        return res.status(400).json({ message: "timeSlots formatı səhvdir" });
+      }
+    }
+
+    if (req.body.disabledDays) {
+      try {
+        updated.disabledDays = JSON.parse(req.body.disabledDays);
+      } catch {
+        return res
+          .status(400)
+          .json({ message: "disabledDays formatı səhvdir" });
       }
     }
 
@@ -301,7 +344,9 @@ export const getTourById = async (req, res) => {
 // 🟢 11. Seçilmiş (featured) turlar
 export const getFeaturedTours = async (req, res) => {
   try {
-    const featured = await Tour.find({ isFeatured: true }).sort({ createdAt: -1 });
+    const featured = await Tour.find({ isFeatured: true }).sort({
+      createdAt: -1,
+    });
     res.json(featured);
   } catch (err) {
     res.status(500).json({ message: err.message });
