@@ -1,12 +1,15 @@
 .card {
-  width: 400px;
+  width: 100%;
+  max-width: 420px;
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s ease;
   box-shadow: 0 0 30px rgba(6,30,98,.08);
   background-color: var(--card-bg);
+  margin: 0 auto;
 }
+
 
 .card:hover {
   transform: translateY(-5px);
@@ -148,8 +151,74 @@
   color: var(--explore-hover);
 }
 
-@media (max-width: 768px) {
+/* Tablet (iPad, 768px - 1024px) */
+@media (max-width: 1024px) {
   .card {
-    width: 100%;
+    max-width: 450px;
+  }
+
+  .title {
+    font-size: 17px;
+  }
+
+  .location,
+  .footer {
+    font-size: 13px;
+  }
+
+  .rating {
+    font-size: 12px;
   }
 }
+
+/* Mobil (480px - 768px) */
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .location {
+    font-size: 12px;
+  }
+
+  .footer {
+    font-size: 13px;
+  }
+
+  .rating {
+    font-size: 12px;
+  }
+
+  .imageWrapper {
+    padding-top: 65%;
+  }
+}
+
+/* Kiçik mobil (0px - 479px) */
+@media (max-width: 480px) {
+  .title {
+    font-size: 15px;
+  }
+
+  .location,
+  .footer {
+    font-size: 12px;
+  }
+
+  .rating {
+    font-size: 11px;
+  }
+
+  .price {
+    font-size: 13px;
+  }
+
+  .exploreBtn {
+    font-size: 13px;
+  }
+}
+

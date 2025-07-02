@@ -41,6 +41,7 @@ export const addTour = async (req, res) => {
       maxGuests,
       nearby,
       streetViewSrc,
+      model3D,
       isFeatured
     } = req.body;
 

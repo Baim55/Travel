@@ -23,7 +23,6 @@ import AdminTours from "./pages/admin/adminTours/AdminTours";
 import AdminUsers from "./pages/admin/adminUsers/AdminUsers";
 import NewTour from "./pages/admin/newTour/NewTour";
 import EditTour from "./pages/admin/editTour/EditTour";
-import Basket from "./pages/basket/Basket";
 import Tour3DView from "./pages/3D/Tour3DView";
 import MyBookings from "./pages/myBookings/MyBookings";
 import AdminBookings from "./pages/admin/booking/AdminBookings";
@@ -72,10 +71,6 @@ const router = createBrowserRouter([
       {
         path: "/wishlist",
         element: <Wishlist />,
-      },
-      {
-        path: "/basket",
-        element: <Basket />,
       },
       {
         path: "/login",

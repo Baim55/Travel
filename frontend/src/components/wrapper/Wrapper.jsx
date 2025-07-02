@@ -6,7 +6,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setUser } from "../../redux/features/userSlice";
-import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import { useContext } from "react";
 import { ThemeContext } from "../../context/darkModeContext";
 import { FaMoon, FaSun } from "react-icons/fa";
@@ -34,9 +34,14 @@ const Wrapper = () => {
   return (
     <div className={styles.wrapper}>
       <div className="dropdown">
-        <button className="btn" type="button" data-bs-toggle="dropdown">
+        <button
+          className={`${styles.iconLink} btn`}
+          type="button"
+          data-bs-toggle="dropdown"
+        >
           <IoPersonOutline size={21} />
         </button>
+
         <ul className="dropdown-menu">
           {user ? (
             <li onClick={handleLogout}>
@@ -65,10 +70,19 @@ const Wrapper = () => {
         <FaRegHeart size={21} />
       </Link>
 
-      <Link to="/mybooking" className={styles.iconLink} title="Basket" style={{ marginLeft: '15px' }}>
+      <Link
+        to="/mybooking"
+        className={styles.iconLink}
+        title="Booking"
+        style={{ marginLeft: "15px" }}
+      >
         <EventAvailableIcon size={21} />
       </Link>
-      <button onClick={toggleTheme} className={styles.iconLink} title="Toggle Theme">
+      <button
+        onClick={toggleTheme}
+        className={styles.iconLink}
+        title="Toggle Theme"
+      >
         {dark ? <FaSun /> : <FaMoon />}
       </button>
     </div>

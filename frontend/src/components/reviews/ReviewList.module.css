@@ -65,6 +65,8 @@ h3 {
   margin-bottom: 1rem;
   color: #444;
   white-space: pre-wrap;
+  word-break: break-word; /* ✅ uzun sözləri və linkləri bölmək üçün */
+  overflow-wrap: anywhere;
 }
 
 .actions {
@@ -208,5 +210,67 @@ h3 {
   }
   .rating {
     font-size: 1.1rem;
+  }
+}
+@media (max-width: 768px) {
+  .reviewBox {
+    padding: 1rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actions button {
+    width: 100%;
+    font-size: 13px;
+    padding: 0.6rem;
+  }
+
+  .commentText {
+    font-size: 0.95rem;
+  }
+
+  .editForm textarea {
+    font-size: 0.95rem;
+  }
+
+  .ratingBelow {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .avatar {
+    width: 45px;
+    height: 45px;
+  }
+
+  .reviewHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .editForm textarea {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .bigNumber {
+    font-size: 30px;
+  }
+
+  .averageRatingBox {
+    font-size: 1.3rem;
+  }
+
+  .ratingValue {
+    font-size: 0.9rem;
+  }
+
+  .actions button {
+    font-size: 12px;
   }
 }

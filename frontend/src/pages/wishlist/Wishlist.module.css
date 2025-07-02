@@ -5,7 +5,9 @@
   color: var(--accent);
   text-align: center;
 }
-
+.wishlist{
+  padding: 20px 0;
+}
 .emptyMessage {
   color: var(--text-light);
   font-size: 1rem;
@@ -126,7 +128,7 @@
   font-size: 16px;
 }
 
-.addToBasketBtn {
+.reserve {
   margin-top: 10px;
   background-color: var(--primary);
   color: white;
@@ -139,7 +141,7 @@
   width: 100%;
 }
 
-.addToBasketBtn:hover {
+.reserve:hover {
   background-color: #c36b36;
 }
 

@@ -1,4 +1,3 @@
-// src/components/admin/TourForm.jsx
 import React, { useState, useEffect } from "react";
 import styles from "./TourForm.module.css";
 
@@ -20,15 +19,12 @@ export default function TourForm({ initialData = {}, onSubmit }) {
     streetViewSrc: "",
     isFeatured: false,
   });
-  const [images, setImages] = useState([]);
-  const [nearbyHotels, setNearbyHotels] = useState(
-    initialData.nearby?.hotels || []
-  );
-  const [nearbyRests, setNearbyRests] = useState(
-    initialData.nearby?.restaurants || []
-  );
 
-  // Düzəliş zamanı initialData ilə doldur
+  const [images, setImages] = useState([]);
+  const [nearbyHotels, setNearbyHotels] = useState(initialData.nearby?.hotels || []);
+  const [nearbyRests, setNearbyRests] = useState(initialData.nearby?.restaurants || []);
+  const [timeSlots, setTimeSlots] = useState(initialData.timeSlots || []);
+
   useEffect(() => {
     if (initialData._id) {
       setForm({
@@ -48,9 +44,10 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         streetViewSrc: initialData.streetViewSrc || "",
         isFeatured: initialData.isFeatured || false,
       });
-      setImages([]); // yeni fayl seçimi üçün sıfırla
+      setImages([]);
       setNearbyHotels(initialData.nearby.hotels);
       setNearbyRests(initialData.nearby.restaurants);
+      setTimeSlots(initialData.timeSlots || []);
     }
   }, [initialData]);
 
@@ -60,7 +57,6 @@ export default function TourForm({ initialData = {}, onSubmit }) {
   };
 
   const handleFileChange = (e) => {
-    // multiple seçilmiş faylları massivə çevir
     setImages(Array.from(e.target.files));
   };
 
@@ -74,11 +70,17 @@ export default function TourForm({ initialData = {}, onSubmit }) {
     else setNearbyRests((r) => [...r, item]);
   };
 
+  const addTimeSlot = () => {
+    const time = prompt("Saat (məs: 11:00):");
+    const capacity = prompt("Tutum (məs: 20):");
+    if (!time || !capacity) return;
+    setTimeSlots((prev) => [...prev, { time, capacity: Number(capacity) }]);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const fd = new FormData();
 
-    // Sadə sahələr
     Object.entries({
       name: form.name,
       country: form.country,
@@ -97,6 +99,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
     fd.append("location[lat]", form.lat);
     fd.append("location[lng]", form.lng);
     fd.append("isFeatured", form.isFeatured);
+    fd.append("timeSlots", JSON.stringify(timeSlots));
     images.forEach((file) => fd.append("images", file));
     fd.append(
       "nearby",
@@ -150,14 +153,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
             value={form.activity}
             onChange={handleChange}
           >
-            {[
-              "Beaches",
-              "City Tours",
-              "Cruises",
-              "Hiking",
-              "Historical",
-              "Museum Tours",
-            ].map((act) => (
+            {["Beaches", "City Tours", "Cruises", "Hiking", "Historical", "Museum Tours"].map((act) => (
               <option key={act} value={act}>
                 {act}
               </option>
@@ -179,6 +175,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
           />
         </label>
       </div>
+
       <div className={styles.field}>
         <label className={styles.label}>
           <input
@@ -207,7 +204,6 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         </label>
       </div>
 
-      {/* Preview üçün iframe */}
       {form.streetViewSrc && (
         <div className={styles.field}>
           <iframe
@@ -314,6 +310,33 @@ export default function TourForm({ initialData = {}, onSubmit }) {
                 className={styles.removeButton}
                 onClick={() =>
                   setNearbyRests((rlist) => rlist.filter((_, j) => j !== i))
+                }
+              >
+                x
+              </button>
+            </li>
+          ))}
+        </ul>
+      </fieldset>
+
+      <fieldset className={styles.fieldset}>
+        <legend className={styles.legend}>Time Slots</legend>
+        <button
+          type="button"
+          className={styles.addButton}
+          onClick={addTimeSlot}
+        >
+          + Add Time Slot
+        </button>
+        <ul className={styles.list}>
+          {timeSlots.map((slot, i) => (
+            <li key={i} className={styles.listItem}>
+              {slot.time} — {slot.capacity} nəfər
+              <button
+                type="button"
+                className={styles.removeButton}
+                onClick={() =>
+                  setTimeSlots((prev) => prev.filter((_, j) => j !== i))
                 }
               >
                 x

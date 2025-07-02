@@ -27,3 +27,50 @@
   font-style: italic;
   color: #ffb347;
 }
+/* Tablet (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+  }
+
+  .count {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+
+  .label {
+    font-size: 16px;
+  }
+}
+
+/* Mobil (max-width: 768px) */
+@media (max-width: 768px) {
+  .icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+
+  .count {
+    font-size: 28px;
+  }
+
+  .label {
+    font-size: 15px;
+  }
+}
+
+/* Kiçik mobil (max-width: 480px) */
+@media (max-width: 480px) {
+  .icon {
+    font-size: 30px;
+  }
+
+  .count {
+    font-size: 24px;
+  }
+
+  .label {
+    font-size: 14px;
+  }
+}

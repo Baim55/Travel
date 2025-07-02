@@ -274,3 +274,89 @@
   background-color: var(--text) !important;
   color: #fff !important;
 }
+/* ======= Responsive: Tablet və Mobil üçün ======= */
+@media (max-width: 1024px) {
+
+  .detailGrid {
+    flex-direction: column;
+  }
+
+  .content,
+  .sidebar {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .nearbyGrid {
+    display: flex;
+    flex-wrap: wrap
+  }
+
+  .carouselImage {
+    height: 300px;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .metaGrid {
+    gap: 1rem;
+  }
+
+  .metaItem h4 {
+    font-size: 0.95rem;
+  }
+
+  .metaValue {
+    font-size: 1.1rem;
+  }
+
+  .carouselImage {
+    height: 250px;
+  }
+
+  .mapSection h3 {
+    font-size: 1.1rem;
+  }
+
+  .sidebar > * {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .location {
+    font-size: 1rem;
+  }
+
+  .carouselImage {
+    height: 200px;
+  }
+
+  .nearbyGrid {
+    grid-template-columns: repeat(2, 1fr); /* 2 sütunlu düzülüş */
+  }
+
+  .metaGrid {
+    gap: 1rem;
+  }
+
+  .metaItem h4 {
+    font-size: 0.85rem;
+  }
+
+  .metaValue {
+    font-size: 1rem;
+  }
+
+  .description p {
+    font-size: 0.95rem;
+  }
+}

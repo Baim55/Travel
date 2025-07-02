@@ -155,8 +155,96 @@
   color: #4ade80;
 }
 
-@media(max-width:768px){
-  .testimonialSection img{
+@media (max-width: 1024px) {
+  .mainTitle {
+    font-size: 36px;
+  }
+
+  .comment {
+    font-size: 20px;
+  }
+
+  .details {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .info {
+    text-align: center;
+  }
+
+  .quoteLeft,
+  .quoteRight {
     display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonialSection {
+    padding: 60px 20px;
+    height: auto;
+  }
+
+  .mainTitle {
+    font-size: 28px;
+  }
+
+  .subTitle {
+    font-size: 22px;
+  }
+
+  .comment {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  .circleIcon,
+  .avatar {
+    width: 65px;
+    height: 65px;
+  }
+
+  .circleIcon {
+    font-size: 16px;
+  }
+
+  .name {
+    font-size: 18px;
+  }
+
+  .job {
+    font-size: 13px;
+  }
+
+  .rating {
+    font-size: 14px;
+  }
+
+  /* Arxa fondakı quote şəkilləri mobil üçün deaktiv */
+  .quoteLeft,
+  .quoteRight {
+    display: none;
+  }
+}
+
+@media (max-width: 430px) {
+  .mainTitle {
+    font-size: 22px;
+  }
+
+  .subTitle {
+    font-size: 18px;
+  }
+
+  .comment {
+    font-size: 16px;
+  }
+
+  .details {
+    gap: 8px;
+  }
+
+  .slider {
+    max-width: 100%;
   }
 }

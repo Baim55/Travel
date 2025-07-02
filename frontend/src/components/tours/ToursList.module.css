@@ -190,9 +190,65 @@
   color: var(--primary);
 }
 
-/* ==== Responsive ==== */
-@media(max-width: 768px) {
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .footer {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
   .card {
-    padding: 30px;
+    padding: 16px;
+  }
+
+  .title {
+    font-size: 17px;
+  }
+
+  .location,
+  .meta,
+  .footer {
+    font-size: 13px;
+  }
+
+  .heartIcon {
+    font-size: 16px;
+    top: 8px;
+    right: 8px;
+  }
+
+  .icon3DButton {
+    font-size: 14px;
+    bottom: 8px;
+    right: 8px;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 16px;
+  }
+
+  .price {
+    font-size: 14px;
+  }
+
+  .button {
+    font-size: 13px;
   }
 }

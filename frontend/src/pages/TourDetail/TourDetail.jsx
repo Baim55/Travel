@@ -13,8 +13,7 @@ import ReviewForm from "../../components/reviews/ReviewForm";
 import ReviewList from "../../components/reviews/ReviewList";
 import BookingForm from "../../components/bookingForm/BookingForm";
 
-import { addBasket } from "../../redux/features/basketSlice";
-
+import { addBooking } from "../../redux/features/bookingSlice";
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 export default function TourDetail() {
@@ -40,10 +39,10 @@ export default function TourDetail() {
 
   const handleReviewSubmit = () => setRefresh((r) => !r);
 
-  const handleAddToBasket = () => {
+  const handleAddToBooking = () => {
     const guestCount = counts.adult + counts.youth + counts.child;
     dispatch(
-      addBasket({
+      addBooking({
         _id: tour._id,
         name: tour.name,
         price: tour.price,
@@ -220,7 +219,7 @@ export default function TourDetail() {
                 availableTo={availableTo}
                 counts={counts}
                 setCounts={setCounts}
-                onAddToBasket={handleAddToBasket}
+                handleAddToBooking={handleAddToBooking}
               />
             </aside>
           </div>

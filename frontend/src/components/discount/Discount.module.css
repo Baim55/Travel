@@ -1,9 +1,6 @@
 .wrapper {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto 100px;
-  max-width: 1290px;
-  padding: 40px 30px;
   gap: 2rem;
   align-items: flex-start;
 }
@@ -137,17 +134,99 @@
   color: #c35d5d;
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
+  .wrapper {
+    flex-direction: column;
+    padding: 40px 20px;
+    align-items: center;
+  }
+
+  .flex {
+    flex-direction: column;
+  }
+
+  .left, .right {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
-}
-@media (max-width: 768px) {
-  .wrapper {
-    flex-direction: column;
+
+  .promoContent {
+    padding: 25px 18px;
   }
+
+  .promoTitle {
+    font-size: 22px;
+  }
+
+  .promoText {
+    font-size: 13px;
+  }
+
+  .discountBadge {
+    left: 240px;
+    top: 20px;
+    width: 500px;
+
+  }
+}
+
+@media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .promoContent {
+    padding: 20px 16px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .promoTitle {
+    font-size: 20px;
+  }
+
+  .promoText {
+    font-size: 13px;
+  }
+
+  .discountBadge {
+    left: 60px;
+    top: 10px;
+    width: 400px;
+  }
+
+  .promoButton {
+    font-size: 14px;
+    padding: 10px 20px;
   }
 }
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .promoTitle {
+    font-size: 18px;
+  }
+
+  .promoText {
+    font-size: 12px;
+  }
+
+  .discountBadge {
+    left: 0px;
+    top: 10px;
+    width: 300px;
+  }
+}
+

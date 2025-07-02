@@ -8,6 +8,7 @@ import {
   FaStar,
   FaReceipt,
 } from "react-icons/fa";
+import Container from "../container/Container";
 
 const items = [
   {
@@ -45,7 +46,7 @@ const items = [
 export default function WhyUs() {
   return (
     <section className={styles.wrapper}>
-      <div className={styles.container}>
+      <Container>
         <div className={styles.header}>
           <div className={styles.subheading}>Why us</div>
           <h2 className={styles.title}>We Make All The Process Easy</h2>
@@ -61,7 +62,7 @@ export default function WhyUs() {
             </div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

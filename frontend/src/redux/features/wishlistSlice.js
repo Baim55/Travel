@@ -16,7 +16,7 @@ export const wishlistSlice = createSlice({
           (i) => i._id !== action.payload._id
         );
       } else {
-        state.wishlist.push(action.payload);
+        state.wishlist.unshift(action.payload);
       }
     },
     clearWishlist: (state) => {

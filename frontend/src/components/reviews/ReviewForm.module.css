@@ -102,3 +102,41 @@
 [data-theme="dark"] .button:hover:not(:disabled) {
   background-color: var(--primary-hover);
 }
+@media (max-width: 768px) {
+  .formContainer {
+    padding: 15px;
+  }
+
+  .heading {
+    font-size: 1.2rem;
+  }
+
+  .textarea {
+    height: 80px;
+    font-size: 13px;
+  }
+
+  .button {
+    width: 100%;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .starRating span {
+    font-size: 1.3rem !important;
+  }
+
+  .selectLabel {
+    font-size: 13px;
+  }
+
+  .heading {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .formContainer {
+    padding: 10px;
+  }
+}
