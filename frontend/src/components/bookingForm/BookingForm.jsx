@@ -3,6 +3,8 @@ import styles from "./BookingForm.module.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function BookingForm({
   basePrice,
@@ -26,15 +28,39 @@ export default function BookingForm({
 
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
+  const dayMap = {
+    Sunday: 0,
+    Monday: 1,
+    Tuesday: 2,
+    Wednesday: 3,
+    Thursday: 4,
+    Friday: 5,
+    Saturday: 6,
+  };
+
+  const [disabledDays, setDisabledDays] = useState([]);
 
   useEffect(() => {
-    if (date) {
-      axios
-        .get(`/api/tours/${tourId}/slots`, { params: { date } })
-        .then((res) => setSlots(res.data))
-        .catch((err) => console.error(err));
-    }
-  }, [date, tourId]);
+    axios
+      .get(`/api/tours/${tourId}`)
+      .then((res) => {
+        const tour = res.data;
+        if (tour.disabledDays) {
+          const dayMap = {
+            Sunday: 0,
+            Monday: 1,
+            Tuesday: 2,
+            Wednesday: 3,
+            Thursday: 4,
+            Friday: 5,
+            Saturday: 6,
+          };
+          const mapped = tour.disabledDays.map((day) => dayMap[day]);
+          setDisabledDays(mapped);
+        }
+      })
+      .catch((err) => console.error("Tur məlumatı alınmadı:", err));
+  }, [tourId]);
 
   const handleTicketsChange = (type, value) => {
     setTickets((prev) => ({ ...prev, [type]: +value }));
@@ -99,14 +125,18 @@ export default function BookingForm({
       <h3>Book This Tour</h3>
 
       <label>
-        From:{" "}
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          min={availableFrom}
-          max={availableTo}
-          required
+        <DatePicker
+          selected={date ? new Date(date) : null}
+          onChange={(d) => setDate(d.toISOString().split("T")[0])}
+          filterDate={(d) => {
+            const day = d.getDay();
+            return !disabledDays.includes(day);
+          }}
+          minDate={new Date(Math.max(new Date(availableFrom), new Date()))}
+          maxDate={new Date(availableTo)}
+          dateFormat="yyyy-MM-dd"
+          placeholderText="Tarix seçin"
+          className={styles.input}
         />
       </label>
 
@@ -151,9 +181,7 @@ export default function BookingForm({
                 (childPrice * discount) / 100
               ).toFixed(2)}`}
             {discount > 0 && (
-              <div className={styles.discountNote}>
-               {discount}% endirim
-              </div>
+              <div className={styles.discountNote}>{discount}% endirim</div>
             )}
 
             <div className={styles.select}>

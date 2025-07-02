@@ -201,6 +201,7 @@ export default function TourDetail() {
             <aside className={styles.sidebar}>
               <BookingForm
                 tourId={tour._id}
+                disabledDays={tour.disabledDays}
                 discount={tour.discount}
                 basePrice={tour.price}
                 youthPrice={tour.price - 10}
