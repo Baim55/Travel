@@ -154,3 +154,9 @@
 [data-theme="dark"] .rating {
   color: #4ade80;
 }
+
+@media(max-width:768px){
+  .testimonialSection img{
+    display: none;
+  }
+}
