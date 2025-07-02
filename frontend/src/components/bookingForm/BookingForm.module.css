@@ -1,3 +1,4 @@
+/* Əsas form dizaynı */
 .form {
   background: #fff;
   padding: 1.5rem;
@@ -20,9 +21,11 @@
   font-weight: bold;
 }
 .time {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
 }
+
 .time label {
   margin-right: 10px;
 }
@@ -31,7 +34,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
-   color: var(--text); 
+  color: var(--text);
 }
 .select {
   max-height: 120px;
@@ -62,12 +65,13 @@
   font-weight: 500;
   margin-top: 0.5rem;
 }
+
+/* DARK MODE */
 [data-theme="dark"] .form {
   background: var(--card-bg);
   color: var(--card-text);
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
 }
-
 [data-theme="dark"] .form h3,
 [data-theme="dark"] .timeField legend,
 [data-theme="dark"] .tickets label,
@@ -75,22 +79,59 @@
 [data-theme="dark"] .total {
   color: var(--card-text);
 }
-
 [data-theme="dark"] .select select {
   background-color: var(--bg-hover-light);
   color: var(--text);
   border: 1px solid var(--border);
 }
-
 [data-theme="dark"] .button {
   background-color: var(--primary);
   color: var(--accent);
 }
-
 [data-theme="dark"] .button:hover {
   background-color: var(--primary-hover);
 }
-
 [data-theme="dark"] .error {
   color: #ef4444;
+}
+
+/* DATEPICKER DARK MODE STYLES */
+[data-theme="dark"] .react-datepicker {
+  background-color: var(--card-bg);
+  color: var(--card-text);
+  border: 1px solid var(--border);
+}
+[data-theme="dark"] .react-datepicker__header {
+  background-color: var(--bg-hover-light);
+  border-bottom: 1px solid var(--border);
+}
+[data-theme="dark"] .react-datepicker__day,
+[data-theme="dark"] .react-datepicker__day-name {
+  color: var(--card-text);
+}
+[data-theme="dark"] .react-datepicker__day--disabled {
+  color: #555 !important;
+}
+[data-theme="dark"] .react-datepicker__day--selected,
+[data-theme="dark"] .react-datepicker__day--keyboard-selected {
+  background-color: var(--primary);
+  color: var(--accent);
+}
+[data-theme="dark"] .react-datepicker__current-month {
+  color: var(--card-text);
+}
+[data-theme="dark"] .react-datepicker__navigation-icon::before {
+  border-color: var(--card-text);
+}
+
+.input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+[data-theme="dark"] .input {
+  background-color: var(--bg-hover-light);
+  color: var(--text);
+  border: 1px solid var(--border);
 }

@@ -272,7 +272,7 @@
 [data-theme="dark"] :global(.swiper-button-prev:hover),
 [data-theme="dark"] :global(.swiper-button-next:hover) {
   background-color: var(--text) !important;
-  color: #fff !important;
+  color: black !important;
 }
 /* ======= Responsive: Tablet və Mobil üçün ======= */
 @media (max-width: 1024px) {

@@ -39,6 +39,14 @@ export default function BookingForm({
   };
 
   const [disabledDays, setDisabledDays] = useState([]);
+  useEffect(() => {
+    if (date) {
+      axios
+        .get(`/api/tours/${tourId}/slots`, { params: { date } })
+        .then((res) => setSlots(res.data))
+        .catch((err) => console.error("Time slots alınmadı:", err));
+    }
+  }, [date, tourId]);
 
   useEffect(() => {
     axios
@@ -135,7 +143,7 @@ export default function BookingForm({
           minDate={new Date(Math.max(new Date(availableFrom), new Date()))}
           maxDate={new Date(availableTo)}
           dateFormat="yyyy-MM-dd"
-          placeholderText="Tarix seçin"
+          placeholderText="Select date"
           className={styles.input}
         />
       </label>
@@ -181,7 +189,7 @@ export default function BookingForm({
                 (childPrice * discount) / 100
               ).toFixed(2)}`}
             {discount > 0 && (
-              <div className={styles.discountNote}>{discount}% endirim</div>
+              <div className={styles.discountNote}>{discount}% off</div>
             )}
 
             <div className={styles.select}>

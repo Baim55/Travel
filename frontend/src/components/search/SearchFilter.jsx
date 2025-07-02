@@ -6,6 +6,8 @@ import { FaMapMarkerAlt, FaCalendarAlt, FaUserAlt } from "react-icons/fa";
 import { MdOutlineLocalActivity } from "react-icons/md";
 import Container from "../container/Container";
 import ToursList from "../tours/ToursList";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function SearchFilter() {
   const [destinations, setDestinations] = useState([]); // [{ city, country }]
@@ -182,25 +184,18 @@ export default function SearchFilter() {
                 onClick={(e) => e.stopPropagation()}
                 onMouseDown={(e) => e.stopPropagation()}
               >
-                <input
-                  type="date"
-                  value={selection.dateFrom}
-                  onChange={(e) =>
+                <DatePicker
+                  selected={
+                    selection.dateFrom ? new Date(selection.dateFrom) : null
+                  }
+                  onChange={(date) =>
                     setSelection((s) => ({
                       ...s,
-                      dateFrom: e.target.value,
+                      dateFrom: date.toISOString().split("T")[0],
                     }))
                   }
-                />
-                <input
-                  type="date"
-                  value={selection.dateTo}
-                  onChange={(e) =>
-                    setSelection((s) => ({
-                      ...s,
-                      dateTo: e.target.value,
-                    }))
-                  }
+                  placeholderText="Start date"
+                  className={styles.input}
                 />
               </div>
             )}
