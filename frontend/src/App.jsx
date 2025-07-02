@@ -30,6 +30,7 @@ import AdminComments from "./pages/admin/comments/AdminComments";
 import CountryTours from "./pages/countryTours/CountryTours";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
+import AdminBlog from "./pages/admin/adminBlog/AdminBlog";
 
 const router = createBrowserRouter([
   {
@@ -116,6 +117,7 @@ const router = createBrowserRouter([
           { path: "bookings", element: <AdminBookings /> },
           { path: "comments", element: <AdminComments /> },
           { path: "messages", element: <AdminMessages /> },
+          { path: "blogs", element: <AdminBlog /> },
         ],
       },
     ],
