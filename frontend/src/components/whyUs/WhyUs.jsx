@@ -9,47 +9,48 @@ import {
   FaReceipt,
 } from "react-icons/fa";
 import Container from "../container/Container";
-
-const items = [
-  {
-    icon: <GiBeachBag />,
-    title: "Best Travel Agent",
-    text: "Our professional tour operators design the most suitable and affordable travel plans for you.",
-  },
-  {
-    icon: <FaMapMarkerAlt />,
-    title: "Beautiful Places",
-    text: "We discover and offer you the most stunning and fascinating destinations around the world.",
-  },
-  {
-    icon: <FaUserShield />,
-    title: "Trust & Safety",
-    text: "Your safety and trust are our top priorities throughout every step of your journey.",
-  },
-  {
-    icon: <FaGlobeAmericas />,
-    title: "Passionate Travel",
-    text: "With our passion for travel, we deliver unforgettable experiences and adventures.",
-  },
-  {
-    icon: <FaStar />,
-    title: "Best Price Guarantee",
-    text: "We guarantee the best quality tours at the most competitive prices.",
-  },
-  {
-    icon: <FaReceipt />,
-    title: "Fast Booking",
-    text: "Plan your dream trip instantly with our simple and fast booking system.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export default function WhyUs() {
+  const { t } = useTranslation();
+  const items = [
+    {
+      icon: <GiBeachBag />,
+      title: t("whyUs.agentTitle"),
+      text: t("whyUs.agentText"),
+    },
+    {
+      icon: <FaMapMarkerAlt />,
+      title: t("whyUs.placesTitle"),
+      text: t("whyUs.placesText"),
+    },
+    {
+      icon: <FaUserShield />,
+      title: t("whyUs.safetyTitle"),
+      text: t("whyUs.safetyText"),
+    },
+    {
+      icon: <FaGlobeAmericas />,
+      title: t("whyUs.passionTitle"),
+      text: t("whyUs.passionText"),
+    },
+    {
+      icon: <FaStar />,
+      title: t("whyUs.priceTitle"),
+      text: t("whyUs.priceText"),
+    },
+    {
+      icon: <FaReceipt />,
+      title: t("whyUs.bookingTitle"),
+      text: t("whyUs.bookingText"),
+    },
+  ];
   return (
     <section className={styles.wrapper}>
       <Container>
         <div className={styles.header}>
-          <div className={styles.subheading}>Why us</div>
-          <h2 className={styles.title}>We Make All The Process Easy</h2>
+          <div className={styles.subheading}>{t("whyUs.subheading")}</div>
+          <h2 className={styles.title}>{t("whyUs.title")}</h2>
         </div>
         <div className={styles.grid}>
           {items.map((item, i) => (

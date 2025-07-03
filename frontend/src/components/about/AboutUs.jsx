@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import styles from "./AboutUs.module.css";
 import aboutImage from "../../assets/images/about_image-1.1.png";
 import Container from "../container/Container";
+import { useTranslation } from "react-i18next";
 
 const AboutUs = () => {
   const navigate = useNavigate();
-
+  const { t } = useTranslation();
   return (
     <section className={styles.about}>
       <Container>
@@ -15,20 +16,12 @@ const AboutUs = () => {
             <img src={aboutImage} alt="About us" />
           </div>
           <div className={styles.text}>
-            <p className={styles.subtitle}>About</p>
-            <h2 className={styles.sectionTitle}>We Help You Planning Your Journey</h2>
-            <p>
-              At NeoTravel, we believe travel is more than just visiting places
-              — it's about creating stories, making memories, and discovering
-              the beauty of different cultures. We curate unique and immersive
-              tours that take you beyond the typical tourist path. With expert
-              local guides, seamless booking, and carefully selected
-              destinations, we make every journey meaningful and stress-free.
-              Whether you're seeking adventure, relaxation, or cultural
-              exploration, NeoTravel helps turn your travel dreams into
-              unforgettable experiences.
-            </p>
-            <button onClick={() => navigate("/about")}>More Detailed</button>
+            <p className={styles.subtitle}>{t("aboutHome.subtitle")}</p>
+            <h2 className={styles.sectionTitle}>{t("aboutHome.title")}</h2>
+            <p>{t("aboutHome.text")}</p>
+            <button onClick={() => navigate("/about")}>
+              {t("aboutHome.button")}
+            </button>
           </div>
         </div>
       </Container>
@@ -36,4 +29,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs; 
+export default AboutUs;

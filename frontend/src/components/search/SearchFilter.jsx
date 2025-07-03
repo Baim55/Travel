@@ -8,11 +8,14 @@ import Container from "../container/Container";
 import ToursList from "../tours/ToursList";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useTranslation } from "react-i18next";
 
 export default function SearchFilter() {
   const [destinations, setDestinations] = useState([]); // [{ city, country }]
   const [activities, setActivities] = useState([]); // ["Beaches", ...]
   const [open, setOpen] = useState(null); // which dropdown is open
+  const { t } = useTranslation();
+
   const [selection, setSelection] = useState({
     country: "",
     city: "",
@@ -85,20 +88,19 @@ export default function SearchFilter() {
     <>
       <Container>
         <div className={styles.searchFilter} ref={ref}>
-          {/* — Country → City — */}
           <div
             className={styles.field}
             onClick={() => setOpen(open === "dest" ? null : "dest")}
           >
             <FaMapMarkerAlt className={styles.icon} />
             <div className={styles.label}>
-              <span>Destination</span>
+              <span>{t("search.destination")}</span>
               <p>
                 {selection.country
                   ? selection.city
                     ? `${selection.country}, ${selection.city}`
                     : selection.country
-                  : "Where to go?"}
+                  : t("search.where")}
               </p>
             </div>
             <i className={styles.chevron} />
@@ -139,15 +141,14 @@ export default function SearchFilter() {
             )}
           </div>
 
-          {/* — Activity — */}
           <div
             className={styles.field}
             onClick={() => setOpen(open === "act" ? null : "act")}
           >
             <MdOutlineLocalActivity className={styles.icon} />
             <div className={styles.label}>
-              <span>Activity</span>
-              <p>{selection.act || "All Activities"}</p>
+              <span>{t("search.activity")}</span>
+              <p>{selection.act || t("search.allActivities")}</p>
             </div>
             <i className={styles.chevron} />
             {open === "act" && (
@@ -167,15 +168,14 @@ export default function SearchFilter() {
             )}
           </div>
 
-          {/* — When — */}
           <div
             className={styles.field}
             onClick={() => setOpen(open === "date" ? null : "date")}
           >
             <FaCalendarAlt className={styles.icon} />
             <div className={styles.label}>
-              <span>When</span>
-              <p>{selection.dateFrom || "Select dates"}</p>
+              <span>{t("search.when")}</span>
+              <p>{selection.dateFrom || t("search.selectDate")}</p>
             </div>
             <i className={styles.chevron} />
             {open === "date" && (
@@ -201,14 +201,13 @@ export default function SearchFilter() {
             )}
           </div>
 
-          {/* — Guests — */}
           <div
             className={styles.field}
             onClick={() => setOpen(open === "guests" ? null : "guests")}
           >
             <FaUserAlt className={styles.icon} />
             <div className={styles.label}>
-              <span>Guests</span>
+              <span>{t("search.guests")}</span>
               <p>{selection.guests}</p>
             </div>
             <i className={styles.chevron} />
@@ -242,12 +241,11 @@ export default function SearchFilter() {
           </div>
 
           <button className={styles.searchBtn} onClick={handleSearch}>
-            Search
+            {t("search.button")}
           </button>
         </div>
       </Container>
 
-      {/* display tours */}
       <ToursList tours={tours} />
     </>
   );

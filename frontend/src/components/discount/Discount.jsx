@@ -5,8 +5,11 @@ import styles from "./Discount.module.css";
 import discountImg from "../../assets/images/h2_50off.png";
 import discountImg2 from "../../assets/images/12518628743016932-adfa95267b1011eb99030242ac110002.avif";
 import Container from "../container/Container";
+import { useTranslation } from "react-i18next";
 
 export default function Discount() {
+  const { t } = useTranslation();
+
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -23,8 +26,8 @@ export default function Discount() {
     <section className={styles.wrapper}>
       <Container>
         <div className={styles.sectionHeader}>
-          <p className={styles.subtitle}>Don’t miss</p>
-          <h2 className={styles.sectionTitle}>Deals & Discounts</h2>
+          <p className={styles.subtitle}>{t("discount.subtitle")}</p>
+          <h2 className={styles.sectionTitle}>{t("discount.title")}</h2>
         </div>
         <div className={styles.flex}>
           <div className={styles.left}>
@@ -38,12 +41,10 @@ export default function Discount() {
             </div>
 
             <div className={styles.promoContent}>
-              <h3 className={styles.promoTitle}>Book Early to Save</h3>
-              <p className={styles.promoText}>
-                Enjoy 15% or more off stays between now and January 4, 2021
-              </p>
+              <h3 className={styles.promoTitle}>{t("discount.promoTitle")}</h3>
+              <p className={styles.promoText}>{t("discount.promoText")}</p>
               <a href="#" className={styles.promoButton}>
-                Book Now&nbsp;
+                {t("discount.bookNow")}{" "}
                 <span className="triply-icon-long-arrow-right" />
               </a>
             </div>

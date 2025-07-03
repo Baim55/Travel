@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./Destinations.module.css";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Destinations() {
   const [countries, setCountries] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     axios
@@ -26,8 +28,8 @@ export default function Destinations() {
 
   return (
     <section className={styles.destinations}>
-      <p className={styles.subtitle}>Don’t miss</p>
-      <h2 className={styles.sectionTitle}>Deals & Discounts</h2>
+      <p className={styles.subtitle}>{t("destinations.subtitle")}</p>
+      <h2 className={styles.sectionTitle}>{t("destinations.title")}</h2>
       <div className={styles.grid}>
         {countries.map((item) => {
           const imageUrl = `./images/${item.country.toLowerCase().trim()}.jpg`;
@@ -46,7 +48,9 @@ export default function Destinations() {
                   />
                 </div>
                 <h3 className={styles.country}>{item.country}</h3>
-                <p className={styles.count}>{item.count} Tours</p>
+                <p className={styles.count}>
+                  {item.count} {t("destinations.tours")}
+                </p>
               </Link>
             </div>
           );

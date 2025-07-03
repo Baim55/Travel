@@ -12,11 +12,13 @@ import { ThemeContext } from "../../context/darkModeContext";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { clearWishlist } from "../../redux/features/wishlistSlice";
 import { clearBookings } from "../../redux/features/bookingSlice";
+import { useTranslation } from "react-i18next";
 
 const Wrapper = () => {
   const baseUrl = "http://localhost:5000/auth";
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const { t, i18n } = useTranslation();
 
   const handleLogout = async () => {
     dispatch(setUser(null));
@@ -34,7 +36,6 @@ const Wrapper = () => {
   const { dark, toggleTheme } = useContext(ThemeContext);
   const { bookings } = useSelector((state) => state.booking);
   const bookingCount = bookings.length;
-
 
   return (
     <div className={styles.wrapper}>
@@ -92,6 +93,16 @@ const Wrapper = () => {
       >
         {dark ? <FaSun /> : <FaMoon />}
       </button>
+      <div className={styles.langDropdown}>
+        <button className={styles.langBtn}>
+          🌐 {i18n.language.toUpperCase()}
+        </button>
+        <ul className={styles.langList}>
+          <li onClick={() => i18n.changeLanguage("en")}>🇬🇧 English</li>
+          <li onClick={() => i18n.changeLanguage("az")}>🇦🇿 Azərbaycan</li>
+          <li onClick={() => i18n.changeLanguage("ru")}>🇷🇺 Русский</li>
+        </ul>
+      </div>
     </div>
   );
 };

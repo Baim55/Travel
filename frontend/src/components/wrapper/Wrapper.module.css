@@ -90,3 +90,61 @@
 }
 
 
+.langDropdown {
+  position: relative;
+  margin-right: 15px;
+}
+
+.langBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text);
+  font-weight: bold;
+}
+
+.langList {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  list-style: none;
+  padding: 0.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  display: none;
+}
+
+.langDropdown:hover .langList {
+  display: block;
+}
+
+.langList li {
+  cursor: pointer;
+  padding: 4px 8px;
+  color: var(--text);
+  transition: background 0.2s;
+}
+
+.langList li:hover {
+  background: var(--bg-hover-light);
+}
+@media (max-width: 576px) {
+  .wrapper {
+    gap: 10px;
+  }
+
+  .iconLink {
+    font-size: 18px;
+  }
+
+  .langDropdown {
+    position: relative;
+  }
+
+  .langList {
+    top: 40px;
+    left: -20px;
+    font-size: 14px;
+  }
+}

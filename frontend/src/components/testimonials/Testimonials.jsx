@@ -5,9 +5,11 @@ import styles from "./Testimonials.module.css";
 import test1 from "../../assets/images/h1_quote-1.png";
 import test2 from "../../assets/images/h1_quote-2.png";
 import { FaQuoteLeft } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 export default function Testimonials() {
   const [reviews, setReviews] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     axios
@@ -33,8 +35,8 @@ export default function Testimonials() {
       <img src={test1} alt="quote left" className={styles.quoteLeft} />
       <img src={test2} alt="quote right" className={styles.quoteRight} />
 
-      <h5 className={styles.subTitle}>Testimonials</h5>
-      <h2 className={styles.mainTitle}>Customer Reviews</h2>
+      <h5 className={styles.subTitle}>{t("testimonials.title")}</h5>
+      <h2 className={styles.mainTitle}>{t("testimonials.subtitle")}</h2>
 
       <Slider {...settings} className={styles.slider}>
         {reviews.map((review) => (

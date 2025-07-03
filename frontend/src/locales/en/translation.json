@@ -1,0 +1,125 @@
+{
+  "navbar": {
+    "home": "Home",
+    "destinations": "Destinations",
+    "about": "About",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "hero": {
+    "enjoy": "Enjoy your stay",
+    "discover": "Discover amazing places at exclusive deals",
+    "adventure": "Feel the adventure",
+    "book": "Book unforgettable experiences today",
+    "comfort": "Travel in comfort",
+    "deals": "Best deals just a click away"
+  },
+  "search": {
+    "destination": "Destination",
+    "where": "Where to go?",
+    "activity": "Activity",
+    "allActivities": "All Activities",
+    "when": "When",
+    "selectDate": "Select dates",
+    "guests": "Guests",
+    "button": "Search"
+  },
+  "whyUs": {
+    "subheading": "Why us",
+    "title": "We Make All The Process Easy",
+
+    "agentTitle": "Best Travel Agent",
+    "agentText": "Our professional tour operators design the most suitable and affordable travel plans for you.",
+
+    "placesTitle": "Beautiful Places",
+    "placesText": "We discover and offer you the most stunning and fascinating destinations around the world.",
+
+    "safetyTitle": "Trust & Safety",
+    "safetyText": "Your safety and trust are our top priorities throughout every step of your journey.",
+
+    "passionTitle": "Passionate Travel",
+    "passionText": "With our passion for travel, we deliver unforgettable experiences and adventures.",
+
+    "priceTitle": "Best Price Guarantee",
+    "priceText": "We guarantee the best quality tours at the most competitive prices.",
+
+    "bookingTitle": "Fast Booking",
+    "bookingText": "Plan your dream trip instantly with our simple and fast booking system."
+  },
+  "discount": {
+    "subtitle": "Don’t miss",
+    "title": "Deals & Discounts",
+    "promoTitle": "Book Early to Save",
+    "promoText": "Enjoy 15% or more off stays between now and January 4, 2021",
+    "bookNow": "Book Now",
+    "loading": "Loading discounts…",
+    "error": "Error",
+    "notFound": "No discounted tours found."
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "subtitle": "Customer Reviews"
+  },
+  "alltours": {
+    "title": "All Available Tours",
+    "searchPlaceholder": "Search by name...",
+    "sortByName": "Sort by Name",
+    "sortByPrice": "Sort by Price",
+    "az": "A–Z",
+    "za": "Z–A",
+    "lowToHigh": "Low → High",
+    "highToLow": "High → Low",
+    "loading": "Loading tours…"
+  },
+  "destinations": {
+    "subtitle": "Don’t miss",
+    "title": "Popular Countries to Visit",
+    "tours": "Tours"
+  },
+  "aboutHome": {
+    "subtitle": "About",
+    "title": "We Help You Planning Your Journey",
+    "text": "At NeoTravel, we believe travel is more than just visiting places — it's about creating stories, making memories, and discovering the beauty of different cultures. We curate unique and immersive tours that take you beyond the typical tourist path. With expert local guides, seamless booking, and carefully selected destinations, we make every journey meaningful and stress-free. Whether you're seeking adventure, relaxation, or cultural exploration, NeoTravel helps turn your travel dreams into unforgettable experiences.",
+    "button": "More Detailed"
+  },
+  "aboutStats": {
+    "destinations": "Destinations",
+    "amazingTours": "Amazing Tours",
+    "tourTypes": "Tour Types",
+    "happyCustomers": "Happy Customers"
+  },
+  "team": {
+    "ourTeam": "Our Team",
+    "meetTheTeam": "Meet The Team",
+    "ceo": "CEO, Founder",
+    "marketing": "Marketing",
+    "designer": "Designer",
+    "support": "Support"
+  },
+  "blog": {
+    "categories": "Blog Categories",
+    "companyInsight": "Company Insight",
+    "creative": "Creative",
+    "lifestyle": "Lifestyle",
+    "tips": "Tips & Tricks",
+    "uncategorized": "Uncategorized",
+    "recentPosts": "Recent Posts",
+    "title": "Blog Posts",
+    "readMore": "Read more →"
+  },
+  "contact": {
+    "title": "Contact",
+    "seoTitle": "Contact",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "hours": "Business Hours",
+    "contactUs": "Contact Us",
+    "description": "Feel free to reach out to us with any questions or concerns!",
+    "namePlaceholder": "Full Name",
+    "emailPlaceholder": "Email Address",
+    "messagePlaceholder": "Your Message",
+    "send": "Send Message"
+  }
+}

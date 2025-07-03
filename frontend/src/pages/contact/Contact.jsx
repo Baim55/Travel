@@ -6,8 +6,11 @@ import { FiPhone, FiClock } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 import PageHeader from "../../components/pageHeader/PageHeader";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -31,10 +34,10 @@ const Contact = () => {
 
   return (
     <>
-      <PageHeader title="Contact" />
+      <PageHeader title={t("contact.title")} />
       <section className={styles.contactSection}>
         <Helmet>
-          <title>Contact | NeoTravel</title>
+          <title>{t("contact.seoTitle")} | NeoTravel</title>
         </Helmet>
         <div className={styles.contactWrapper}>
           <div className={styles.contactInfo}>
@@ -43,7 +46,7 @@ const Contact = () => {
                 <HiOutlineLocationMarker />
               </div>
               <div className={styles.content}>
-                <h3>Address</h3>
+                <h3>{t("contact.address")}</h3>
                 <p>
                   42A Jafar Khandan Street,
                   <br /> Binagadi District, Baku City
@@ -55,7 +58,7 @@ const Contact = () => {
                 <FiPhone />
               </div>
               <div className={styles.content}>
-                <h3>Phone</h3>
+                <h3>{t("contact.phone")}</h3>
                 <p>+994 10 318-52-85</p>
               </div>
             </div>
@@ -64,7 +67,7 @@ const Contact = () => {
                 <MdOutlineEmail />
               </div>
               <div className={styles.content}>
-                <h3>Email</h3>
+                <h3>{t("contact.email")}</h3>
                 <p>rustemzadebeyim@gmail.com</p>
               </div>
             </div>
@@ -73,7 +76,7 @@ const Contact = () => {
                 <FiClock />
               </div>
               <div className={styles.content}>
-                <h3>Business Hours</h3>
+                <h3>{t("contact.hours")}</h3>
                 <p>
                   Every day: 09:00 AM - 20:00 PM <br />
                   (Note: Online support is available 24/7)
@@ -83,15 +86,13 @@ const Contact = () => {
           </div>
 
           <div className={styles.formBox}>
-            <h2 className={styles.heading}>Contact Us</h2>
-            <p className={styles.description}>
-              Feel free to reach out to us with any questions or concerns!
-            </p>
+            <h2 className={styles.heading}>{t("contact.contactUs")}</h2>
+            <p className={styles.description}>{t("contact.description")}</p>
             <form className={styles.form} onSubmit={handleSubmit}>
               <input
                 type="text"
                 name="name"
-                placeholder="Full Name"
+                placeholder={t("contact.namePlaceholder")}
                 className={styles.input}
                 value={formData.name}
                 onChange={handleChange}
@@ -100,7 +101,7 @@ const Contact = () => {
               <input
                 type="email"
                 name="email"
-                placeholder="Email Address"
+                placeholder={t("contact.emailPlaceholder")}
                 className={styles.input}
                 value={formData.email}
                 onChange={handleChange}
@@ -109,14 +110,14 @@ const Contact = () => {
               <textarea
                 name="message"
                 rows="5"
-                placeholder="Your Message"
+                placeholder={t("contact.messagePlaceholder")}
                 className={styles.textarea}
                 value={formData.message}
                 onChange={handleChange}
                 required
               ></textarea>
               <button type="submit" className={styles.button}>
-                Send Message
+                {t("contact.send")}
               </button>
             </form>
           </div>

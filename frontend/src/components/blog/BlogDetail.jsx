@@ -4,11 +4,13 @@ import axios from "axios";
 import styles from "./BlogDetail.module.css";
 import Container from "../container/Container";
 import { FaCalendarAlt, FaUser, FaFolder } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 export default function BlogDetail() {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
   const [recentBlogs, setRecentBlogs] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     axios
@@ -38,10 +40,17 @@ export default function BlogDetail() {
             <div className={styles.content}>
               <h1>{blog.title}</h1>
               <div className={styles.meta}>
-  <span><FaCalendarAlt /> {new Date(blog.createdAt).toLocaleDateString()}</span>
-  <span><FaUser /> {blog.author}</span>
-  <span><FaFolder /> {blog.category}</span>
-</div>
+                <span>
+                  <FaCalendarAlt />{" "}
+                  {new Date(blog.createdAt).toLocaleDateString()}
+                </span>
+                <span>
+                  <FaUser /> {blog.author}
+                </span>
+                <span>
+                  <FaFolder /> {blog.category}
+                </span>
+              </div>
 
               <p>{blog.content}</p>
             </div>
@@ -49,18 +58,18 @@ export default function BlogDetail() {
 
           <aside className={styles.sidebar}>
             <div className={styles.widget}>
-              <h4>Blog Categories</h4>
+              <h4>{t("blog.categories")}</h4>
               <ul>
-                <li>Company Insight</li>
-                <li>Creative</li>
-                <li>Lifestyle</li>
-                <li>Tips & Tricks</li>
-                <li>Uncategorized</li>
+                <li>{t("blog.companyInsight")}</li>
+                <li>{t("blog.creative")}</li>
+                <li>{t("blog.lifestyle")}</li>
+                <li>{t("blog.tips")}</li>
+                <li>{t("blog.uncategorized")}</li>
               </ul>
             </div>
 
             <div className={styles.widget}>
-              <h4>Recent Posts</h4>
+              <h4>{t("blog.recentPosts")}</h4>
               {recentBlogs.map((item) => (
                 <Link key={item._id} to={`/blog/${item._id}`}>
                   <div className={styles.recentPost}>

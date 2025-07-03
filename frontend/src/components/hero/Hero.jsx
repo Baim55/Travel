@@ -4,8 +4,11 @@ import styles from "./Hero.module.css";
 import hero1 from "../../assets/images/hero1.jpg";
 import hero2 from "../../assets/images/hero2.jpg";
 import hero3 from "../../assets/images/hero3.jpg";
+import { useTranslation } from "react-i18next";
 
 const Hero = () => {
+  const { t } = useTranslation();
+
   return (
     <section id={styles.hero_area}>
       <Carousel fade controls={false} indicators={true} interval={4000}>
@@ -15,8 +18,8 @@ const Hero = () => {
             style={{ backgroundImage: `url(${hero1})` }}
           >
             <div className={styles.hero_content}>
-              <h1>Enjoy your stay</h1>
-              <p>Discover amazing places at exclusive deals</p>
+              <h1>{t("hero.enjoy")}</h1>
+              <p>{t("hero.discover")}</p>
             </div>
           </div>
         </Carousel.Item>
@@ -26,8 +29,8 @@ const Hero = () => {
             style={{ backgroundImage: `url(${hero2})` }}
           >
             <div className={styles.hero_content}>
-              <h1>Feel the adventure</h1>
-              <p>Book unforgettable experiences today</p>
+              <h1>{t("hero.adventure")}</h1>
+              <p>{t("hero.book")}</p>
             </div>
           </div>
         </Carousel.Item>
@@ -37,8 +40,8 @@ const Hero = () => {
             style={{ backgroundImage: `url(${hero3})` }}
           >
             <div className={styles.hero_content}>
-              <h1>Travel in comfort</h1>
-              <p>Best deals just a click away</p>
+              <h1>{t("hero.comfort")}</h1>
+              <p>{t("hero.deals")}</p>
             </div>
           </div>
         </Carousel.Item>

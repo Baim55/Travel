@@ -4,9 +4,11 @@ import axios from "axios";
 import styles from "./BlogList.module.css";
 import { Link } from "react-router-dom";
 import Container from "../container/Container";
+import { useTranslation } from "react-i18next";
 
 export default function BlogList() {
   const [blogs, setBlogs] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     axios
@@ -18,9 +20,8 @@ export default function BlogList() {
   return (
     <section className={styles.blogList}>
       <Container>
-        <h2 className={styles.heading}>Blog Posts</h2>
+        <h2 className={styles.heading}>{t("blog.title")}</h2>
         <div className={styles.blogListContainer}>
-          {/* Sol hissə */}
           <div className={styles.left}>
             {blogs.map((blog) => (
               <div key={blog._id} className={styles.blogCard}>
@@ -45,28 +46,27 @@ export default function BlogList() {
                   <h3>{blog.title}</h3>
                   <p>{blog.excerpt}</p>
                   <Link to={`/blog/${blog._id}`} className={styles.readMore}>
-                    Read more →
+                    {t("blog.readMore")}
                   </Link>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Sağ hissə */}
           <aside className={styles.sidebar}>
             <div className={styles.widget}>
-              <h4>Blog Categories</h4>
+              <h4>{t("blog.categories")}</h4>
               <ul>
-                <li>Company Insight</li>
-                <li>Creative</li>
-                <li>Lifestyle</li>
-                <li>Tips & Tricks</li>
-                <li>Uncategorized</li>
+                <li>{t("blog.companyInsight")}</li>
+                <li>{t("blog.creative")}</li>
+                <li>{t("blog.lifestyle")}</li>
+                <li>{t("blog.tips")}</li>
+                <li>{t("blog.uncategorized")}</li>
               </ul>
             </div>
 
             <div className={styles.widget}>
-              <h4>Recent Posts</h4>
+              <h4>{t("blog.recentPosts")}</h4>
               {blogs.slice(0, 3).map((blog) => (
                 <Link key={blog._id} to={`/blog/${blog._id}`}>
                   <div className={styles.recentPost}>

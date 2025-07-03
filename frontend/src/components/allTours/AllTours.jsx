@@ -11,8 +11,10 @@ import {
   sortTourHigest,
 } from "../../redux/features/tourSlice";
 import styles from "./AllTours.module.css";
+import { useTranslation } from "react-i18next";
 
 export default function AllTours() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { tours } = useSelector((state) => state.tour);
   const loading = useSelector((state) => state.tour.status) === "loading";
@@ -49,12 +51,12 @@ export default function AllTours() {
 
   return (
     <Container>
-      <h2 className={styles.title}>All Available Tours</h2>
+      <h2 className={styles.title}>{t("alltours.title")}</h2>
 
       <div className={styles.controls}>
         <input
           type="text"
-          placeholder="Search by name..."
+          placeholder={t("alltours.searchPlaceholder")}
           value={searchTerm}
           onChange={handleSearch}
           className={styles.input}
@@ -65,9 +67,9 @@ export default function AllTours() {
           onChange={handleNameSort}
           className={styles.input}
         >
-          <optgroup label="Sort by Name">
-            <option value="az">A–Z</option>
-            <option value="za">Z–A</option>
+          <optgroup label={t("alltours.sortByName")}>
+            <option value="az">{t("alltours.az")}</option>
+            <option value="za">{t("alltours.za")}</option>
           </optgroup>
         </select>
 
@@ -76,14 +78,14 @@ export default function AllTours() {
           onChange={handlePriceSort}
           className={styles.input}
         >
-          <optgroup label="Sort by Price">
-            <option value="low">Price: Low → High</option>
-            <option value="high">Price: High → Low</option>
+          <optgroup label={t("alltours.sortByPrice")}>
+            <option value="low">{t("alltours.lowToHigh")}</option>
+            <option value="high">{t("alltours.highToLow")}</option>
           </optgroup>
         </select>
       </div>
 
-      {loading ? <p>Loading tours…</p> : <ToursList tours={tours} />}
+      {loading ? <p>{t("alltours.loading")}</p> : <ToursList tours={tours} />}
     </Container>
   );
 }
