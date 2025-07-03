@@ -156,5 +156,25 @@
       "faq": "FAQ",
       "blog": "Blog"
     }
+  },
+  "booking": {
+    "title": "Book This Tour",
+    "time": "Time",
+    "tickets": "Tickets",
+    "addExtra": "Add Extra",
+    "total": "Total",
+    "bookNow": "Book Now",
+    "loginToBook": "Login to Book",
+    "timeSlotFull": "This time slot is full. Please choose another.",
+    "bookingError": "An error occurred during booking.",
+    "bookingSuccess": "Booking completed successfully",
+    "date": "Date",
+    "adultPrice": "Adult (18+) ${{price}}",
+    "youthPrice": "Youth (13–17) ${{price}}",
+    "childPrice": "Children (0–12) ${{price}}",
+    "discount": "{{discount}}% off",
+    "perPerson": "per person",
+    "full": "(Full)",
+    "left": "left"
   }
 }

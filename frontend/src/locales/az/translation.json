@@ -156,5 +156,25 @@
       "faq": "Suallar",
       "blog": "Bloq"
     }
+  },
+  "booking": {
+    "title": "Turu Rezerv Et",
+    "time": "Saat",
+    "tickets": "Biletlər",
+    "addExtra": "Əlavə Xidmətlər",
+    "total": "Cəmi",
+    "bookNow": "Rezerv Et",
+    "loginToBook": "Rezerv etmək üçün daxil olun",
+    "timeSlotFull": "Bu saat doludur. Zəhmət olmasa başqa vaxt seçin.",
+    "bookingError": "Rezervasiya zamanı xəta baş verdi.",
+    "bookingSuccess": "Rezervasiya uğurla tamamlandı",
+    "date": "Tarix",
+    "adultPrice": "Böyüklər (18+) ${{price}}",
+    "youthPrice": "Gənclər (13–17) ${{price}}",
+    "childPrice": "Uşaqlar (0–12) ${{price}}",
+    "discount": "{{discount}}% endirim",
+    "perPerson": "şəxs başına",
+    "full": "(Dolu)",
+    "left": "yer qalıb"
   }
 }

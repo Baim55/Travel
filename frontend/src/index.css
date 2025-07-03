@@ -82,3 +82,16 @@ img {
   --placeholder-color: #999;
   --border-color: #444;
 }
+[data-theme="dark"] .dropdown-menu {
+  background-color: #2b2b2b !important;
+  border-color: #444 !important;
+}
+
+[data-theme="dark"] .dropdown-item {
+  color: #ddd !important;
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+  background-color: #3a3a3a !important;
+  color: #fff !important;
+}

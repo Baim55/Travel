@@ -6,6 +6,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { addBooking } from "../../redux/features/bookingSlice";
+import { useTranslation } from "react-i18next";
 
 export default function BookingForm({
   basePrice,
@@ -17,6 +18,7 @@ export default function BookingForm({
   tourId,
   discount = 0,
 }) {
+  const { t } = useTranslation();
   const [date, setDate] = useState("");
   const [time, setTime] = useState("12:00");
   const [tickets, setTickets] = useState({ adult: 0, youth: 0, child: 0 });
@@ -29,17 +31,8 @@ export default function BookingForm({
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
-  const dayMap = {
-    Sunday: 0,
-    Monday: 1,
-    Tuesday: 2,
-    Wednesday: 3,
-    Thursday: 4,
-    Friday: 5,
-    Saturday: 6,
-  };
-
   const [disabledDays, setDisabledDays] = useState([]);
+
   useEffect(() => {
     if (date) {
       axios
@@ -81,8 +74,6 @@ export default function BookingForm({
 
   const calculateTotal = () => {
     const { adult, youth, child } = tickets;
-
-    // Endirimli qiymət
     const effectiveBase = basePrice - (basePrice * discount) / 100;
     const effectiveYouth = youthPrice - (youthPrice * discount) / 100;
     const effectiveChild = childPrice - (childPrice * discount) / 100;
@@ -108,7 +99,7 @@ export default function BookingForm({
 
     const selectedSlot = slots.find((s) => s.time === time);
     if (!selectedSlot || selectedSlot.remaining <= 0) {
-      setError("This time slot is full. Please choose another.");
+      setError(t("booking.timeSlotFull"));
       return;
     }
 
@@ -120,14 +111,15 @@ export default function BookingForm({
         time,
         guestCount: tickets.adult + tickets.youth + tickets.child,
       });
+
       alert(
-        `Rezervasiya uğurla tamamlandı!\nTarix: ${date}\nTotal: $${calculateTotal()}`
+        `${t("booking.bookingSuccess")}!\n${t("booking.date")}: ${date}\n${t("booking.total")}: $${calculateTotal()}`
       );
     } catch (err) {
       console.error(err);
-      setError("Booking zamanı xəta baş verdi.");
+      setError(t("booking.bookingError"));
     }
-  
+
     const res = await axios.post("/api/bookings", {
       tourId,
       userId: user._id,
@@ -136,24 +128,20 @@ export default function BookingForm({
       guestCount: tickets.adult + tickets.youth + tickets.child,
     });
 
-    // Əlavə etdikdən sonra Redux-a yaz:
     if (res.data) {
-      dispatch(addBooking(res.data)); // ✅ Redux bookingSlice-ə əlavə et
+      dispatch(addBooking(res.data));
     }
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h3>Book This Tour</h3>
+      <h3>{t("booking.title")}</h3>
 
       <label>
         <DatePicker
           selected={date ? new Date(date) : null}
           onChange={(d) => setDate(d.toISOString().split("T")[0])}
-          filterDate={(d) => {
-            const day = d.getDay();
-            return !disabledDays.includes(day);
-          }}
+          filterDate={(d) => !disabledDays.includes(d.getDay())}
           minDate={new Date(Math.max(new Date(availableFrom), new Date()))}
           maxDate={new Date(availableTo)}
           dateFormat="yyyy-MM-dd"
@@ -163,7 +151,7 @@ export default function BookingForm({
       </label>
 
       <fieldset className={styles.timeField}>
-        <legend>Time:</legend>
+        <legend>{t("booking.time")}</legend>
         <div className={styles.time}>
           {slots.map((slot) => (
             <label key={slot.time}>
@@ -176,62 +164,61 @@ export default function BookingForm({
                 disabled={slot.remaining <= 0}
               />
               {slot.time}{" "}
-              {slot.remaining <= 0 ? "(Full)" : `(${slot.remaining} left)`}
+              {slot.remaining <= 0
+                ? t("booking.full")
+                : `(${slot.remaining} ${t("booking.left")})`}
             </label>
           ))}
         </div>
       </fieldset>
 
       <div className={styles.tickets}>
-        <h4>Tickets:</h4>
+        <h4>{t("booking.tickets")}</h4>
 
-        {["adult", "youth", "child"].map((type) => (
-          <label key={type}>
-            {type === "adult" &&
-              `Adult (18+) $${(
-                basePrice -
-                (basePrice * discount) / 100
-              ).toFixed(2)}`}
-            {type === "youth" &&
-              `Youth (13–17) $${(
-                youthPrice -
-                (youthPrice * discount) / 100
-              ).toFixed(2)}`}
-            {type === "child" &&
-              `Children (0–12) $${(
-                childPrice -
-                (childPrice * discount) / 100
-              ).toFixed(2)}`}
-            {discount > 0 && (
-              <div className={styles.discountNote}>{discount}% off</div>
-            )}
+        {["adult", "youth", "child"].map((type) => {
+          let price = 0;
+          if (type === "adult") {
+            price = basePrice - (basePrice * discount) / 100;
+          } else if (type === "youth") {
+            price = youthPrice - (youthPrice * discount) / 100;
+          } else if (type === "child") {
+            price = childPrice - (childPrice * discount) / 100;
+          }
 
-            <div className={styles.select}>
-              <select
-                value={tickets[type]}
-                onChange={(e) => handleTicketsChange(type, e.target.value)}
-              >
-                {[...Array(10).keys()].map((n) => (
-                  <option key={n} value={n}>
-                    {n}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </label>
-        ))}
+          return (
+            <label key={type}>
+              {t(`booking.${type}Price`, { price: price.toFixed(2) })}
+              {discount > 0 && (
+                <div className={styles.discountNote}>
+                  {t("booking.discount", { discount })}
+                </div>
+              )}
+              <div className={styles.select}>
+                <select
+                  value={tickets[type]}
+                  onChange={(e) => handleTicketsChange(type, e.target.value)}
+                >
+                  {[...Array(10).keys()].map((n) => (
+                    <option key={n} value={n}>
+                      {n}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </label>
+          );
+        })}
       </div>
 
       <div className={styles.extras}>
-        <h4>Add Extra</h4>
+        <h4>{t("booking.addExtra")}</h4>
         <label>
           <input
             type="checkbox"
             checked={chosenExtras.serviceBooking}
             onChange={() => toggleExtra("serviceBooking")}
           />
-          {extras.serviceBooking.label} $
-          {extras.serviceBooking.price.toFixed(2)}
+          {extras.serviceBooking.label} ${extras.serviceBooking.price.toFixed(2)}
         </label>
         <label>
           <input
@@ -239,13 +226,12 @@ export default function BookingForm({
             checked={chosenExtras.servicePerson}
             onChange={() => toggleExtra("servicePerson")}
           />
-          {extras.servicePerson.label} ${extras.servicePerson.price.toFixed(2)}{" "}
-          per person
+          {extras.servicePerson.label} ${extras.servicePerson.price.toFixed(2)} {t("booking.perPerson")}
         </label>
       </div>
 
       <div className={styles.total}>
-        <strong>Total:</strong> ${calculateTotal()}
+        <strong>{t("booking.total")}</strong> ${calculateTotal()}
       </div>
 
       {error && <div className={styles.error}>{error}</div>}
@@ -258,7 +244,7 @@ export default function BookingForm({
           if (!user) navigate("/login");
         }}
       >
-        {user ? "Book Now" : "Login to Book"}
+        {user ? t("booking.bookNow") : t("booking.loginToBook")}
       </button>
     </form>
   );
