@@ -6,8 +6,9 @@
   margin-top: 3rem;
   margin-bottom: 1rem;
   font-size: 1.5rem;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid var(--border);
   padding-bottom: 0.5rem;
+  color: var(--text);
 }
 
 .blogList {
@@ -17,10 +18,12 @@
 }
 
 .blogCard {
-  background: #fff;
+  background: var(--card-bg);
+  color: var(--card-text);
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
 }
 
 .image {
@@ -34,22 +37,23 @@
 .blogInfo h3 {
   margin: 0;
   font-size: 1.1rem;
+  color: var(--title-color);
 }
 
 .blogInfo p {
   font-size: 0.95rem;
-  color: #555;
+  color: var(--text-secondary);
   margin: 0.5rem 0;
 }
 
 .blogInfo small {
   display: block;
   margin-bottom: 0.5rem;
-  color: #777;
+  color: var(--text-secondary);
 }
 
 .deleteBtn {
-  background: #dc3545;
+  background: var(--heart-color);
   color: white;
   padding: 0.4rem 0.8rem;
   border: none;
@@ -58,5 +62,5 @@
 }
 
 .deleteBtn:hover {
-  background: #c82333;
+  filter: brightness(0.9);
 }

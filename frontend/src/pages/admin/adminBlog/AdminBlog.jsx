@@ -41,10 +41,11 @@ export default function AdminBlog() {
         {blogs.map((blog) => (
           <div key={blog._id} className={styles.blogCard}>
             <img
-              src={`http://localhost:5000/uploads/${blog.image}`}
+              src={`http://localhost:5000/images/${blog.image}`}
               alt={blog.title}
               className={styles.image}
             />
+
             <div className={styles.blogInfo}>
               <h3>{blog.title}</h3>
               <p>{blog.excerpt}</p>

@@ -25,7 +25,6 @@ const Login = () => {
 
         const from = location.state?.from?.pathname || "/";
         navigate(from, { replace: true });
-        
       } else {
         alert("Login failed");
       }
@@ -50,7 +49,6 @@ const Login = () => {
       <div className={styles.login}>
         <form className={styles.form} onSubmit={handleSubmit}>
           <h3>Login</h3>
-
           <div className={styles.formGroup}>
             <label htmlFor="username">Username</label>
             <input

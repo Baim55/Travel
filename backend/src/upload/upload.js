@@ -5,10 +5,9 @@ const storage = multer.diskStorage({
     cb(null, "./src/images");
   },
   filename: (req, file, cb) => {
-    // Burada fayl adını standartlaşdırırıq:
     const filename = `${Date.now()}-${file.originalname
-      .replace(/\s+/g, "_") // boşluqları alt xətt ilə əvəz et
-      .replace(/[^a-zA-Z0-9_\.-]/g, "")}`; // xüsusi simvolları sil
+      .replace(/\s+/g, "_")
+      .replace(/[^a-zA-Z0-9_\.-]/g, "")}`;
 
     cb(null, filename);
   },

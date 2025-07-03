@@ -31,6 +31,8 @@ import CountryTours from "./pages/countryTours/CountryTours";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
 import AdminBlog from "./pages/admin/adminBlog/AdminBlog";
+import BlogList from "./components/blog/BlogList";
+import BlogDetail from "./components/blog/BlogDetail";
 
 const router = createBrowserRouter([
   {
@@ -100,6 +102,14 @@ const router = createBrowserRouter([
       {
         path: "/tours/country/:country",
         element: <CountryTours />,
+      },
+      {
+        path: "/blog/:id",
+        element: <BlogDetail />,
+      },
+      {
+        path: "/blog",
+        element: <BlogList />,
       },
       {
         path: "admin",
