@@ -121,5 +121,40 @@
     "emailPlaceholder": "Email Ünvanı",
     "messagePlaceholder": "Mesajınız",
     "send": "Mesaj Göndər"
+  },
+  "footer": {
+    "description": "Rəqəmsal dünyada rahat və sərfəli səyahət üçün bizimlə olun!",
+    "addressLine1": "Cəfər Xəndan 42A",
+    "addressLine2": "Binəqədi, Bakı 1138",
+    "viewMap": "Xəritəyə bax",
+    "ourServices": "Xidmətlərimiz",
+    "services": {
+      "booking": "Rezervasiya",
+      "rentalCar": "Avtomobil icarəsi",
+      "hostelWorld": "HostelWorld",
+      "trivago": "Trivago",
+      "tripAdvisor": "TripAdvisor"
+    },
+    "explore": "Kəşf et",
+    "exploreItems": {
+      "madrid": "Madrid Turu",
+      "stockholm": "Stokholm Şəhəri",
+      "roma": "Roma Şəhəri",
+      "shanghai": "Şanxay Şəhəri",
+      "tokyo": "Tokio"
+    },
+    "getUpdates": "Yeniliklər və Daha Çox",
+    "subscribeText": "Pulsuz bülletenə abunə olun və yeniliklərdən xəbərdar olun",
+    "emailPlaceholder": "Email ünvanınız",
+    "subscribeButton": "Abunə ol →",
+    "copyright": "Copyright © 2025 NeoTravel. Bütün hüquqlar qorunur.",
+    "links": {
+      "privacy": "Gizlilik",
+      "policy": "Qaydalar",
+      "about": "Haqqımızda",
+      "support": "Dəstək",
+      "faq": "Suallar",
+      "blog": "Bloq"
+    }
   }
 }

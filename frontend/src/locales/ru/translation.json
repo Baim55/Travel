@@ -121,5 +121,40 @@
     "emailPlaceholder": "Электронная почта",
     "messagePlaceholder": "Ваше сообщение",
     "send": "Отправить сообщение"
+  },
+  "footer": {
+    "description": "Присоединяйтесь к нам для комфортных и выгодных путешествий в цифровом мире!",
+    "addressLine1": "Джафар Хандан 42А",
+    "addressLine2": "Бинагади, Баку 1138",
+    "viewMap": "Посмотреть на карте",
+    "ourServices": "Наши услуги",
+    "services": {
+      "booking": "Бронирование",
+      "rentalCar": "Прокат авто",
+      "hostelWorld": "HostelWorld",
+      "trivago": "Trivago",
+      "tripAdvisor": "TripAdvisor"
+    },
+    "explore": "Исследовать",
+    "exploreItems": {
+      "madrid": "Тур по Мадриду",
+      "stockholm": "Стокгольм",
+      "roma": "Рим",
+      "shanghai": "Шанхай",
+      "tokyo": "Токио"
+    },
+    "getUpdates": "Получайте обновления и больше",
+    "subscribeText": "Подпишитесь на бесплатную рассылку и будьте в курсе событий",
+    "emailPlaceholder": "Ваш email",
+    "subscribeButton": "Подписаться →",
+    "copyright": "Copyright © 2025 NeoTravel. Все права защищены.",
+    "links": {
+      "privacy": "Конфиденциальность",
+      "policy": "Политика",
+      "about": "О нас",
+      "support": "Поддержка",
+      "faq": "FAQ",
+      "blog": "Блог"
+    }
   }
 }

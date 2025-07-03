@@ -121,5 +121,40 @@
     "emailPlaceholder": "Email Address",
     "messagePlaceholder": "Your Message",
     "send": "Send Message"
+  },
+  "footer": {
+    "description": "Join us for a comfortable and affordable journey in the digital world!",
+    "addressLine1": "Jafar Khandan 42A",
+    "addressLine2": "Binagadi, Baku 1138",
+    "viewMap": "View Map",
+    "ourServices": "Our Services",
+    "services": {
+      "booking": "Booking",
+      "rentalCar": "Rental Car",
+      "hostelWorld": "HostelWorld",
+      "trivago": "Trivago",
+      "tripAdvisor": "TripAdvisor"
+    },
+    "explore": "Explore",
+    "exploreItems": {
+      "madrid": "Madrid Tour",
+      "stockholm": "Stockholm City",
+      "roma": "Roma City",
+      "shanghai": "Shanghai City",
+      "tokyo": "Tokyo"
+    },
+    "getUpdates": "Get Updates & More",
+    "subscribeText": "Subscribe to the free newsletter and stay up to date",
+    "emailPlaceholder": "Your email",
+    "subscribeButton": "Subscribe →",
+    "copyright": "Copyright © 2025 NeoTravel. All Rights Reserved.",
+    "links": {
+      "privacy": "Privacy",
+      "policy": "Policy",
+      "about": "About Us",
+      "support": "Support",
+      "faq": "FAQ",
+      "blog": "Blog"
+    }
   }
 }
