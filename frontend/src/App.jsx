@@ -5,8 +5,6 @@ import Home from "./pages/Home";
 import Login from "./pages/auth/login/Login";
 import Register from "./pages/auth/register/Register";
 import Destination from "./pages/Destination";
-import Activities from "./pages/Activities";
-import TripPlanner from "./pages/TripPlanner";
 import Contact from "./pages/contact/Contact";
 import Wishlist from "./pages/wishlist/Wishlist";
 import TourDetail from "./pages/TourDetail/TourDetail";
@@ -33,6 +31,7 @@ import Blog from "./pages/Blog";
 import AdminBlog from "./pages/admin/adminBlog/AdminBlog";
 import BlogList from "./components/blog/BlogList";
 import BlogDetail from "./components/blog/BlogDetail";
+import FAQ from "./pages/FAQ/FAQ";
 
 const router = createBrowserRouter([
   {
@@ -52,16 +51,12 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: "/activities",
-        element: <Activities />,
-      },
-      {
         path: "/blog",
         element: <Blog />,
       },
       {
-        path: "/plan",
-        element: <TripPlanner />,
+        path: "/FAQ",
+        element: <FAQ />,
       },
       {
         path: "/contact",

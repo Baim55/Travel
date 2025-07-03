@@ -29,13 +29,10 @@ const Navlist = () => {
           <NavLink to="/about" className={({ isActive }) => isActive ? styles.activeLink : ""} onClick={closeMenu}>About</NavLink>
         </li>
         <li>
-          <NavLink to="/activities" className={({ isActive }) => isActive ? styles.activeLink : ""} onClick={closeMenu}>Activities</NavLink>
-        </li>
-        <li>
           <NavLink to="/blog" className={({ isActive }) => isActive ? styles.activeLink : ""} onClick={closeMenu}>Blog</NavLink>
         </li>
         <li>
-          <NavLink to="/plan" className={({ isActive }) => isActive ? styles.activeLink : ""} onClick={closeMenu}>Trip Planner</NavLink>
+          <NavLink to="/faq" className={({ isActive }) => isActive ? styles.activeLink : ""} onClick={closeMenu}>FAQ</NavLink>
         </li>
         <li>
           <NavLink to="/contact" className={({ isActive }) => isActive ? styles.activeLink : ""} onClick={closeMenu}>Contact</NavLink>
