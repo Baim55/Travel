@@ -11,6 +11,7 @@ import { useContext } from "react";
 import { ThemeContext } from "../../context/darkModeContext";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { clearWishlist } from "../../redux/features/wishlistSlice";
+import { clearBookings } from "../../redux/features/bookingSlice";
 
 const Wrapper = () => {
   const baseUrl = "http://localhost:5000/auth";
@@ -20,6 +21,7 @@ const Wrapper = () => {
   const handleLogout = async () => {
     dispatch(setUser(null));
     dispatch(clearWishlist());
+    dispatch(clearBookings());
     const res = await axios.get(`${baseUrl}/logout`, { withCredentials: true });
 
     if (res.status === 200) {
@@ -30,6 +32,9 @@ const Wrapper = () => {
   };
 
   const { dark, toggleTheme } = useContext(ThemeContext);
+  const { bookings } = useSelector((state) => state.booking);
+  const bookingCount = bookings.length;
+
 
   return (
     <div className={styles.wrapper}>
@@ -74,10 +79,12 @@ const Wrapper = () => {
         to="/mybooking"
         className={styles.iconLink}
         title="Booking"
-        style={{ marginLeft: "15px" }}
+        style={{ marginLeft: "15px", position: "relative" }}
       >
         <EventAvailableIcon size={21} />
+        {bookingCount > 0 && <sup className={styles.sup}>{bookingCount}</sup>}
       </Link>
+
       <button
         onClick={toggleTheme}
         className={styles.iconLink}

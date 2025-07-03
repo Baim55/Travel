@@ -52,6 +52,8 @@ img {
   --cube-hover-color: #000;
   --title-color: #202f59;
   --input-bg: #fff;
+  --placeholder-color: #888;
+  --border-color: #ccc;
 }
 
 [data-theme="dark"] {
@@ -77,4 +79,6 @@ img {
   --cube-hover-color: #000;
   --title-color: #f8fafc;
   --input-bg: #333;
+  --placeholder-color: #999;
+  --border-color: #444;
 }

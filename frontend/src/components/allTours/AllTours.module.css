@@ -1,0 +1,53 @@
+.title {
+  margin: 2rem 0 1rem;
+  text-align: center;
+  font-size: 2rem;
+  color: var(--text-color);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* General input & select style */
+.input {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  width: 240px;
+  font-size: 1rem;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  position: relative;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Placeholder style */
+.input::placeholder {
+  color: var(--placeholder-color);
+}
+
+/* Focus style */
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 5px var(--accent);
+}
+
+.input::-ms-expand {
+  display: none;
+}
+
+/* Placeholder və optionlar */
+.input option,
+.input optgroup {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  font-size: 0.95rem;
+}

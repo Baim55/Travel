@@ -1,20 +1,25 @@
+// redux/features/tourSlice.js
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const baseURL = "http://localhost:5000/api/tours";
+
 const initialState = {
   tours: [],
   allTours: [],
+  loading: false,
+  error: null,
 };
 
+// ✅ GET ALL TOURS
 export const getTours = createAsyncThunk("tour/getTours", async () => {
   const { data } = await axios.get(baseURL);
   return data;
 });
 
+// ✅ ADD TOUR
 export const addTour = createAsyncThunk(
   "tour/addTour",
-  // burada 'formData' obyektidir, yox JSON
   async (formData, { rejectWithValue }) => {
     try {
       const { data } = await axios.post(baseURL, formData, {
@@ -27,11 +32,13 @@ export const addTour = createAsyncThunk(
   }
 );
 
-export const deleteTour = createAsyncThunk("product/deleteTour", async (id) => {
+// ✅ DELETE TOUR
+export const deleteTour = createAsyncThunk("tour/deleteTour", async (id) => {
   await axios.delete(`${baseURL}/${id}`);
   return id;
 });
 
+// ✅ UPDATE TOUR
 export const updateTour = createAsyncThunk(
   "tour/updateTour",
   async ({ id, formData }) => {
@@ -42,53 +49,48 @@ export const updateTour = createAsyncThunk(
   }
 );
 
+// ✅ SEARCH TOUR
 export const searchTour = createAsyncThunk(
   "tour/searchTour",
   async (search, { getState }) => {
     if (search === "") {
-      return getState().tours.allTours;
+      return getState().tour.allTours;
     }
     const { data } = await axios.get(`${baseURL}/search/${search}`);
     return data;
   }
 );
 
-export const tourSlice = createSlice({
+// ✅ SLICE
+const tourSlice = createSlice({
   name: "tour",
   initialState,
   reducers: {
-    // searchProduct: (state, action) => {
-    //   state.products = state.allProducts.filter((item) =>
-    //     item.title.toLowerCase().includes(action.payload.toLowerCase())
-    //   );
-    // },
-    // sortProductAZ: (state) => {
-    //   state.products = state.products.sort((a, b) =>
-    //     a.title.localeCompare(b.title)
-    //   );
-    // },
-    // sortProductZA: (state) => {
-    //   state.products = state.products.sort((a, b) =>
-    //     b.title.localeCompare(a.title)
-    //   );
-    // },
-
     sortTourLowest: (state) => {
-      state.tours = state.tours.sort((a, b) => a.price - b.price);
+      state.tours = state.tours.slice().sort((a, b) => a.price - b.price);
     },
     sortTourHigest: (state) => {
-      state.tours = state.tours.sort((a, b) => b.price - a.price);
+      state.tours = state.tours.slice().sort((a, b) => b.price - a.price);
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getTours.fulfilled, (state, action) => {
-      state.tours = action.payload;
-      state.allTours = action.payload;
-    });
+    builder
+      .addCase(getTours.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getTours.fulfilled, (state, action) => {
+        state.loading = false;
+        state.tours = action.payload;
+        state.allTours = action.payload;
+      })
+      .addCase(getTours.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+
     builder
       .addCase(addTour.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
       .addCase(addTour.fulfilled, (state, action) => {
         state.loading = false;
@@ -98,20 +100,35 @@ export const tourSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       });
+
     builder.addCase(deleteTour.fulfilled, (state, action) => {
-      state.tours = state.tours.filter((item) => item._id !== action.payload);
+      state.tours = state.tours.filter((t) => t._id !== action.payload);
     });
+
     builder.addCase(updateTour.fulfilled, (state, { payload }) => {
-      state.tours = state.tours.map((t) =>
-        t._id === payload._id ? payload : t
-      );
+      state.tours = state.tours.map((t) => (t._id === payload._id ? payload : t));
     });
+
     builder.addCase(searchTour.fulfilled, (state, action) => {
       state.tours = action.payload;
+    });
+
+    // ✅ AZ & ZA sort (manual action dispatch)
+    builder.addCase("tour/sortTourAZ", (state) => {
+      state.tours = state.tours.slice().sort((a, b) => a.name.localeCompare(b.name));
+    });
+
+    builder.addCase("tour/sortTourZA", (state) => {
+      state.tours = state.tours.slice().sort((a, b) => b.name.localeCompare(a.name));
     });
   },
 });
 
+// ✅ Manual actions for AZ-ZA
+export const sortTourAZ = () => ({ type: "tour/sortTourAZ" });
+export const sortTourZA = () => ({ type: "tour/sortTourZA" });
+
+// ✅ Normal reducers
 export const { sortTourLowest, sortTourHigest } = tourSlice.actions;
 
 export default tourSlice.reducer;

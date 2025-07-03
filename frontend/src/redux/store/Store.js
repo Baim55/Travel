@@ -4,6 +4,7 @@ import storage from "redux-persist/lib/storage";
 import wishlistSlice from "../features/wishlistSlice";
 import userSlice from "../features/userSlice";
 import tourSlice from "../features/tourSlice";
+import bookingSlice from "../features/bookingSlice";
 
 const persistTourConfig = {
   key: "tour",
@@ -21,7 +22,10 @@ const persistWishlistConfig = {
   storage,
 };
 
-
+const persistBookingConfig = {
+  key: "booking",
+  storage,
+};
 
 const persistedTourReducer = persistReducer(persistTourConfig, tourSlice);
 
@@ -32,12 +36,17 @@ const persistedWishlistReducer = persistReducer(
   wishlistSlice
 );
 
+const persistedBookingReducer = persistReducer(
+  persistBookingConfig,
+  bookingSlice
+);
 
 export const store = configureStore({
   reducer: {
     user: persistedUserReducer,
     tour: persistedTourReducer,
     wishlist: persistedWishlistReducer,
+    booking: persistedBookingReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

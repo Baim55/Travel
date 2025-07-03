@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  bookings: [], // rezervasiyalar siyahısı
+  bookings: [], 
 };
 
 export const bookingSlice = createSlice({

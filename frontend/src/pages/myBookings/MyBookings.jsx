@@ -7,33 +7,42 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
+import { useDispatch } from "react-redux";
+import { addBooking, removeBooking } from "../../redux/features/bookingSlice";
 
 export default function MyBookings() {
   const user = useSelector((state) => state.user.user);
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const handleDelete = async (id) => {
-    if (window.confirm("Bu rezervasiyanı silmək istədiyinizə əminsiniz?")) {
-      try {
-        await axios.delete(`/api/bookings/${id}`);
-        setBookings((prev) => prev.filter((b) => b._id !== id));
-      } catch (err) {
-        console.error("Silinmə zamanı xəta:", err);
-        alert("Silinmə zamanı xəta baş verdi.");
-      }
+const handleDelete = async (id) => {
+  if (window.confirm("Bu rezervasiyanı silmək istədiyinizə əminsiniz?")) {
+    try {
+      await axios.delete(`/api/bookings/${id}`);
+      setBookings((prev) => prev.filter((b) => b._id !== id));
+      dispatch(removeBooking(id)); // 🔥 BURADA Redux-dan da sil
+    } catch (err) {
+      console.error("Silinmə zamanı xəta:", err);
+      alert("Silinmə zamanı xəta baş verdi.");
     }
-  };
+  }
+};
+
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (user?._id) {
       axios
         .get(`/api/bookings/user?userId=${user._id}`)
-        .then((res) => setBookings(res.data))
+        .then((res) => {
+          setBookings(res.data);
+          res.data.forEach((booking) => dispatch(addBooking(booking))); // 🔥 Redux-a yaz
+        })
         .catch((err) => console.error(err))
         .finally(() => setLoading(false));
     }
-  }, [user]);
+  }, [user, dispatch]);
 
   if (!user) return <p className={styles.msg}>Zəhmət olmasa daxil olun.</p>;
   if (loading) return <p className={styles.msg}>Yüklənir...</p>;

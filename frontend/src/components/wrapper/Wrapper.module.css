@@ -11,6 +11,7 @@
   border: none;
   cursor: pointer;
   transition: color 0.3s ease;
+  position: relative;
 }
 
 .iconLink:hover {
@@ -74,4 +75,18 @@
   background-color: #3a3a3a !important;
   color: #fff !important;
 }
+
+.sup {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ffa726;
+  color: white;
+  font-size: 11px;
+  padding:9px 6px;
+  font-weight: bold;
+  border-radius: 50%;
+  z-index: 99;
+}
+
 

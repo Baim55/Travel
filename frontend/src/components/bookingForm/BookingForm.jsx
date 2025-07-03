@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "./BookingForm.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { addBooking } from "../../redux/features/bookingSlice";
 
 export default function BookingForm({
   basePrice,
@@ -25,7 +26,7 @@ export default function BookingForm({
   });
   const [slots, setSlots] = useState([]);
   const [error, setError] = useState("");
-
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
   const dayMap = {
@@ -125,6 +126,19 @@ export default function BookingForm({
     } catch (err) {
       console.error(err);
       setError("Booking zamanı xəta baş verdi.");
+    }
+  
+    const res = await axios.post("/api/bookings", {
+      tourId,
+      userId: user._id,
+      date,
+      time,
+      guestCount: tickets.adult + tickets.youth + tickets.child,
+    });
+
+    // Əlavə etdikdən sonra Redux-a yaz:
+    if (res.data) {
+      dispatch(addBooking(res.data)); // ✅ Redux bookingSlice-ə əlavə et
     }
   };
 
