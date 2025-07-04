@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./Wrapper.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setUser } from "../../redux/features/userSlice";
-import { clearWishlist } from "../../redux/features/wishlistSlice";
+import { clearWishlist, setWishlist } from "../../redux/features/wishlistSlice";
 import { clearBookings } from "../../redux/features/bookingSlice";
 import { ThemeContext } from "../../context/darkModeContext";
 import { useTranslation } from "react-i18next";
@@ -32,9 +32,17 @@ const Wrapper = () => {
     alert(res.status === 200 ? "Logout successful" : "Logout failed");
   };
 
+  useEffect(() => {
+  if (user) {
+    axios
+      .get(`http://localhost:5000/api/wishlist?userId=${user._id}`)
+      .then((res) => dispatch(setWishlist(res.data)))
+      .catch((err) => console.error("Wishlist fetch error:", err));
+  }
+}, [user]);
+
   return (
     <div className={styles.wrapper}>
-      {/* 👤 USER DROPDOWN */}
       <div className="dropdown">
         <button
           className={`${styles.iconLink} btn`}

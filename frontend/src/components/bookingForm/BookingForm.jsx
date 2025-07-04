@@ -103,6 +103,12 @@ export default function BookingForm({
       return;
     }
 
+    const guestCount = tickets.adult + tickets.youth + tickets.child;
+    if (guestCount === 0) {
+      toast.error(t("booking.noGuest")); // yeni tərcümə əlavə ediləcək
+      return;
+    }
+
     try {
       await axios.post("/api/bookings", {
         tourId,
@@ -113,7 +119,9 @@ export default function BookingForm({
       });
 
       alert(
-        `${t("booking.bookingSuccess")}!\n${t("booking.date")}: ${date}\n${t("booking.total")}: $${calculateTotal()}`
+        `${t("booking.bookingSuccess")}!\n${t("booking.date")}: ${date}\n${t(
+          "booking.total"
+        )}: $${calculateTotal()}`
       );
     } catch (err) {
       console.error(err);
@@ -140,7 +148,12 @@ export default function BookingForm({
       <label>
         <DatePicker
           selected={date ? new Date(date) : null}
-          onChange={(d) => setDate(d.toISOString().split("T")[0])}
+          onChange={(d) => {
+            const year = d.getFullYear();
+            const month = String(d.getMonth() + 1).padStart(2, "0");
+            const day = String(d.getDate()).padStart(2, "0");
+            setDate(`${year}-${month}-${day}`);
+          }}
           filterDate={(d) => !disabledDays.includes(d.getDay())}
           minDate={new Date(Math.max(new Date(availableFrom), new Date()))}
           maxDate={new Date(availableTo)}
@@ -218,7 +231,8 @@ export default function BookingForm({
             checked={chosenExtras.serviceBooking}
             onChange={() => toggleExtra("serviceBooking")}
           />
-          {extras.serviceBooking.label} ${extras.serviceBooking.price.toFixed(2)}
+          {extras.serviceBooking.label} $
+          {extras.serviceBooking.price.toFixed(2)}
         </label>
         <label>
           <input
@@ -226,7 +240,8 @@ export default function BookingForm({
             checked={chosenExtras.servicePerson}
             onChange={() => toggleExtra("servicePerson")}
           />
-          {extras.servicePerson.label} ${extras.servicePerson.price.toFixed(2)} {t("booking.perPerson")}
+          {extras.servicePerson.label} ${extras.servicePerson.price.toFixed(2)}{" "}
+          {t("booking.perPerson")}
         </label>
       </div>
 

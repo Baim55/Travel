@@ -175,6 +175,8 @@
     "discount": "{{discount}}% off",
     "perPerson": "per person",
     "full": "(Full)",
-    "left": "left"
+    "left": "left",
+    "noGuest": "Please select at least one guest before booking."
+
   }
 }

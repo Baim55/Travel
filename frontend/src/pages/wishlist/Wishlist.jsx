@@ -1,26 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import styles from "./Wishlist.module.css";
-import { addWishlist } from "../../redux/features/wishlistSlice";
+import {
+  setWishlist,
+  removeWishlist,
+} from "../../redux/features/wishlistSlice";
 import Container from "../../components/container/Container";
+import axios from "axios";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.user);
   const wishlist = useSelector((state) => state.wishlist.wishlist);
 
-  const handleToggleWishlist = (item) => {
-    dispatch(addWishlist(item)); // toggle kimi işləyir
-  };
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(`http://localhost:5000/api/wishlist?userId=${user._id}`)
+        .then((res) => dispatch(setWishlist(res.data)))
+        .catch((err) => console.error("Fetch wishlist error:", err));
+    }
+  }, [user]);
 
+  const handleRemove = async (tourId) => {
+    try {
+      await axios.post("http://localhost:5000/api/wishlist/toggle", {
+        tourId,
+        userId: user._id,
+      });
+      dispatch(removeWishlist(tourId));
+    } catch (err) {
+      console.error("Remove from wishlist error:", err);
+    }
+  };
 
   return (
     <section className={styles.wishlist}>
       <Container>
-        <h2 className={styles.heading}> My Wishlist</h2>
-
+        <h2 className={styles.heading}>My Wishlist</h2>
         {wishlist.length === 0 ? (
           <p className={styles.emptyMessage}>
             There is nothing on the wishlist.
@@ -47,16 +67,16 @@ const Wishlist = () => {
                     />
                   </Link>
                   <div className={styles.overlay}></div>
-
-                  {/* X iconu (sil) */}
                   <div
                     className={`${styles.heartIcon} ${styles.active}`}
-                    onClick={() => handleToggleWishlist(item)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRemove(item._id);
+                    }}
                   >
                     <FaTimes />
                   </div>
                 </div>
-
                 <div className={styles.content}>
                   <h3 className={styles.title}>{item.name}</h3>
                   <div className={styles.location}>
@@ -65,8 +85,6 @@ const Wishlist = () => {
                       {item.city}, {item.country}
                     </span>
                   </div>
-
-                  {/* Yeni əlavə olunan meta bölməsi duration və guest sayı ilə */}
                   <div className={styles.meta}>
                     <span>
                       <i className="fas fa-calendar-alt"></i> {item.duration}
@@ -75,14 +93,8 @@ const Wishlist = () => {
                       <i className="fas fa-user"></i> {item.maxGuests}
                     </span>
                   </div>
-
                   <p className={styles.price}>${item.price}</p>
-
-                  <button
-                    className={styles.reserve}
-                  >
-                    Reserve
-                  </button>
+                  <button className={styles.reserve}>Reserve</button>
                 </div>
               </div>
             ))}

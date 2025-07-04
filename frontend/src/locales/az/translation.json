@@ -175,6 +175,7 @@
     "discount": "{{discount}}% endirim",
     "perPerson": "şəxs başına",
     "full": "(Dolu)",
-    "left": "yer qalıb"
+    "left": "yer qalıb",
+    "noGuest": "Zəhmət olmasa, ən azı bir qonaq seçin."
   }
 }

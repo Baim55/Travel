@@ -11,6 +11,7 @@ import adminRouter from "./src/routes/adminRouter.js";
 import bookingRouter from "./src/routes/bookingRouter.js";
 import messageRouter from "./src/routes/messageRouter.js";
 import blogRouter from "./src/routes/blogRouter.js";
+import wishlistRouter from "./src/routes/wishlistRouter.js";
 
 const app = express();
 const port = process.env.PORT || 5001;
@@ -26,6 +27,7 @@ app.use("/images", express.static("src/images"));
 app.use("/api/reviews", reviewRouter);
 app.use("/api", adminRouter);
 app.use("/api/bookings", bookingRouter);
+app.use("/api/wishlist", wishlistRouter);
 app.use("/api/messages", messageRouter);
 app.use("/api/blogs", blogRouter);
 
