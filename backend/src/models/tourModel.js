@@ -40,10 +40,6 @@ const tourSchema = new mongoose.Schema(
       lat: { type: Number, required: true },
       lng: { type: Number, required: true },
     },
-    model3D: {
-      type: String, // Faylın adı və ya tam path
-      required: false,
-    },
     isFeatured: { type: Boolean, default: false },
     nearby: {
       hotels: [

@@ -12,24 +12,23 @@ import { addBooking, removeBooking } from "../../redux/features/bookingSlice";
 import { useTranslation } from "react-i18next";
 
 export default function MyBookings() {
-   const { t } = useTranslation();
+  const { t } = useTranslation();
   const user = useSelector((state) => state.user.user);
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
 
-const handleDelete = async (id) => {
-  if (window.confirm("Bu rezervasiyanı silmək istədiyinizə əminsiniz?")) {
-    try {
-      await axios.delete(`/api/bookings/${id}`);
-      setBookings((prev) => prev.filter((b) => b._id !== id));
-      dispatch(removeBooking(id)); // 🔥 BURADA Redux-dan da sil
-    } catch (err) {
-      console.error("Silinmə zamanı xəta:", err);
-      alert("Silinmə zamanı xəta baş verdi.");
+  const handleDelete = async (id) => {
+    if (window.confirm("Do you want to delete this reservation?")) {
+      try {
+        await axios.delete(`/api/bookings/${id}`);
+        setBookings((prev) => prev.filter((b) => b._id !== id));
+        dispatch(removeBooking(id));
+      } catch (err) {
+        console.error("Silinmə zamanı xəta:", err);
+        toast.error(t("reserve.deleteError"));
+      }
     }
-  }
-};
-
+  };
 
   const dispatch = useDispatch();
 
@@ -88,7 +87,7 @@ const handleDelete = async (id) => {
                 onClick={() => handleDelete(b._id)}
                 className={styles.deleteBtn}
               >
-               {t("reserve.remove")}
+                {t("reserve.remove")}
               </button>
             </div>
           ))}
