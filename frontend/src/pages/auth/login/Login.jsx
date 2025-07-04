@@ -7,6 +7,7 @@ import { setUser } from "../../../redux/features/userSlice";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const baseUrl = "http://localhost:5000/auth";

@@ -34,6 +34,7 @@ import BlogDetail from "./components/blog/BlogDetail";
 import FAQ from "./pages/FAQ/FAQ";
 import Success from "./pages/payment/Success";
 import Cancel from "./pages/payment/Cancel";
+import NotFound from "./pages/notFound/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -137,6 +138,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "*",
+    element: <NotFound />,
+  },
 ]);
 function App() {
   const dispatch = useDispatch();
@@ -145,7 +150,7 @@ function App() {
     async function fetchUser() {
       try {
         const res = await axios.get("http://localhost:5000/auth/me", {
-          withCredentials: true, // httpOnly cookie-ni göndərmək üçün
+          withCredentials: true,
         });
         dispatch(setUser(res.data.user));
       } catch (error) {

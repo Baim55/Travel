@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { addBooking, removeBooking } from "../../redux/features/bookingSlice";
 import { useTranslation } from "react-i18next";
 import PageHeader from "../../components/pageHeader/PageHeader";
+import { Helmet } from "react-helmet";
 
 export default function MyBookings() {
   const { t } = useTranslation();
@@ -53,6 +54,9 @@ export default function MyBookings() {
 
   return (
     <div>
+       <Helmet>
+              <title> My Bookings | NeoTravel</title>
+            </Helmet>
       <PageHeader title={t("reserve.title")}/>
       <Container>
         <div className={styles.wrapper}>

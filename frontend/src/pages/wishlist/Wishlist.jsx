@@ -11,6 +11,7 @@ import Container from "../../components/container/Container";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import PageHeader from "../../components/pageHeader/PageHeader";
+import { Helmet } from "react-helmet";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,9 @@ const Wishlist = () => {
 
   return (
     <>
+     <Helmet>
+            <title> Wishlist | NeoTravel</title>
+          </Helmet>
       <PageHeader title={t("wishlist.title")} />
       <section className={styles.wishlist}>
         <Container>

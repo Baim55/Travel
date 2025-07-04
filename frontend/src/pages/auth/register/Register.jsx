@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { registerschema } from "../../../schema/registerSchema";
 import styles from "./Register.module.css"; // Module CSS import
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const baseUrl = "http://localhost:5000/auth";

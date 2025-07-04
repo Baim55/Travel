@@ -1,0 +1,31 @@
+.container {
+  text-align: center;
+  padding: 100px 20px;
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+.container h1 {
+  font-size: 80px;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+.container p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.backLink {
+  padding: 10px 20px;
+  background-color: var(--primary);
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.backLink:hover {
+  background-color: var(--primary-hover);
+}

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "@google/model-viewer"; // AR + 3D dəstəyi üçün vacibdir
+import { Helmet } from "react-helmet";
 
 export default function Tour3DView() {
   const { id } = useParams();

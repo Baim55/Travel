@@ -14,6 +14,7 @@ import ReviewList from "../../components/reviews/ReviewList";
 import BookingForm from "../../components/bookingForm/BookingForm";
 import { addBooking } from "../../redux/features/bookingSlice";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
@@ -94,6 +95,9 @@ export default function TourDetail() {
 
   return (
     <section className={styles.tourdetail}>
+       <Helmet>
+              <title> Detail | NeoTravel</title>
+            </Helmet>
       <Container>
         <div className={styles.detail}>
           <div className={styles.header}>

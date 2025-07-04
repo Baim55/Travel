@@ -4,6 +4,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import PageHeader from "../../components/pageHeader/PageHeader";
 import Container from "../../components/container/Container";
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
 
 const faqData = [
   { category: "payment" },
@@ -27,6 +28,9 @@ export default function Faq() {
 
   return (
     <section>
+       <Helmet>
+              <title> FAQ | NeoTravel</title>
+            </Helmet>
       <PageHeader
         title={t("pageHeader.faq.title")}
       />

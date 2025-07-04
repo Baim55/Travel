@@ -4,6 +4,7 @@ import { resetschema } from "../../../schema/ResetSchema";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "../login/Login.module.css";
+import { Helmet } from "react-helmet";
 
 const ResetPassword = () => {
   const location = useLocation();
