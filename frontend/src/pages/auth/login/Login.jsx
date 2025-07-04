@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../../redux/features/userSlice";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const baseUrl = "http://localhost:5000/auth";
@@ -21,17 +22,19 @@ const Login = () => {
 
       if (res.status === 200) {
         dispatch(setUser(res.data.existUser)); // burda diqqətli ol: res.data içində user gəlir
-        alert("Login successful");
+        toast.success("Login successful!");
 
         const from = location.state?.from?.pathname || "/";
-        navigate(from, { replace: true });
+        setTimeout(() => {
+          navigate(from, { replace: true });
+        }, 2000);
       } else {
-        alert("Login failed");
+        toast.error("Login failed, please try again.");
       }
 
       actions.resetForm();
     } catch (error) {
-      console.error("Login failed:", error);
+      toast.error("Login failed, please try again.");
     }
   };
 

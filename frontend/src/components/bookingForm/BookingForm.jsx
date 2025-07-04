@@ -133,6 +133,7 @@ export default function BookingForm({
       await stripe.redirectToCheckout({
         sessionId: res.data.id,
       });
+      
     } catch (err) {
       console.error("Ödəniş səhvi:", err);
       setError(t("booking.paymentError"));

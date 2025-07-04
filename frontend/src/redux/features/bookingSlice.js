@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const initialState = {
-  bookings: [], 
+  bookings: [],
 };
 
 export const bookingSlice = createSlice({
@@ -9,24 +10,23 @@ export const bookingSlice = createSlice({
   initialState,
   reducers: {
     addBooking: (state, action) => {
-      const exist = state.bookings.find(i => i._id === action.payload._id);
+      const exist = state.bookings.find((i) => i._id === action.payload._id);
       if (!exist) {
         state.bookings.unshift({ ...action.payload });
+        toast.success("New booking added!");
       }
     },
     removeBooking: (state, action) => {
-      state.bookings = state.bookings.filter(i => i._id !== action.payload);
+      state.bookings = state.bookings.filter((i) => i._id !== action.payload);
+      toast.error("Booking removed!");
     },
-    clearBookings: state => {
+    clearBookings: (state) => {
       state.bookings = [];
     },
   },
 });
 
-export const {
-  addBooking,
-  removeBooking,
-  clearBookings,
-} = bookingSlice.actions;
+export const { addBooking, removeBooking, clearBookings } =
+  bookingSlice.actions;
 
 export default bookingSlice.reducer;

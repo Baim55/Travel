@@ -8,12 +8,11 @@ import { clearWishlist, setWishlist } from "../../redux/features/wishlistSlice";
 import { clearBookings } from "../../redux/features/bookingSlice";
 import { ThemeContext } from "../../context/darkModeContext";
 import { useTranslation } from "react-i18next";
-
-// React Icons
 import { IoPersonOutline } from "react-icons/io5";
 import { FaRegHeart, FaUserPlus, FaSun, FaMoon } from "react-icons/fa";
 import { MdEventNote } from "react-icons/md";
 import { FiLogOut, FiLogIn } from "react-icons/fi";
+import { toast } from "react-toastify";
 
 const Wrapper = () => {
   const baseUrl = "http://localhost:5000/auth";
@@ -25,21 +24,33 @@ const Wrapper = () => {
   const { dark, toggleTheme } = useContext(ThemeContext);
 
   const handleLogout = async () => {
-    dispatch(setUser(null));
-    dispatch(clearWishlist());
-    dispatch(clearBookings());
-    const res = await axios.get(`${baseUrl}/logout`, { withCredentials: true });
-    alert(res.status === 200 ? "Logout successful" : "Logout failed");
+    try {
+      dispatch(setUser(null));
+      dispatch(clearWishlist());
+      dispatch(clearBookings());
+
+      const res = await axios.get(`${baseUrl}/logout`, {
+        withCredentials: true,
+      });
+      console.log(res);
+      if (res.status === 200) {
+        toast.success("Logout successful");
+      } else {
+        toast.error("Logout failed, please try again");
+      }
+    } catch (error) {
+      toast.error("Logout failed, please try again");
+    }
   };
 
   useEffect(() => {
-  if (user) {
-    axios
-      .get(`http://localhost:5000/api/wishlist?userId=${user._id}`)
-      .then((res) => dispatch(setWishlist(res.data)))
-      .catch((err) => console.error("Wishlist fetch error:", err));
-  }
-}, [user]);
+    if (user) {
+      axios
+        .get(`http://localhost:5000/api/wishlist?userId=${user._id}`)
+        .then((res) => dispatch(setWishlist(res.data)))
+        .catch((err) => console.error("Wishlist fetch error:", err));
+    }
+  }, [user]);
 
   return (
     <div className={styles.wrapper}>
@@ -65,7 +76,9 @@ const Wrapper = () => {
                   <MdEventNote style={{ marginRight: "8px" }} />
                   {t("My Bookings")}
                   {bookingCount > 0 && (
-                    <span className="badge bg-primary ms-2">{bookingCount}</span>
+                    <span className="badge bg-primary ms-2">
+                      {bookingCount}
+                    </span>
                   )}
                 </Link>
               </li>

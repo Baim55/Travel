@@ -3,6 +3,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { registerschema } from "../../../schema/registerSchema";
 import styles from "./Register.module.css"; // Module CSS import
+import { toast } from "react-toastify";
 
 const Register = () => {
   const baseUrl = "http://localhost:5000/auth";
@@ -23,20 +24,23 @@ const Register = () => {
         .then((res) => {
           console.log("SUCCESS:", res.data); // BURA ƏLAVƏ ET
           actions.resetForm();
-          alert("Please check your email to verify your account.");
+          toast.success(
+            "Registration successful! Please check your email to verify your account."
+          );
         })
         .catch((error) => {
           console.error(
             "Registration failed:",
             error.response?.data || error.message
-          ); // daha düzgün error göstər
+          );
+          toast.error(error.response?.data?.message || error.message);
         });
 
       actions.resetForm();
 
-      alert("Please check your email to verify your account.");
+      toast.success("Please check your email to verify your account.");
     } catch (error) {
-      console.error("Registration failed:", error);
+      toast.error("Something went wrong during registration.");
     }
   };
 

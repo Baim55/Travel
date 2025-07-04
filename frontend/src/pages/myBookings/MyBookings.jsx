@@ -49,7 +49,7 @@ const handleDelete = async (id) => {
   if (!user) return <p className={styles.msg}>Zəhmət olmasa daxil olun.</p>;
   if (loading) return <p className={styles.msg}>Yüklənir...</p>;
   if (bookings.length === 0)
-    return <p className={styles.msg}>Hələ rezervasiya etməmisiniz.</p>;
+    return <p className={styles.msg}>You haven't made a reservation yet.</p>;
 
   return (
     <Container>
