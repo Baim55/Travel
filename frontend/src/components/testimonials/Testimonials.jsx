@@ -31,7 +31,6 @@ export default function Testimonials() {
 
   return (
     <section className={styles.testimonialSection}>
-      {/* Arxa fonda yerləşəcək şəkillər */}
       <img src={test1} alt="quote left" className={styles.quoteLeft} />
       <img src={test2} alt="quote right" className={styles.quoteRight} />
 

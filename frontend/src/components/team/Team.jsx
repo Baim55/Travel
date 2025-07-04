@@ -8,7 +8,7 @@ const Team = () => {
 
   const teamData = [
     {
-      name: "Adam Johnson",
+      name: "Leyla Həsənli",
       role: t("team.ceo"),
       image: "/images/profile1.png",
       socials: {
@@ -19,7 +19,7 @@ const Team = () => {
       }
     },
     {
-      name: "Kevin D.",
+      name: "Fərid Hüseynli",
       role: t("team.marketing"),
       image: "/images/profile2.png",
       socials: {
@@ -30,7 +30,7 @@ const Team = () => {
       }
     },
     {
-      name: "Frank L.",
+      name: "Aysel Rüstəmli",
       role: t("team.designer"),
       image: "/images/profile3.png",
       socials: {
@@ -41,7 +41,7 @@ const Team = () => {
       }
     },
     {
-      name: "Alena Doe",
+      name: "Fuad Qasımlı",
       role: t("team.support"),
       image: "/images/profile4.png",
       socials: {
