@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { addBooking } from "../../redux/features/bookingSlice";
 import { useTranslation } from "react-i18next";
+import { loadStripe } from "@stripe/stripe-js";
 
 export default function BookingForm({
   basePrice,
@@ -32,7 +33,9 @@ export default function BookingForm({
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
   const [disabledDays, setDisabledDays] = useState([]);
-
+  const stripePromise = loadStripe(
+    "pk_test_51Rh3h3HDv8wA16hg12jogLpQ6nQZqqWNXLa2XN7Ujxjjy4jJOVuhPR6kWHExKe801SI1SuWe9AODADXftBJ3sIgZ00aXZJY5zP"
+  );
   useEffect(() => {
     if (date) {
       axios
@@ -105,39 +108,34 @@ export default function BookingForm({
 
     const guestCount = tickets.adult + tickets.youth + tickets.child;
     if (guestCount === 0) {
-      toast.error(t("booking.noGuest")); // yeni tərcümə əlavə ediləcək
+      toast.error(t("booking.noGuest"));
       return;
     }
 
+    const stripe = await stripePromise;
+
     try {
-      await axios.post("/api/bookings", {
-        tourId,
-        userId: user._id,
-        date,
-        time,
-        guestCount: tickets.adult + tickets.youth + tickets.child,
-      });
-
-      alert(
-        `${t("booking.bookingSuccess")}!\n${t("booking.date")}: ${date}\n${t(
-          "booking.total"
-        )}: $${calculateTotal()}`
+      const total = calculateTotal();
+      const res = await axios.post(
+        "http://localhost:5000/api/payments/create-checkout-session",
+        {
+          totalAmount: total,
+          metadata: {
+            tourId,
+            userId: user._id,
+            date,
+            time,
+            guestCount,
+          },
+        }
       );
+
+      await stripe.redirectToCheckout({
+        sessionId: res.data.id,
+      });
     } catch (err) {
-      console.error(err);
-      setError(t("booking.bookingError"));
-    }
-
-    const res = await axios.post("/api/bookings", {
-      tourId,
-      userId: user._id,
-      date,
-      time,
-      guestCount: tickets.adult + tickets.youth + tickets.child,
-    });
-
-    if (res.data) {
-      dispatch(addBooking(res.data));
+      console.error("Ödəniş səhvi:", err);
+      setError(t("booking.paymentError"));
     }
   };
 

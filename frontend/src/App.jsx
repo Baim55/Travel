@@ -32,6 +32,8 @@ import AdminBlog from "./pages/admin/adminBlog/AdminBlog";
 import BlogList from "./components/blog/BlogList";
 import BlogDetail from "./components/blog/BlogDetail";
 import FAQ from "./pages/FAQ/FAQ";
+import Success from "./pages/payment/Success";
+import Cancel from "./pages/payment/Cancel";
 
 const router = createBrowserRouter([
   {
@@ -105,6 +107,14 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <BlogList />,
+      },
+      {
+        path: "/success",
+        element: <Success />,
+      },
+      {
+        path: "/cancel",
+        element: <Cancel />,
       },
       {
         path: "admin",

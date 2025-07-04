@@ -12,6 +12,7 @@ import bookingRouter from "./src/routes/bookingRouter.js";
 import messageRouter from "./src/routes/messageRouter.js";
 import blogRouter from "./src/routes/blogRouter.js";
 import wishlistRouter from "./src/routes/wishlistRouter.js";
+import paymentRouter from "./src/routes/paymentRouter.js";
 
 const app = express();
 const port = process.env.PORT || 5001;
@@ -30,6 +31,7 @@ app.use("/api/bookings", bookingRouter);
 app.use("/api/wishlist", wishlistRouter);
 app.use("/api/messages", messageRouter);
 app.use("/api/blogs", blogRouter);
+app.use("/api/payments", paymentRouter);
 
 app.get("/", (req, res) => res.send("Hello World"));
 app.listen(port, () => console.log(`Server running on ${port}`));
