@@ -77,10 +77,10 @@ const handleDelete = async (id) => {
 
               <h4>{b.tour?.name}</h4>
               <p>
-                <strong>Tarix:</strong> {new Date(b.date).toLocaleDateString()}{" "}
+                <strong>Date:</strong> {new Date(b.date).toLocaleDateString()}{" "}
                 <br />
-                <strong>Vaxt:</strong> {b.time} <br />
-                <strong>Qonaq sayı:</strong> {b.guestCount}
+                <strong>Time:</strong> {b.time} <br />
+                <strong>Guests:</strong> {b.guestCount}
               </p>
               <button
                 onClick={() => handleDelete(b._id)}

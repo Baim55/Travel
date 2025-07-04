@@ -1,0 +1,73 @@
+.successContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f0f8ff;
+  text-align: center;
+  padding: 20px;
+}
+
+.successContainer h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #28a745;
+  margin-bottom: 20px;
+}
+
+.successContainer p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.successContainer .loadingSpinner {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.successContainer .successMessage {
+  font-size: 1.5rem;
+  color: #28a745;
+}
+
+.successContainer .redirectMessage {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.successContainer .button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.successContainer .button:hover {
+  background-color: #218838;
+}
+
+.successContainer .redirectLink {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.successContainer .redirectLink:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,39 @@
+.cancelPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f8d7da;
+  text-align: center;
+  padding: 20px;
+}
+
+.cancelPage h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #721c24;
+  margin-bottom: 20px;
+}
+
+.cancelPage p {
+  font-size: 1.2rem;
+  color: #721c24;
+  margin-bottom: 30px;
+}
+
+.cancelPage .homeButton {
+  padding: 10px 20px;
+  background-color: #155724;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.cancelPage .homeButton:hover {
+  background-color: #136a3e;
+}
