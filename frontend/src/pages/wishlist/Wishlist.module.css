@@ -1,9 +1,5 @@
-.heading {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--accent);
-  text-align: center;
+.wishlist {
+  margin: 1.5rem;
 }
 
 .emptyMessage {

@@ -24,9 +24,6 @@ const Register = () => {
         .then((res) => {
           console.log("SUCCESS:", res.data); // BURA ƏLAVƏ ET
           actions.resetForm();
-          toast.success(
-            "Registration successful! Please check your email to verify your account."
-          );
         })
         .catch((error) => {
           console.error(

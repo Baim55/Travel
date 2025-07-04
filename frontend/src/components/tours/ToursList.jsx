@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addWishlist, removeWishlist } from "../../redux/features/wishlistSlice";
 import { FaHeart, FaCube } from "react-icons/fa";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function ToursList({ tours }) {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function ToursList({ tours }) {
 
   const toggleWishlist = async (tour, e) => {
     e.stopPropagation();
-    if (!user) return alert("Zəhmət olmasa login olun");
+    if (!user) return toast.warning("Please sign in.");
 
     try {
       const res = await axios.post("http://localhost:5000/api/wishlist/toggle", {

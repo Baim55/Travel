@@ -82,15 +82,32 @@ const Wrapper = () => {
                     borderRadius: "50%",
                     objectFit: "cover",
                     marginBottom: "10px",
-                    border: "2px solid #ddd",
+                    border: "2px solid var(--border-color)", // border da tema ilə uyğun olsun
                   }}
                 />
-                <div style={{ fontWeight: "bold" }}>{user.username}</div>
-                <div style={{ fontSize: "0.875rem", color: "#666" }}>
+                <div
+                  style={{
+                    fontWeight: "bold",
+                    color: "var(--text)", 
+                  }}
+                >
+                  {user.username}
+                </div>
+                <div
+                  style={{
+                    fontSize: "0.875rem",
+                    color: "var(--text-secondary)", 
+                  }}
+                >
                   {user.email}
                 </div>
-                <hr />
+                <hr
+                  style={{
+                    borderColor: "var(--border-color)", 
+                  }}
+                />
               </li>
+
               <li>
                 <Link className="dropdown-item" to="/wishlist">
                   <FaRegHeart style={{ marginRight: "8px" }} />

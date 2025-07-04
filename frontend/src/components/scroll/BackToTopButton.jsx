@@ -44,14 +44,13 @@ const BackToTopButton = () => {
         fontSize: "18px",
         borderRadius: "50%",
         border: "none",
-        backgroundColor: isDark ? "#fbbf24" : "#007bff", // dark modda sarı, light modda göy
+        backgroundColor: isDark ? "#fbbf24" : "#c36b36",
         color: isDark ? "#000" : "#fff",
         cursor: "pointer",
         boxShadow: isDark
           ? "0 2px 5px rgba(255, 255, 255, 0.3)"
           : "0 2px 5px rgba(0, 0, 0, 0.3)",
         zIndex: 1000,
-        transition: "background-color 0.3s ease, color 0.3s ease",
       }}
       aria-label="Back to top"
       title="Back to top"
