@@ -177,6 +177,95 @@
     "full": "(Full)",
     "left": "left",
     "noGuest": "Please select at least one guest before booking."
-
+  },
+  "wishlist": {
+    "title": "My Wishlist",
+    "empty": "There is nothing on the wishlist.",
+    "reserve": "Reserve"
+  },
+  "pageHeader": {
+    "destinations": {
+      "title": "Destinations"
+    },
+    "about": {
+      "title": "About Us"
+    },
+    "blog": {
+      "title": "Blog"
+    },
+    "faq": {
+      "title": "FAQ"
+    }
+  },
+  "faq": {
+    "title": "Have a Question?",
+    "description": "Have questions about your trip with NeoTravel? Explore our frequently asked questions below to find answers about payment, booking, cancellation, and more. Still need help? Feel free to contact our support team.",
+    "categories": {
+      "payment": "Payment",
+      "reservation": "Reservation",
+      "cancellation": "Cancellation & Refund",
+      "experience": "Tour Guide & Experience",
+      "support": "Account & Support"
+    },
+    "questions": {
+      "payment": [
+        {
+          "question": "Are there any extra fees I need to pay on top of the listed price?",
+          "answer": "No hidden fees. All taxes and charges are included unless otherwise stated in the tour details."
+        },
+        {
+          "question": "Can I pay in my local currency?",
+          "answer": "All payments are processed in USD. You can use a card from any country, but exchange rates may apply."
+        },
+        {
+          "question": "Is online payment secure?",
+          "answer": "Yes. We use encrypted SSL connections and trusted payment gateways to ensure your security."
+        }
+      ],
+      "reservation": [
+        {
+          "question": "How do I make a reservation?",
+          "answer": "Select your tour, pick a date and time, enter guest details, and proceed to payment."
+        },
+        {
+          "question": "Can I book a tour without creating an account?",
+          "answer": "No, an account is required to manage your bookings."
+        },
+        {
+          "question": "What happens after I book a tour?",
+          "answer": "You’ll receive a confirmation email with all details."
+        }
+      ],
+      "cancellation": [
+        {
+          "question": "Can I cancel a booking?",
+          "answer": "Yes, but each tour has its own cancellation policy."
+        },
+        {
+          "question": "How long does it take to receive a refund?",
+          "answer": "Refunds take 5–7 business days depending on your bank."
+        }
+      ],
+      "experience": [
+        {
+          "question": "Will a guide be with us during the tour?",
+          "answer": "Yes, a professional guide is always included."
+        },
+        {
+          "question": "Can I customize a private tour?",
+          "answer": "Yes, contact support or use the request form."
+        }
+      ],
+      "support": [
+        {
+          "question": "I forgot my password. What should I do?",
+          "answer": "Click 'Forgot Password' on the login page."
+        },
+        {
+          "question": "How can I contact customer support?",
+          "answer": "Use the Contact page, chat, or email support@neotravel.com."
+        }
+      ]
+    }
   }
 }

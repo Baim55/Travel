@@ -5,11 +5,13 @@ import AboutStats from "../components/aboutStats/AboutStats";
 import Team from "../components/team/Team";
 import PageHeader from "../components/pageHeader/PageHeader";
 import Testimonials from "../components/testimonials/Testimonials";
+import { useTranslation } from "react-i18next";
 
 const About = () => {
+  const { t } = useTranslation();
   return (
     <div>
-      <PageHeader title="About Us"/>
+      <PageHeader title={t("pageHeader.about.title")}/>
       <AboutUs />
       <WhyUs />
       <AboutStats/>

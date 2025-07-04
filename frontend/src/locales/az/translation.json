@@ -177,5 +177,95 @@
     "full": "(Dolu)",
     "left": "yer qalıb",
     "noGuest": "Zəhmət olmasa, ən azı bir qonaq seçin."
+  },
+  "wishlist": {
+    "title": "Favorilərim",
+    "empty": "Favorilərdə heç nə yoxdur.",
+    "reserve": "Rezerv et"
+  },
+  "pageHeader": {
+    "destinations": {
+      "title": "Turlar"
+    },
+    "about": {
+      "title": "Haqqımızda"
+    },
+    "blog": {
+      "title": "Bloq"
+    },
+    "faq": {
+      "title": "Tez-tez verilən suallar"
+    }
+  },
+  "faq": {
+    "title": "Sualınız var?",
+    "description": "NeoTravel ilə planlaşdırdığınız səyahətlə bağlı suallarınız var? Aşağıda tez-tez verilən suallar bölməsinə baxaraq ödəniş, rezervasiya, ləğv və digər mövzularda cavabları tapa bilərsiniz. Əlavə kömək lazım olsa, dəstək komandamızla əlaqə saxlaya bilərsiniz.",
+    "categories": {
+      "payment": "Ödəniş",
+      "reservation": "Rezervasiya",
+      "cancellation": "Ləğv və Geri Ödəniş",
+      "experience": "Bələdçi və Təcrübə",
+      "support": "Hesab və Dəstək"
+    },
+    "questions": {
+      "payment": [
+        {
+          "question": "Elan olunan qiymətdən əlavə əlavə ödənişlər varmı?",
+          "answer": "Gizli ödəniş yoxdur. Bütün vergilər və rüsumlar tur detalları istisna etmədikcə qiymətə daxildir."
+        },
+        {
+          "question": "Ödənişi yerli valyutada edə bilərəm?",
+          "answer": "Bütün ödənişlər USD ilə həyata keçirilir. İstənilən ölkənin kartı ilə ödəyə bilərsiniz, ancaq məzənnə fərqləri tətbiq oluna bilər."
+        },
+        {
+          "question": "Online ödəniş təhlükəsizdirmi?",
+          "answer": "Bəli. Biz şifrələnmiş SSL bağlantıları və etibarlı ödəniş sistemlərindən istifadə edirik."
+        }
+      ],
+      "reservation": [
+        {
+          "question": "Necə rezervasiya edə bilərəm?",
+          "answer": "Sadəcə turu seçin, tarix və saatı göstərin, qonaq məlumatlarını daxil edin və ödənişi tamamlayın."
+        },
+        {
+          "question": "Hesab yaratmadan rezervasiya edə bilərəm?",
+          "answer": "Xeyr, çünki hesabla rezervasiyanızı izləmək, dəyişmək və ya ləğv etmək asan olacaq."
+        },
+        {
+          "question": "Rezervasiyadan sonra nə baş verir?",
+          "answer": "E-poçt vasitəsilə təsdiq məktubu alacaqsınız və bütün detalları görəcəksiniz."
+        }
+      ],
+      "cancellation": [
+        {
+          "question": "Rezervasiyanı ləğv edə bilərəm?",
+          "answer": "Bəli, amma hər turun öz ləğv siyasəti var və ona uyğun hərəkət edilməlidir."
+        },
+        {
+          "question": "Geri ödəniş nə qədər vaxta edilir?",
+          "answer": "Əksər hallarda 5–7 iş günü ərzində bank tərəfindən həyata keçirilir."
+        }
+      ],
+      "experience": [
+        {
+          "question": "Tur zamanı bələdçi bizimlə olacaq?",
+          "answer": "Bəli, bütün turlarımız peşəkar bələdçilərlə həyata keçirilir."
+        },
+        {
+          "question": "Şəxsi turu fərdiləşdirə bilərəm?",
+          "answer": "Əlbəttə! Bizimlə əlaqə saxlayaraq xüsusi istəklərinizi bildirə bilərsiniz."
+        }
+      ],
+      "support": [
+        {
+          "question": "Şifrəmi unutdum. Nə etməliyəm?",
+          "answer": "Giriş səhifəsində 'Şifrəni unutdun?' düyməsinə klikləyin və təlimatları izləyin."
+        },
+        {
+          "question": "Müştəri dəstəyi ilə necə əlaqə saxlaya bilərəm?",
+          "answer": "Əlaqə səhifəsini istifadə edə, canlı çat yazışa və ya support@neotravel.com-a e-poçt yaza bilərsiniz."
+        }
+      ]
+    }
   }
 }

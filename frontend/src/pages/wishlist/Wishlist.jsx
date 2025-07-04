@@ -9,12 +9,14 @@ import {
 } from "../../redux/features/wishlistSlice";
 import Container from "../../components/container/Container";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
   const wishlist = useSelector((state) => state.wishlist.wishlist);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (user) {
@@ -40,11 +42,9 @@ const Wishlist = () => {
   return (
     <section className={styles.wishlist}>
       <Container>
-        <h2 className={styles.heading}>My Wishlist</h2>
+        <h2 className={styles.heading}>{t("wishlist.title")}</h2>
         {wishlist.length === 0 ? (
-          <p className={styles.emptyMessage}>
-            There is nothing on the wishlist.
-          </p>
+          <p className={styles.emptyMessage}>{t("wishlist.empty")}</p>
         ) : (
           <div className={styles.grid}>
             {wishlist.map((item) => (
@@ -94,7 +94,9 @@ const Wishlist = () => {
                     </span>
                   </div>
                   <p className={styles.price}>${item.price}</p>
-                  <button className={styles.reserve}>Reserve</button>
+                  <button className={styles.reserve}>
+                    {t("wishlist.reserve")}
+                  </button>
                 </div>
               </div>
             ))}
