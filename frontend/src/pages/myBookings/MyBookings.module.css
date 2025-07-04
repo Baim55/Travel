@@ -1,75 +1,129 @@
 .wrapper {
+  max-width: 1200px;
   margin: 40px auto;
   padding: 20px;
 }
 
 .title {
   text-align: center;
-  font-size: 28px;
-  margin-bottom: 20px;
+  font-size: 2.25rem; /* 36px */
+  font-weight: 700;
+  margin-bottom: 30px;
   color: var(--accent);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
 }
 
 .list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  padding: 0 10px;
 }
 
 .card {
-  width: 400px;
   background: var(--card-bg);
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
   overflow: hidden;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   color: var(--text);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
 }
 
-.msg {
-  text-align: center;
-  margin-top: 40px;
-  font-size: 18px;
-  color: var(--text-light);
-}
-
-.card img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 10px;
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
 }
 
 .slider {
   width: 100%;
-  height: 220px;
-  border-radius: 8px;
+  height: 240px;
+  border-radius: 12px 12px 0 0;
   overflow: hidden;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+  display: block;
 }
 
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 8px;
+}
+
+.card h4 {
+  margin: 0 16px 12px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent);
+  min-height: 48px; /* Bərabər hündürlük üçün */
+}
+
+.card p {
+  margin: 0 16px 16px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-secondary, #666);
 }
 
 .deleteBtn {
+  align-self: flex-start;
   background-color: var(--primary);
   color: white;
   border: none;
-  padding: 6px 12px;
-  border-radius: 5px;
+  padding: 10px 18px;
+  margin: 0 16px 16px;
+  border-radius: 8px;
   cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.3s ease;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, box-shadow 0.2s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
 }
 
-.deleteBtn:hover {
+.deleteBtn:hover,
+.deleteBtn:focus {
   background-color: #c36b36;
+  box-shadow: 0 6px 12px rgba(195, 107, 54, 0.5);
+  outline: none;
+}
+
+.msg {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-light);
+  padding: 0 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .slider {
+    height: 180px;
+  }
+
+  .card h4 {
+    font-size: 1.25rem;
+    min-height: auto;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+
+  .deleteBtn {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    margin: 0 12px 12px;
+  }
 }

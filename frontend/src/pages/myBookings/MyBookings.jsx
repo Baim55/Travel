@@ -10,6 +10,7 @@ import { Navigation } from "swiper/modules";
 import { useDispatch } from "react-redux";
 import { addBooking, removeBooking } from "../../redux/features/bookingSlice";
 import { useTranslation } from "react-i18next";
+import PageHeader from "../../components/pageHeader/PageHeader";
 
 export default function MyBookings() {
   const { t } = useTranslation();
@@ -51,48 +52,49 @@ export default function MyBookings() {
     return <p className={styles.msg}>You haven't made a reservation yet.</p>;
 
   return (
-    <Container>
-      <div className={styles.wrapper}>
-        <h2 className={styles.title}>{t("reserve.title")}</h2>
+    <div>
+      <PageHeader title={t("reserve.title")}/>
+      <Container>
+        <div className={styles.wrapper}>
+          <div className={styles.list}>
+            {bookings.map((b) => (
+              <div key={b._id} className={styles.card}>
+                <Swiper
+                  modules={[Navigation]}
+                  navigation
+                  spaceBetween={10}
+                  slidesPerView={1}
+                  className={styles.slider}
+                >
+                  {b.tour?.images?.map((img, i) => (
+                    <SwiperSlide key={i}>
+                      <img
+                        src={`http://localhost:5000/${img}`}
+                        alt={`${b.tour?.name} şəkil ${i + 1}`}
+                        className={styles.image}
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
 
-        <div className={styles.list}>
-          {bookings.map((b) => (
-            <div key={b._id} className={styles.card}>
-              <Swiper
-                modules={[Navigation]}
-                navigation
-                spaceBetween={10}
-                slidesPerView={1}
-                className={styles.slider}
-              >
-                {b.tour?.images?.map((img, i) => (
-                  <SwiperSlide key={i}>
-                    <img
-                      src={`http://localhost:5000/${img}`}
-                      alt={`${b.tour?.name} şəkil ${i + 1}`}
-                      className={styles.image}
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-
-              <h4>{b.tour?.name}</h4>
-              <p>
-                <strong>Date:</strong> {new Date(b.date).toLocaleDateString()}{" "}
-                <br />
-                <strong>Time:</strong> {b.time} <br />
-                <strong>Guests:</strong> {b.guestCount}
-              </p>
-              <button
-                onClick={() => handleDelete(b._id)}
-                className={styles.deleteBtn}
-              >
-                {t("reserve.remove")}
-              </button>
-            </div>
-          ))}
+                <h4>{b.tour?.name}</h4>
+                <p>
+                  <strong>Date:</strong> {new Date(b.date).toLocaleDateString()}{" "}
+                  <br />
+                  <strong>Time:</strong> {b.time} <br />
+                  <strong>Guests:</strong> {b.guestCount}
+                </p>
+                <button
+                  onClick={() => handleDelete(b._id)}
+                  className={styles.deleteBtn}
+                >
+                  {t("reserve.remove")}
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 }

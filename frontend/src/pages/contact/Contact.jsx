@@ -7,6 +7,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import PageHeader from "../../components/pageHeader/PageHeader";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -25,10 +26,10 @@ const Contact = () => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:5000/api/messages/send", formData);
-      alert("Mesajınız emailə göndərildi!");
+      toast.success("Your message has been sent to your email!");
       setFormData({ name: "", email: "", message: "" });
     } catch (err) {
-      alert("Email göndərilərkən xəta baş verdi.");
+      toast.error("An error occurred while sending the email.");
     }
   };
 

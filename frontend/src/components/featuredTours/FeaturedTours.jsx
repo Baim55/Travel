@@ -12,7 +12,7 @@ export default function FeaturedTours() {
     axios.get("http://localhost:5000/api/tours")
       .then(res => {
         // Yalnız seçilmiş turları götürək – ilk 3 və ya discount olanlar
-        const featured = res.data.filter(t => t.isFeatured || t.discount > 0).slice(0, 12);
+        const featured = res.data.filter(t => t.isFeatured).slice(0, 12);
         setTours(featured);
       })
       .catch(err => console.error("Seçilmiş turlar alınmadı:", err))

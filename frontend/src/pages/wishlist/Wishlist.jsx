@@ -10,6 +10,7 @@ import {
 import Container from "../../components/container/Container";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import PageHeader from "../../components/pageHeader/PageHeader";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
@@ -41,8 +42,8 @@ const Wishlist = () => {
 
   return (
     <section className={styles.wishlist}>
+      <PageHeader title={t("wishlist.title")} />
       <Container>
-        <h2 className={styles.heading}>{t("wishlist.title")}</h2>
         {wishlist.length === 0 ? (
           <p className={styles.emptyMessage}>{t("wishlist.empty")}</p>
         ) : (

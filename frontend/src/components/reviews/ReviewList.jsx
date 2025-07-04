@@ -18,7 +18,6 @@ function renderStars(count) {
   return stars;
 }
 
-// Yeni: Ulduzlarla reytinq seçimi üçün komponent
 function StarRating({ rating, onChange }) {
   const total = 5;
 

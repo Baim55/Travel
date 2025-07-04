@@ -65,6 +65,32 @@ const Wrapper = () => {
         <ul className="dropdown-menu dropdown-menu-end">
           {user ? (
             <>
+              <li className="dropdown-item-text text-center">
+                <img
+                  src={
+                    user?.image
+                      ? `http://localhost:5000/${user.image.replace(
+                          / /g,
+                          "%20"
+                        )}`
+                      : "/default-avatar.png"
+                  }
+                  alt="Profil"
+                  style={{
+                    width: "60px",
+                    height: "60px",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                    marginBottom: "10px",
+                    border: "2px solid #ddd",
+                  }}
+                />
+                <div style={{ fontWeight: "bold" }}>{user.username}</div>
+                <div style={{ fontSize: "0.875rem", color: "#666" }}>
+                  {user.email}
+                </div>
+                <hr />
+              </li>
               <li>
                 <Link className="dropdown-item" to="/wishlist">
                   <FaRegHeart style={{ marginRight: "8px" }} />

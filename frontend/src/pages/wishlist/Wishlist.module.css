@@ -5,9 +5,7 @@
   color: var(--accent);
   text-align: center;
 }
-.wishlist{
-  padding: 20px 0;
-}
+
 .emptyMessage {
   color: var(--text-light);
   font-size: 1rem;
