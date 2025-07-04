@@ -1,5 +1,5 @@
 // src/pages/tours/TourDetail.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,20 +12,44 @@ import Container from "../../components/container/Container";
 import ReviewForm from "../../components/reviews/ReviewForm";
 import ReviewList from "../../components/reviews/ReviewList";
 import BookingForm from "../../components/bookingForm/BookingForm";
-
 import { addBooking } from "../../redux/features/bookingSlice";
+import axios from "axios";
+
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 export default function TourDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { tours } = useSelector((state) => state.tour);
-  const tour = tours.find((t) => t._id === id);
   const user = useSelector((state) => state.user.user);
 
+  const [tour, setTour] = useState(null); // tour məlumatını saxlayan state
   const [counts, setCounts] = useState({ adult: 1, youth: 0, child: 0 });
   const [refresh, setRefresh] = useState(false);
 
+  // Fetch tour data when the component mounts or when 'id' changes
+  useEffect(() => {
+    const fetchTourDetails = async () => {
+      try {
+        // Check if the tour is already in the state
+        const existingTour = tours.find((t) => t._id === id);
+        if (existingTour) {
+          setTour(existingTour);
+        } else {
+          // Fetch from backend if not in state
+          const response = await axios.get(`http://localhost:5000/api/tours/${id}`);
+          setTour(response.data);
+        }
+      } catch (error) {
+        console.error("Tour not found", error);
+        // Error handling: You can display a custom error message here if needed
+      }
+    };
+
+    fetchTourDetails();
+  }, [id, tours]); // This hook runs whenever 'id' or 'tours' changes
+
+  // If tour not found
   if (!tour) {
     return <p className={styles.notFound}>Tour not found.</p>;
   }
@@ -63,7 +87,6 @@ export default function TourDetail() {
     <section className={styles.tourdetail}>
       <Container>
         <div className={styles.detail}>
-          {/* Header */}
           <div className={styles.header}>
             <h1 className={styles.title}>{tour.name}</h1>
             <div className={styles.location}>
@@ -72,7 +95,6 @@ export default function TourDetail() {
             </div>
           </div>
 
-          {/* Image carousel */}
           <div className={styles.carouselWrapper}>
             <Swiper
               modules={[Navigation]}
@@ -93,7 +115,6 @@ export default function TourDetail() {
             </Swiper>
           </div>
 
-          {/* Meta grid */}
           <div className={styles.metaGrid}>
             <div className={styles.metaItem}>
               <h4>Price</h4>
@@ -121,15 +142,12 @@ export default function TourDetail() {
             </div>
           </div>
 
-          {/* Main content + sidebar */}
           <div className={styles.detailGrid}>
-            {/* Left side */}
             <div className={styles.content}>
               <div className={styles.description}>
                 <p>{tour.description || "No description available."}</p>
               </div>
 
-              {/* Nearby restaurants & hotels */}
               <div className={styles.near}>
                 <div className={styles.nearbyGrid}>
                   {tour.nearby.restaurants.map((r, i) => (
@@ -172,8 +190,6 @@ export default function TourDetail() {
                   ))}
                 </div>
               </div>
-
-              {/* Map */}
               <div className={styles.mapSection}>
                 <h3>Location on Map</h3>
                 <div className={styles.mapWrapper}>
@@ -188,7 +204,6 @@ export default function TourDetail() {
                 </div>
               </div>
 
-              {/* Reviews */}
               <ReviewForm
                 tourId={id}
                 user={user}
@@ -197,7 +212,6 @@ export default function TourDetail() {
               <ReviewList tourId={id} refreshTrigger={refresh} />
             </div>
 
-            {/* Right sidebar */}
             <aside className={styles.sidebar}>
               <BookingForm
                 tourId={tour._id}

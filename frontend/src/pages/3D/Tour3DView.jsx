@@ -33,7 +33,9 @@ export default function Tour3DView() {
   }
 
   if (!tour) {
-    return <p style={{ textAlign: "center", padding: "40px" }}>Loading 3D View...</p>;
+    return (
+      <p style={{ textAlign: "center", padding: "40px" }}>Loading 3D View...</p>
+    );
   }
 
   return (
@@ -41,8 +43,6 @@ export default function Tour3DView() {
       <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
         {tour.name} - 3D View & AR
       </h2>
-
-      {/* ✅ Mövcud Street View */}
       {tour.streetViewSrc ? (
         <div style={{ marginBottom: "40px" }}>
           <iframe
@@ -59,25 +59,6 @@ export default function Tour3DView() {
       ) : (
         <p style={{ textAlign: "center", color: "gray" }}>
           Street View mövcud deyil.
-        </p>
-      )}
-
-      {/* ✅ Əlavə olunmuş AR + 3D model */}
-      {tour.model3D ? (
-        <div>
-          <model-viewer
-            src={tour.model3D}
-            alt={tour.name}
-            ar
-            ar-modes="scene-viewer webxr quick-look"
-            camera-controls
-            auto-rotate
-            style={{ width: "100%", height: "600px" }}
-          ></model-viewer>
-        </div>
-      ) : (
-        <p style={{ textAlign: "center", color: "gray" }}>
-          3D/AR modeli mövcud deyil.
         </p>
       )}
     </div>
