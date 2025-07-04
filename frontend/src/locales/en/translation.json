@@ -183,6 +183,10 @@
     "empty": "There is nothing on the wishlist.",
     "reserve": "Reserve"
   },
+  "reserve": {
+    "title": "My Reserves",
+    "remove": "Cancel"
+  },
   "pageHeader": {
     "destinations": {
       "title": "Destinations"

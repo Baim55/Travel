@@ -9,8 +9,10 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useDispatch } from "react-redux";
 import { addBooking, removeBooking } from "../../redux/features/bookingSlice";
+import { useTranslation } from "react-i18next";
 
 export default function MyBookings() {
+   const { t } = useTranslation();
   const user = useSelector((state) => state.user.user);
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -52,7 +54,7 @@ const handleDelete = async (id) => {
   return (
     <Container>
       <div className={styles.wrapper}>
-        <h2 className={styles.title}>My reservations</h2>
+        <h2 className={styles.title}>{t("reserve.title")}</h2>
 
         <div className={styles.list}>
           {bookings.map((b) => (
@@ -86,7 +88,7 @@ const handleDelete = async (id) => {
                 onClick={() => handleDelete(b._id)}
                 className={styles.deleteBtn}
               >
-                Ləğv et
+               {t("reserve.remove")}
               </button>
             </div>
           ))}

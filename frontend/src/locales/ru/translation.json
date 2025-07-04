@@ -183,6 +183,10 @@
     "empty": "Список избранного пуст.",
     "reserve": "Забронировать"
   },
+  "reserve": {
+    "title": "Мои бронирования",
+    "remove": "Отмена"
+  },
   "pageHeader": {
     "destinations": {
       "title": "Направления"

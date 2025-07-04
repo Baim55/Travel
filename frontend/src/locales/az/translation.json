@@ -183,6 +183,10 @@
     "empty": "Favorilərdə heç nə yoxdur.",
     "reserve": "Rezerv et"
   },
+  "reserve": {
+    "title": "Rezervlərim",
+    "remove": "Ləğv et"
+  },
   "pageHeader": {
     "destinations": {
       "title": "Turlar"
