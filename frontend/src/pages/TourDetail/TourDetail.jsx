@@ -23,7 +23,8 @@ export default function TourDetail() {
   const { tours } = useSelector((state) => state.tour);
   const user = useSelector((state) => state.user.user);
 
-  const [tour, setTour] = useState(null); // tour məlumatını saxlayan state
+  const [tour, setTour] = useState(null); // Başlanğıcda null olaraq təyin edirik
+  const [loading, setLoading] = useState(true); // Loading vəziyyəti əlavə etdik
   const [counts, setCounts] = useState({ adult: 1, youth: 0, child: 0 });
   const [refresh, setRefresh] = useState(false);
 
@@ -31,6 +32,7 @@ export default function TourDetail() {
   useEffect(() => {
     const fetchTourDetails = async () => {
       try {
+        setLoading(true); // Yükləmə başlamışdır
         // Check if the tour is already in the state
         const existingTour = tours.find((t) => t._id === id);
         if (existingTour) {
@@ -42,12 +44,19 @@ export default function TourDetail() {
         }
       } catch (error) {
         console.error("Tour not found", error);
-        // Error handling: You can display a custom error message here if needed
+        setTour(null); // Məlumat tapılmadıqda null olaraq təyin edirik
+      } finally {
+        setLoading(false); // Yükləmə bitdi
       }
     };
 
     fetchTourDetails();
   }, [id, tours]); // This hook runs whenever 'id' or 'tours' changes
+
+  // If tour is still loading or not found
+  if (loading) {
+    return <p className={styles.notFound}>Loading tour...</p>;  // Show a loading message
+  }
 
   // If tour not found
   if (!tour) {
