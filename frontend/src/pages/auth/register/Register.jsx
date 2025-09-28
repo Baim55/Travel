@@ -58,6 +58,9 @@ const Register = () => {
 
   return (
     <div className={styles.container}>
+       <Helmet>
+          <title>Register | NeoTravel</title>
+        </Helmet>
       <div className={styles.register}>
         <form
           className={styles.form}

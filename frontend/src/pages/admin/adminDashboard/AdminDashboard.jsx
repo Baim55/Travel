@@ -14,6 +14,7 @@ export default function AdminDashboard() {
           <li><NavLink to="messages" className={({ isActive }) => isActive ? styles.active : styles.link}>Messages</NavLink></li>
           <li><NavLink to="comments" className={({ isActive }) => isActive ? styles.active : styles.link}>Comments</NavLink></li>
           <li><NavLink to="blogs" className={({ isActive }) => isActive ? styles.active : styles.link}>Blogs</NavLink></li>
+          <li><NavLink to="chat" className={({ isActive }) => isActive ? styles.active : styles.link}>Chat</NavLink></li>
         </ul>
       </aside>
       <section className={styles.content}>

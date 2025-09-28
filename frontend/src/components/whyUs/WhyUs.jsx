@@ -10,6 +10,9 @@ import {
 } from "react-icons/fa";
 import Container from "../container/Container";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function WhyUs() {
   const { t } = useTranslation();
@@ -45,16 +48,29 @@ export default function WhyUs() {
       text: t("whyUs.bookingText"),
     },
   ];
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
+
   return (
     <section className={styles.wrapper}>
       <Container>
-        <div className={styles.header}>
+        <div className={styles.header} data-aos="fade-up">
           <div className={styles.subheading}>{t("whyUs.subheading")}</div>
           <h2 className={styles.title}>{t("whyUs.title")}</h2>
         </div>
         <div className={styles.grid}>
           {items.map((item, i) => (
-            <div key={i} className={styles.card}>
+            <div
+              key={i}
+              className={styles.card}
+              data-aos="zoom-in"
+              data-aos-delay={i * 100}
+            >
               <div className={styles.iconWrapper}>{item.icon}</div>
               <div className={styles.content}>
                 <h3 className={styles.cardTitle}>{item.title}</h3>

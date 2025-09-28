@@ -1,0 +1,13 @@
+.sectionTitle {
+  font-family: "Poppins", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 auto;
+  max-width: 600px;
+  line-height: 1.1;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+

@@ -32,7 +32,7 @@ const Success = () => {
         dispatch(addBooking(res.data));
         setTimeout(() => navigate("/mybooking"), 3000);
       } catch (err) {
-        console.error("Rezervasiya uğursuz oldu:", err);
+        console.error("Rezervasiya uğursuz oldu:", err.response?.data || err.message);
       }
     };
 

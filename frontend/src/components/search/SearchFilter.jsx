@@ -16,6 +16,8 @@ export default function SearchFilter() {
   const [open, setOpen] = useState(null); // which dropdown is open
   const { t } = useTranslation();
 
+  const [isSearched, setIsSearched] = useState(false);
+
   const [selection, setSelection] = useState({
     country: "",
     city: "",
@@ -66,6 +68,7 @@ export default function SearchFilter() {
     } catch {
       setTours([]);
     }
+    setIsSearched(true);
   };
 
   // unique list of all countries
@@ -246,7 +249,7 @@ export default function SearchFilter() {
         </div>
       </Container>
 
-      <ToursList tours={tours} />
+      <ToursList tours={tours}isSearch={isSearched} />
     </>
   );
 }

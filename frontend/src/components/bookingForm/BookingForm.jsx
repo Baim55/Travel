@@ -133,7 +133,6 @@ export default function BookingForm({
       await stripe.redirectToCheckout({
         sessionId: res.data.id,
       });
-      
     } catch (err) {
       console.error("Ödəniş səhvi:", err);
       setError(t("booking.paymentError"));
@@ -222,26 +221,42 @@ export default function BookingForm({
         })}
       </div>
 
-      <div className={styles.extras}>
-        <h4>{t("booking.addExtra")}</h4>
-        <label>
-          <input
-            type="checkbox"
-            checked={chosenExtras.serviceBooking}
-            onChange={() => toggleExtra("serviceBooking")}
-          />
-          {extras.serviceBooking.label} $
-          {extras.serviceBooking.price.toFixed(2)}
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={chosenExtras.servicePerson}
-            onChange={() => toggleExtra("servicePerson")}
-          />
-          {extras.servicePerson.label} ${extras.servicePerson.price.toFixed(2)}{" "}
-          {t("booking.perPerson")}
-        </label>
+      <div className={styles.extrasBox}>
+        <details>
+          <summary className={styles.extrasTitle}>
+            <span>➕ {t("booking.addExtra")}</span>
+          </summary>
+
+          <div className={styles.extrasOptions}>
+            {/* Service Booking Extra */}
+            <label>
+              <input
+                type="checkbox"
+                checked={chosenExtras.serviceBooking}
+                onChange={() => toggleExtra("serviceBooking")}
+              />
+              🧳 {extras.serviceBooking.label} – $
+              {extras.serviceBooking.price.toFixed(2)}
+              <div className={styles.extraNote}>
+                {t("booking.extraLuggageDescription")}
+              </div>
+            </label>
+
+            {/* Service Per Person Extra */}
+            <label>
+              <input
+                type="checkbox"
+                checked={chosenExtras.servicePerson}
+                onChange={() => toggleExtra("servicePerson")}
+              />
+              👤 {extras.servicePerson.label} – $
+              {extras.servicePerson.price.toFixed(2)} {t("booking.perPerson")}
+              <div className={styles.extraNote}>
+                {t("booking.personalServiceDescription")}
+              </div>
+            </label>
+          </div>
+        </details>
       </div>
 
       <div className={styles.total}>

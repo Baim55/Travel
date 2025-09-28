@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTours, deleteTour } from "../../../redux/features/tourSlice";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ export default function AdminTours() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { tours } = useSelector((state) => state.tour);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     dispatch(getTours());
@@ -19,10 +20,22 @@ export default function AdminTours() {
     }
   };
 
+  const filteredTours = tours.filter((tour) =>
+    tour.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <h2 className={styles.title}>Tours</h2>
+        <input
+          type="text"
+          placeholder="Search tour name..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className={styles.searchInput}
+        />
+
         <button
           className={styles.newButton}
           onClick={() => navigate("/admin/tours/new")}
@@ -42,7 +55,7 @@ export default function AdminTours() {
             </tr>
           </thead>
           <tbody>
-            {tours.map((t) => (
+            {filteredTours.map((t) => (
               <tr key={t._id}>
                 <td className={styles.td}>{t.name}</td>
                 <td className={styles.td}>{t.city}</td>

@@ -6,6 +6,8 @@ import discountImg from "../../assets/images/h2_50off.png";
 import discountImg2 from "../../assets/images/12518628743016932-adfa95267b1011eb99030242ac110002.avif";
 import Container from "../container/Container";
 import { useTranslation } from "react-i18next";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function Discount() {
   const { t } = useTranslation();
@@ -30,7 +32,7 @@ export default function Discount() {
           <h2 className={styles.sectionTitle}>{t("discount.title")}</h2>
         </div>
         <div className={styles.flex}>
-          <div className={styles.left}>
+          <div className={styles.left} data-aos="fade-right" data-aos-duration="1000">
             <div className={styles.overlay}>
               <img src={discountImg2} alt="" className={styles.bgImg} />
               <img
@@ -50,7 +52,7 @@ export default function Discount() {
             </div>
           </div>
 
-          <div className={styles.right}>
+          <div className={styles.right} data-aos="fade-left" data-aos-duration="1000">
             {loading && <p className={styles.msg}>Loading discounts…</p>}
             {error && <p className={styles.msgError}>Error: {error}</p>}
             {!loading && !error && tours.length === 0 && (

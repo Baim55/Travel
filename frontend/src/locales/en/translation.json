@@ -25,6 +25,9 @@
     "guests": "Guests",
     "button": "Search"
   },
+  "featured": {
+    "subtitle": "Favorite Tours"
+  },
   "whyUs": {
     "subheading": "Why us",
     "title": "We Make All The Process Easy",
@@ -106,7 +109,9 @@
     "uncategorized": "Uncategorized",
     "recentPosts": "Recent Posts",
     "title": "Blog Posts",
-    "readMore": "Read more →"
+    "readMore": "Read more →",
+    "blogTitle": "Our Latest Blogs",
+    "seeAllBlog": "See All Blogs"
   },
   "contact": {
     "title": "Contact",
@@ -176,7 +181,9 @@
     "perPerson": "per person",
     "full": "(Full)",
     "left": "left",
-    "noGuest": "Please select at least one guest before booking."
+    "noGuest": "Please select at least one guest before booking.",
+    "extraLuggageDescription": "Includes additional luggage service",
+    "personalServiceDescription": "Personal guide and assistance for each guest"
   },
   "wishlist": {
     "title": "My Wishlist",

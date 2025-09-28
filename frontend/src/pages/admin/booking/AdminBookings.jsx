@@ -20,18 +20,18 @@ export default function AdminBookings() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.title}>Bütün Rezervasiyalar</h2>
+        <h2 className={styles.title}>All Reservations</h2>
       </div>
 
       <div className={styles.tableWrapper}>
         <table className={styles.table}>
           <thead>
             <tr>
-              <th className={styles.th}>Tur</th>
-              <th className={styles.th}>İstifadəçi</th>
-              <th className={styles.th}>Tarix</th>
-              <th className={styles.th}>Vaxt</th>
-              <th className={styles.th}>Qonaq sayı</th>
+              <th className={styles.th}>Tour</th>
+              <th className={styles.th}>User</th>
+              <th className={styles.th}>Date</th>
+              <th className={styles.th}>Time</th>
+              <th className={styles.th}>Guests</th>
             </tr>
           </thead>
           <tbody>

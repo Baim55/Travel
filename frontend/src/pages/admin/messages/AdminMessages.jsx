@@ -15,17 +15,17 @@ const AdminMessages = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.title}>Gələn Mesajlar</h2>
+        <h2 className={styles.title}>Incoming Messages</h2>
       </div>
 
       <div className={styles.tableWrapper}>
         <table className={styles.table}>
           <thead>
             <tr>
-              <th className={styles.th}>Ad Soyad</th>
+              <th className={styles.th}>Name</th>
               <th className={styles.th}>Email</th>
-              <th className={styles.th}>Mesaj</th>
-              <th className={styles.th}>Tarix</th>
+              <th className={styles.th}>Message</th>
+              <th className={styles.th}>Date</th>
             </tr>
           </thead>
           <tbody>

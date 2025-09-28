@@ -49,7 +49,7 @@
   },
   "discount": {
     "subtitle": "Qaçırmayın",
-    "title": "Endirimlər və Fırsatlar",
+    "title": "Endirimlər və Fürsətlər",
     "promoTitle": "Əvvəlcədən sifariş et, qənaət et",
     "promoText": "İndi və 4 Yanvar 2021 tarixləri arasında qalmağa 15% və ya daha çox endirim əldə edin",
     "bookNow": "İndi Rezerv Et",
@@ -60,6 +60,9 @@
   "testimonials": {
     "title": "Rəylər",
     "subtitle": "Müştəri Şərhləri"
+  },
+  "featured": {
+    "subtitle": "Sevimli turlar"
   },
   "alltours": {
     "title": "Bütün Mövcud Turlar",
@@ -106,7 +109,9 @@
     "uncategorized": "Kateqoriyasız",
     "recentPosts": "Son Paylaşımlar",
     "title": "Bloq Paylaşımları",
-    "readMore": "Daha ətraflı →"
+    "readMore": "Daha ətraflı →",
+    "blogTitle": "Ən Son Bloqlarımız",
+    "seeAllBlog": "Bütün bloqlara bax"
   },
   "contact": {
     "title": "Əlaqə",
@@ -161,7 +166,6 @@
     "title": "Turu Rezerv Et",
     "time": "Saat",
     "tickets": "Biletlər",
-    "addExtra": "Əlavə Xidmətlər",
     "total": "Cəmi",
     "bookNow": "Rezerv Et",
     "loginToBook": "Rezerv etmək üçün daxil olun",
@@ -173,10 +177,13 @@
     "youthPrice": "Gənclər (13–17) ${{price}}",
     "childPrice": "Uşaqlar (0–12) ${{price}}",
     "discount": "{{discount}}% endirim",
+    "addExtra": "Əlavə xidmətlər",
     "perPerson": "şəxs başına",
     "full": "(Dolu)",
     "left": "yer qalıb",
-    "noGuest": "Zəhmət olmasa, ən azı bir qonaq seçin."
+    "noGuest": "Zəhmət olmasa, ən azı bir qonaq seçin.",
+    "extraLuggageDescription": "Əlavə baqaj xidmətini əhatə edir",
+    "personalServiceDescription": "Hər qonaq üçün şəxsi bələdçi və yardım"
   },
   "wishlist": {
     "title": "Favorilərim",

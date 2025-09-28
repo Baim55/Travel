@@ -8,6 +8,7 @@ import Destinations from "../components/destinations/Destinations";
 import { Helmet } from "react-helmet";
 import About from "../components/about/AboutUs";
 import FeaturedTours from "../components/featuredTours/FeaturedTours";
+import HomeBlogPreview from "../components/homeBlog/HomeBlogPreview";
 
 const Home = () => {
   return (
@@ -23,6 +24,7 @@ const Home = () => {
       <Testimonials />
       <Destinations />
       <About/>
+      <HomeBlogPreview/>
     </div>
   );
 };

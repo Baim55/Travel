@@ -36,7 +36,7 @@ export default function AdminBlog() {
     <div className={styles.wrapper}>
       <AdminBlogForm onSuccess={fetchBlogs} />
 
-      <h2 className={styles.heading}>Mövcud Bloglar</h2>
+      <h2 className={styles.heading}>Blogs</h2>
       <div className={styles.blogList}>
         {blogs.map((blog) => (
           <div key={blog._id} className={styles.blogCard}>
@@ -49,12 +49,12 @@ export default function AdminBlog() {
             <div className={styles.blogInfo}>
               <h3>{blog.title}</h3>
               <p>{blog.excerpt}</p>
-              <small>Kateqoriya: {blog.category || "Yoxdur"}</small>
+              <small>Cateqory: {blog.category || "Yoxdur"}</small>
               <button
                 className={styles.deleteBtn}
                 onClick={() => handleDelete(blog._id)}
               >
-                Sil
+                Delete
               </button>
             </div>
           </div>

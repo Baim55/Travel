@@ -15,18 +15,18 @@ export default function AdminComments() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.title}>Yorumlar</h2>
+        <h2 className={styles.title}>Comments</h2>
       </div>
 
       <div className={styles.tableWrapper}>
         <table className={styles.table}>
           <thead>
             <tr>
-              <th className={styles.th}>Tur</th>
-              <th className={styles.th}>İstifadəçi</th>
-              <th className={styles.th}>Reytinq</th>
-              <th className={styles.th}>Yorum</th>
-              <th className={styles.th}>Tarix</th>
+              <th className={styles.th}>Tour</th>
+              <th className={styles.th}>User</th>
+              <th className={styles.th}>Rating</th>
+              <th className={styles.th}>Comment</th>
+              <th className={styles.th}>Date</th>
             </tr>
           </thead>
           <tbody>

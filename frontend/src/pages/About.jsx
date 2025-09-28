@@ -12,15 +12,15 @@ const About = () => {
   const { t } = useTranslation();
   return (
     <div>
-       <Helmet>
-              <title> About | NeoTravel</title>
-            </Helmet>
-      <PageHeader title={t("pageHeader.about.title")}/>
+      <Helmet>
+        <title> About | NeoTravel</title>
+      </Helmet>
+      <PageHeader title={t("pageHeader.about.title")} />
       <AboutUs />
       <WhyUs />
-      <AboutStats/>
-      <Team/>
-      <Testimonials/>
+      <AboutStats />
+      <Team />
+      <Testimonials />
     </div>
   );
 };

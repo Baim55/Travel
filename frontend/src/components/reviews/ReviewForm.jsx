@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "./ReviewForm.module.css";
+import { toast } from "react-toastify";
 
 function StarRating({ rating, setRating }) {
   const total = 5;
@@ -42,7 +43,7 @@ export default function ReviewForm({ tourId, user, onReviewSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!user) return alert("Zəhmət olmasa giriş edin.");
+    if (!user) return alert("Please log in.");
 
     try {
       setLoading(true);
@@ -54,7 +55,7 @@ export default function ReviewForm({ tourId, user, onReviewSubmit }) {
       });
       setComment("");
       setRating(0);
-      alert("Yorum uğurla göndərildi!");
+      toast.success("Comment sent successfully!");
 
       if (onReviewSubmit) {
         onReviewSubmit(); // ReviewList yenilənsin
@@ -73,18 +74,18 @@ export default function ReviewForm({ tourId, user, onReviewSubmit }) {
       <textarea
         value={comment}
         onChange={(e) => setComment(e.target.value)}
-        placeholder="Yorumunuzu yazın..."
+        placeholder="Write your comment..."
         required
         className={styles.textarea}
       />
       <br />
       <label className={styles.selectLabel}>
-        Qiymət:
+        Rate:
         <StarRating rating={rating} setRating={setRating} />
       </label>
       <br />
       <button type="submit" disabled={loading} className={styles.button}>
-        {loading ? "Göndərilir..." : "Göndər"}
+        {loading ? "Sending..." : "Send"}
       </button>
     </form>
   );

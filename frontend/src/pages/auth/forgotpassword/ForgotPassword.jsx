@@ -2,7 +2,8 @@ import React from "react";
 import { useFormik } from "formik";
 import { forgotschema } from "../../../schema/ForgotSchema";
 import axios from "axios";
-import styles from "../login/Login.module.css"; // Burada login stilini istifadə edirik
+import styles from "../login/Login.module.css"; 
+import { toast } from "react-toastify";
 
 const ForgotPassword = () => {
   const baseUrl = `http://localhost:5000/auth`;
@@ -11,7 +12,7 @@ const ForgotPassword = () => {
     try {
       const res = await axios.post(`${baseUrl}/forgotpassword`, values);
       if (res.status === 200) {
-        alert("Check your email to reset your password");
+        toast.success("Check your email to reset your password");
         actions.resetForm();
       }
     } catch (error) {

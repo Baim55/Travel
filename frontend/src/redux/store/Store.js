@@ -5,6 +5,8 @@ import wishlistSlice from "../features/wishlistSlice";
 import userSlice from "../features/userSlice";
 import tourSlice from "../features/tourSlice";
 import bookingSlice from "../features/bookingSlice";
+import adminSlice from "../features/adminSlice";
+import storageSession from "redux-persist/lib/storage/session";
 
 const persistTourConfig = {
   key: "tour",
@@ -14,7 +16,13 @@ const persistTourConfig = {
 const persistUserConfig = {
   key: "user",
   storage,
-  whitelist: ["userInfo"],
+  whitelist: ["user"],
+};
+
+const persistAdminConfig = {
+  key: "admin",
+   storage: storageSession,
+  whitelist: ["admin"],
 };
 
 const persistWishlistConfig = {
@@ -30,7 +38,7 @@ const persistBookingConfig = {
 const persistedTourReducer = persistReducer(persistTourConfig, tourSlice);
 
 const persistedUserReducer = persistReducer(persistUserConfig, userSlice);
-
+const persistedAdminReducer = persistReducer(persistAdminConfig, adminSlice);
 const persistedWishlistReducer = persistReducer(
   persistWishlistConfig,
   wishlistSlice
@@ -44,6 +52,7 @@ const persistedBookingReducer = persistReducer(
 export const store = configureStore({
   reducer: {
     user: persistedUserReducer,
+    admin: persistedAdminReducer,
     tour: persistedTourReducer,
     wishlist: persistedWishlistReducer,
     booking: persistedBookingReducer,

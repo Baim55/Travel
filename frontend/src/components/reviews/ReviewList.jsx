@@ -61,19 +61,19 @@ export default function ReviewList({ tourId, refreshTrigger }) {
         );
         setReviews(res.data);
       } catch (err) {
-        console.error("Yorumlar alınarkən xəta baş verdi:", err);
+        console.error("An error occurred while retrieving comments:", err);
       }
     }
     load();
   }, [tourId, refreshTrigger]);
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Yorumu silmək istədiyinizə əminsiniz?")) return;
+    if (!window.confirm("Are you sure you want to delete the comment?")) return;
     try {
       await axios.delete(`http://localhost:5000/api/reviews/${id}`);
       setReviews((prev) => prev.filter((r) => r._id !== id));
     } catch (err) {
-      alert("Silinmə zamanı xəta baş verdi.");
+      alert("An error occurred during deletion.");
     }
   };
 
@@ -104,7 +104,7 @@ export default function ReviewList({ tourId, refreshTrigger }) {
       );
       cancelEdit();
     } catch (err) {
-      alert("Redaktə zamanı xəta baş verdi.");
+      alert("An error occurred while editing.");
     }
   };
 

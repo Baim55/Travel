@@ -1,0 +1,108 @@
+.chatContainer {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.messages {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 1rem;
+  background-color: var(--bg-hover-light);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message {
+  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 12px;
+  word-wrap: break-word;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  position: relative;
+  background-color: var(--card-bg); /* soldakı default */
+  color: var(--text);
+}
+
+.self {
+  align-self: flex-end;
+  background-color: var(--primary);
+  color: white;
+  border-bottom-right-radius: 0;
+}
+
+.other {
+  align-self: flex-start;
+  background-color: rgb(34, 209, 89); /* Dark mod üçün bu olmalıdır */
+  color: white;
+  border-bottom-left-radius: 0;
+}
+
+
+.message strong {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.inputBox {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.inputBox input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--input-bg);
+  color: var(--text);
+  border-radius: 6px;
+  outline: none;
+}
+
+.inputBox input::placeholder {
+  color: var(--placeholder-color);
+}
+
+.inputBox button {
+  padding: 0.5rem 1rem;
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.inputBox button:hover {
+  background-color: var(--primary-hover);
+}
+.userSelect {
+  width: 100%;
+  margin: 1rem 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--input-bg);
+  color: var(--text);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.userSelect:focus {
+  border-color: var(--primary);
+}
+
+.userSelect option {
+  background-color: var(--card-bg);
+  color: var(--text);
+}

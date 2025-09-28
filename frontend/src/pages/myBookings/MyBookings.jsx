@@ -26,7 +26,7 @@ export default function MyBookings() {
         setBookings((prev) => prev.filter((b) => b._id !== id));
         dispatch(removeBooking(id));
       } catch (err) {
-        console.error("Silinmə zamanı xəta:", err);
+        console.error("Silinmə zamanı xəta", err);
         toast.error(t("reserve.deleteError"));
       }
     }
@@ -47,17 +47,17 @@ export default function MyBookings() {
     }
   }, [user, dispatch]);
 
-  if (!user) return <p className={styles.msg}>Zəhmət olmasa daxil olun.</p>;
+  if (!user) return <p className={styles.msg}>Please log in.</p>;
   if (loading) return <p className={styles.msg}>Yüklənir...</p>;
   if (bookings.length === 0)
     return <p className={styles.msg}>You haven't made a reservation yet.</p>;
 
   return (
     <div>
-       <Helmet>
-              <title> My Bookings | NeoTravel</title>
-            </Helmet>
-      <PageHeader title={t("reserve.title")}/>
+      <Helmet>
+        <title> My Bookings | NeoTravel</title>
+      </Helmet>
+      <PageHeader title={t("reserve.title")} />
       <Container>
         <div className={styles.wrapper}>
           <div className={styles.list}>

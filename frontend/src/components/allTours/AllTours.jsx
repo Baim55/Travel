@@ -51,8 +51,6 @@ export default function AllTours() {
 
   return (
     <Container>
-      <h2 className={styles.title}>{t("alltours.title")}</h2>
-
       <div className={styles.controls}>
         <input
           type="text"

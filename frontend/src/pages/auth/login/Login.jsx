@@ -22,7 +22,10 @@ const Login = () => {
       });
 
       if (res.status === 200) {
-        dispatch(setUser(res.data.existUser)); // burda diqqətli ol: res.data içində user gəlir
+        const user = res.data.existUser;
+        localStorage.setItem("userId", user._id);
+        localStorage.setItem("username", user.username);
+        dispatch(setUser(res.data.existUser));
         toast.success("Login successful!");
 
         const from = location.state?.from?.pathname || "/";
@@ -50,6 +53,9 @@ const Login = () => {
 
   return (
     <div className={styles.container}>
+      <Helmet>
+        <title>Login | NeoTravel</title>
+      </Helmet>
       <div className={styles.login}>
         <form className={styles.form} onSubmit={handleSubmit}>
           <h3>Login</h3>

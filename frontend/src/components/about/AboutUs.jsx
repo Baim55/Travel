@@ -4,6 +4,8 @@ import styles from "./AboutUs.module.css";
 import aboutImage from "../../assets/images/about_image-1.1.png";
 import Container from "../container/Container";
 import { useTranslation } from "react-i18next";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const AboutUs = () => {
   const navigate = useNavigate();
@@ -12,10 +14,10 @@ const AboutUs = () => {
     <section className={styles.about}>
       <Container>
         <div className={styles.aboutarea}>
-          <div className={styles.image}>
+          <div className={styles.image} data-aos="fade-right" data-aos-duration="1000">
             <img src={aboutImage} alt="About us" />
           </div>
-          <div className={styles.text}>
+          <div className={styles.text}  data-aos="fade-left" data-aos-duration="1000">
             <p className={styles.subtitle}>{t("aboutHome.subtitle")}</p>
             <h2 className={styles.sectionTitle}>{t("aboutHome.title")}</h2>
             <p>{t("aboutHome.text")}</p>

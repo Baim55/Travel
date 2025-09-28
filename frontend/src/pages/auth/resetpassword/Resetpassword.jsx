@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "../login/Login.module.css";
 import { Helmet } from "react-helmet";
+import { toast } from "react-toastify";
 
 const ResetPassword = () => {
   const location = useLocation();
@@ -14,12 +15,11 @@ const ResetPassword = () => {
 
   const submitForm = async (values, actions) => {
     try {
-      const res = await axios.post(
-        `${baseUrl}/resetpassword?token=${token}`,
-        { password: values.password }
-      );
+      const res = await axios.post(`${baseUrl}/resetpassword?token=${token}`, {
+        password: values.password,
+      });
       if (res.status === 200) {
-        alert("Password reset successfully");
+        toast.success("Password reset successfully");
         actions.resetForm();
         navigate("/login");
       }
@@ -53,7 +53,9 @@ const ResetPassword = () => {
               onChange={handleChange}
               value={values.password}
             />
-            {errors.password && <div className={styles.error}>{errors.password}</div>}
+            {errors.password && (
+              <div className={styles.error}>{errors.password}</div>
+            )}
           </div>
 
           <div className={styles.formGroup}>
@@ -66,7 +68,9 @@ const ResetPassword = () => {
               onChange={handleChange}
               value={values.confirmpassword}
             />
-            {errors.confirmpassword && <div className={styles.error}>{errors.confirmpassword}</div>}
+            {errors.confirmpassword && (
+              <div className={styles.error}>{errors.confirmpassword}</div>
+            )}
           </div>
 
           <button type="submit" className={styles.button}>

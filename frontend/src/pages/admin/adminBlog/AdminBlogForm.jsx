@@ -65,7 +65,7 @@ export default function AdminBlogForm({ onSuccess }) {
         required
       />
 
-      <label>Qısa təsvir</label>
+      <label>Excerpt</label>
       <input
         type="text"
         name="excerpt"
@@ -74,7 +74,7 @@ export default function AdminBlogForm({ onSuccess }) {
         required
       />
 
-      <label>Əsas mətn (content)</label>
+      <label>Content</label>
       <textarea
         name="content"
         value={form.content}
@@ -83,7 +83,7 @@ export default function AdminBlogForm({ onSuccess }) {
         required
       ></textarea>
 
-      <label>Kateqoriya</label>
+      <label>Category</label>
       <input
         type="text"
         name="category"
@@ -91,10 +91,10 @@ export default function AdminBlogForm({ onSuccess }) {
         onChange={handleChange}
       />
 
-      <label>Şəkil</label>
+      <label>Author</label>
       <input type="file" accept="image/*" onChange={handleImageChange} required />
 
-      <button type="submit">Əlavə et</button>
+      <button type="submit">Add</button>
     </form>
   );
 }

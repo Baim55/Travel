@@ -47,7 +47,7 @@
 .mainTitle {
   font-size: 50px;
   font-weight: 700;
-  color: #000;
+  color: var(--text);
   margin-bottom: 40px;
   position: relative;
   z-index: 1;

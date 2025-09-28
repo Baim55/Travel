@@ -17,6 +17,7 @@ import { toast } from "react-toastify";
 const Wrapper = () => {
   const baseUrl = "http://localhost:5000/auth";
   const { user } = useSelector((state) => state.user);
+  const { admin } = useSelector((state) => state.admin);
   const { bookings } = useSelector((state) => state.booking);
   const bookingCount = bookings.length;
   const dispatch = useDispatch();

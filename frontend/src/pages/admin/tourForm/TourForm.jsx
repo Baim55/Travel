@@ -59,7 +59,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
         lat: initialData.location.lat,
         lng: initialData.location.lng,
         streetViewSrc: initialData.streetViewSrc || "",
-        isFeatured: initialData.isFeatured || false,
+        isFeatured: initialData.isFeatured === true,
       });
       setImages([]);
       setNearbyHotels(initialData.nearby.hotels);
@@ -130,7 +130,7 @@ export default function TourForm({ initialData = {}, onSubmit }) {
     fd.append("availableDateRange[endDate]", form.endDate);
     fd.append("location[lat]", form.lat);
     fd.append("location[lng]", form.lng);
-    fd.append("isFeatured", form.isFeatured);
+    fd.append("isFeatured", form.isFeatured ? "true" : "false");
     fd.append("timeSlots", JSON.stringify(timeSlots));
     fd.append("disabledDays", JSON.stringify(disabledDays));
     images.forEach((file) => fd.append("images", file));
@@ -213,20 +213,6 @@ export default function TourForm({ initialData = {}, onSubmit }) {
             rows={4}
             required
           />
-        </label>
-      </div>
-
-      <div className={styles.field}>
-        <label className={styles.label}>
-          <input
-            type="checkbox"
-            name="isFeatured"
-            checked={form.isFeatured}
-            onChange={(e) =>
-              setForm((prev) => ({ ...prev, isFeatured: e.target.checked }))
-            }
-          />{" "}
-          Is Featured (Seçilmiş tur)
         </label>
       </div>
 
@@ -417,7 +403,19 @@ export default function TourForm({ initialData = {}, onSubmit }) {
           ))}
         </ul>
       </fieldset>
-
+      <div className={styles.field}>
+        <label className={styles.label}>
+          <input
+            type="checkbox"
+            name="isFeatured"
+            checked={form.isFeatured}
+            onChange={(e) =>
+              setForm((prev) => ({ ...prev, isFeatured: e.target.checked }))
+            }
+          />{" "}
+          Is Featured (Seçilmiş tur)
+        </label>
+      </div>
       <button type="submit" className={styles.submitButton}>
         {initialData._id ? "Update Tour" : "Create Tour"}
       </button>

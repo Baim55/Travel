@@ -35,6 +35,10 @@ import FAQ from "./pages/FAQ/FAQ";
 import Success from "./pages/payment/Success";
 import Cancel from "./pages/payment/Cancel";
 import NotFound from "./pages/notFound/NotFound";
+import AdminChat from "./pages/admin/chat/AdminChat";
+import AdminLogin from "./pages/admin/login/AdminLogin";
+import NotificationListener from "./components/notification/NotificationListener";
+import Chat from "./components/chat/Chat";
 
 const router = createBrowserRouter([
   {
@@ -118,6 +122,10 @@ const router = createBrowserRouter([
         element: <Cancel />,
       },
       {
+        path: "/chat",
+        element: <Chat />,
+      },
+      {
         path: "admin",
         element: (
           <RequireAdmin>
@@ -134,6 +142,7 @@ const router = createBrowserRouter([
           { path: "comments", element: <AdminComments /> },
           { path: "messages", element: <AdminMessages /> },
           { path: "blogs", element: <AdminBlog /> },
+          { path: "chat", element: <AdminChat /> },
         ],
       },
     ],
@@ -142,6 +151,7 @@ const router = createBrowserRouter([
     path: "*",
     element: <NotFound />,
   },
+  { path: "/admin/login", element: <AdminLogin /> },
 ]);
 function App() {
   const dispatch = useDispatch();
@@ -160,7 +170,12 @@ function App() {
 
     fetchUser();
   }, []);
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <NotificationListener />
+    </>
+  );
 }
 
 export default App;

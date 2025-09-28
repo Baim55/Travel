@@ -4,6 +4,8 @@ import axios from "axios";
 import styles from "./Destinations.module.css";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function Destinations() {
   const [countries, setCountries] = useState([]);
@@ -26,16 +28,25 @@ export default function Destinations() {
       .catch((err) => console.error("Turlar alınarkən xəta:", err));
   }, []);
 
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
     <section className={styles.destinations}>
       <p className={styles.subtitle}>{t("destinations.subtitle")}</p>
       <h2 className={styles.sectionTitle}>{t("destinations.title")}</h2>
       <div className={styles.grid}>
-        {countries.map((item) => {
+        {countries.map((item, index) => {
           const imageUrl = `./images/${item.country.toLowerCase().trim()}.jpg`;
 
           return (
-            <div key={item.country} className={styles.card}>
+            <div
+              key={item.country}
+              className={styles.card}
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
               <Link
                 to={`/tours/country/${encodeURIComponent(item.country.trim())}`}
                 className={styles.link}

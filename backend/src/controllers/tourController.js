@@ -215,7 +215,7 @@ export const updateTour = async (req, res) => {
       maxGuests: maxGuests || tour.maxGuests,
       images: imagePaths.length > 0 ? imagePaths : tour.images,
       streetViewSrc: req.body.streetViewSrc || tour.streetViewSrc,
-      isFeatured: req.body.isFeatured === "true" || tour.isFeatured,
+      isFeatured: req.body.isFeatured === "true",
     };
 
     const sd = req.body["availableDateRange[startDate]"];
@@ -229,6 +229,7 @@ export const updateTour = async (req, res) => {
 
     const lat = req.body["location[lat]"];
     const lng = req.body["location[lng]"];
+    
     if (lat != null && lng != null) {
       updated.location = {
         lat: parseFloat(lat),

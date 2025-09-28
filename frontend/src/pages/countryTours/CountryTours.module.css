@@ -11,7 +11,7 @@
 
 .header h2 {
   font-size: 36px;
-  color: #202f59;
+  color: var(--text);
   margin-bottom: 10px;
   text-transform: capitalize;
 }
@@ -33,5 +33,5 @@
 }
 
 .breadcrumb span {
-  color: #202f59;
+  color: var(--text);
 }
