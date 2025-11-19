@@ -40,6 +40,7 @@ import AdminLogin from "./pages/admin/login/AdminLogin";
 import NotificationListener from "./components/notification/NotificationListener";
 import Chat from "./components/chat/Chat";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,7 +52,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/destinations",
-        element: <Destination />,
+        element: <Destination  />,
       },
       {
         path: "/about",
