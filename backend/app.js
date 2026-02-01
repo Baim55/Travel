@@ -22,7 +22,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://travel-hihu.vercel.app/",
     credentials: true,
   },
 });
@@ -31,7 +31,7 @@ const port = process.env.PORT || 5001;
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "https://travel-hihu.vercel.app/", credentials: true }));
 
 app.use("/images", express.static("src/images"));
 
