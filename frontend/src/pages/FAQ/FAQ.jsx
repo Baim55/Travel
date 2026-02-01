@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./Faq.module.css";
+import styles from "./FAQ.module.css";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import PageHeader from "../../components/pageHeader/PageHeader";
 import Container from "../../components/container/Container";
@@ -28,12 +28,10 @@ export default function Faq() {
 
   return (
     <section>
-       <Helmet>
-              <title> FAQ | NeoTravel</title>
-            </Helmet>
-      <PageHeader
-        title={t("pageHeader.faq.title")}
-      />
+      <Helmet>
+        <title> FAQ | NeoTravel</title>
+      </Helmet>
+      <PageHeader title={t("pageHeader.faq.title")} />
       <Container>
         <div className={styles.faqWrapper}>
           <div className={styles.left}>
@@ -43,7 +41,9 @@ export default function Faq() {
           <div className={styles.right}>
             {faqData.map((cat, catIndex) => {
               const categoryKey = cat.category;
-              const items = t(`faq.questions.${categoryKey}`, { returnObjects: true });
+              const items = t(`faq.questions.${categoryKey}`, {
+                returnObjects: true,
+              });
 
               return (
                 <div key={categoryKey} className={styles.categoryBlock}>
