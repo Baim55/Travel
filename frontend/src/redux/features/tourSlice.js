@@ -2,7 +2,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseURL = "https://travel-1-ncch.onrender.com/api/tours";
+const baseURL = "http://localhost:5000/api/tours";
 
 const initialState = {
   tours: [],
