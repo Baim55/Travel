@@ -105,8 +105,8 @@ Administrators can:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Baim55/Final-Project.git
-cd Final-Project
+git clone https://github.com/Baim55/Travel.git
+cd Travel
 ```
 
 ### 2. Install Frontend Dependencies
